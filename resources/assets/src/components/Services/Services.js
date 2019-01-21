@@ -1,20 +1,20 @@
 import React, {Component} from 'react';
-import {renderRoutes} from "react-router-config";
+import {renderRoutes} from 'react-router-config';
 
 /**
- * App component
+ * Services component
  */
-class App extends Component {
-
+class Services extends Component {
     render() {
         const {route} = this.props;
 
         return (
             <div>
+                Services component
                 {renderRoutes(route.routes)}
             </div>
         );
     }
 }
 
-export {App}
+export {Services};
