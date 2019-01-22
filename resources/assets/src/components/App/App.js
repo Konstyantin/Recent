@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {renderRoutes} from "react-router-config";
+import Header from "../../scenes/components/Header/Header";
+import Footer from "../../scenes/components/Footer/Footer";
 
 /**
  * App component
@@ -11,7 +13,9 @@ class App extends Component {
 
         return (
             <div>
+                <Header/>
                 {renderRoutes(route.routes)}
+                <Footer/>
             </div>
         );
     }
