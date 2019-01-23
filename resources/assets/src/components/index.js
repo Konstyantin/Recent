@@ -5,8 +5,10 @@ import { history } from '../_helpers';
 import { renderRoutes } from "react-router-config";
 import {publicRoutes} from "../_routes";
 
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import 'bootstrap-css-only/css/bootstrap.min.css';
+import 'mdbreact/dist/css/mdb.css';
 
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 render(
     <Router history={history}>

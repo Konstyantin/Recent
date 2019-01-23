@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {renderRoutes} from "react-router-config";
-import Header from "../../scenes/components/Header/Header";
+import Navbar from "../../scenes/components/Navbar/Navbar";
 import Footer from "../../scenes/components/Footer/Footer";
 import {Container, Row, Col} from 'reactstrap';
 import './style.css';
@@ -15,7 +15,7 @@ class App extends Component {
 
         return (
             <div>
-                <Header/>
+                <Navbar/>
                 <Container>
                     <Row>
                         <Col>
