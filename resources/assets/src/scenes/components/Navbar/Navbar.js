@@ -24,6 +24,8 @@ class Navbar extends Component {
         this.state = {
             isOpen: false
         };
+
+        this.toggleCollapse = this.toggleCollapse.bind(this);
     }
 
     toggleCollapse() {
@@ -45,7 +47,7 @@ class Navbar extends Component {
                         <MDBNavItem>
                             <MDBDropdown>
                                 <MDBDropdownToggle nav caret>
-                                    <div className="d-none d-md-inline">Dropdown</div>
+                                    <div className="d-none d-md-inline">Services</div>
                                 </MDBDropdownToggle>
                                 <MDBDropdownMenu className="dropdown-default" right>
                                     <MDBDropdownItem href="/service/1">Service item</MDBDropdownItem>

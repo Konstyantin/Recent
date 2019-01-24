@@ -16,13 +16,7 @@ class App extends Component {
         return (
             <div>
                 <Navbar/>
-                <Container>
-                    <Row>
-                        <Col>
-                            {renderRoutes(route.routes)}
-                        </Col>
-                    </Row>
-                </Container>
+                {renderRoutes(route.routes)}
                 <Footer/>
             </div>
         );
