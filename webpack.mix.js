@@ -13,6 +13,7 @@ const ExtractTextPlugin = require("extract-text-webpack-plugin");
  */
 
 mix.react('resources/assets/src/app.js', 'public/assets/bundle')
+    // .sass('resources/sass/app.scss', 'public/assets/css')
     .version()
     .disableNotifications();
 

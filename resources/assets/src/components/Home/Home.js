@@ -3,6 +3,7 @@ import { MDBBtn } from "mdbreact";
 
 import Carousel from './scenes/components/Carousel';
 import ServicesCard from './scenes/components/ServicesCard';
+import About from './scenes/components/About';
 
 /**
  * Home component
@@ -13,6 +14,7 @@ class Home extends Component {
             <div>
                 <Carousel/>
                 <ServicesCard/>
+                <About/>
             </div>
         );
     }
