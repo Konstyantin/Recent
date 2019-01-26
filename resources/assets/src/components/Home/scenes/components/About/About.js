@@ -55,7 +55,7 @@ const About = (props) => {
                                 </Grid>
                             </Grid>
                         </Grid>
-                        <Grid item={1}/>
+                        <Grid item/>
                     </Grid>
                 </Grid>
                 <Grid item xs={6}>
