@@ -1,25 +1,15 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import PropTypes from 'prop-types';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import Badge from '@material-ui/core/Badge';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
-import AccountCircle from '@material-ui/icons/AccountCircle';
-import MailIcon from '@material-ui/icons/Mail';
-import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
 import Button from '@material-ui/core/Button';
-import Grow from '@material-ui/core/Grow';
-import Paper from '@material-ui/core/Paper';
-import Popper from '@material-ui/core/Popper';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import MenuList from '@material-ui/core/MenuList';
 
 const styles = theme => ({
     root: {
@@ -107,8 +97,6 @@ class Navbar extends React.Component {
 
         this.handleMobileMenuOpen = this.handleMobileMenuOpen.bind(this);
         this.handleMobileMenuClose = this.handleMobileMenuClose.bind(this);
-        this.handleClose = this.handleClose.bind(this);
-        this.handleToggle = this.handleToggle.bind(this);
     }
 
     handleMobileMenuOpen(event) {
@@ -119,51 +107,10 @@ class Navbar extends React.Component {
         this.setState({ mobileMoreAnchorEl: null });
     };
 
-    handleClose() {
-        if (this.anchorEl.contains(event.target)) {
-            return;
-        }
-
-        this.setState({ open: false });
-    };
-
-    handleToggle() {
-        this.setState(state => ({ open: !state.open }));
-    }
-
     render() {
-        const { anchorEl, mobileMoreAnchorEl } = this.state;
+        const { mobileMoreAnchorEl } = this.state;
         const { classes } = this.props;
         const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-        const { open } = this.state;
-
-        const renderPopoverMenu = (
-            <Popper open={open} anchorEl={this.anchorEl} transition disablePortal>
-                {({ TransitionProps, placement }) => (
-                    <Grow
-                        {...TransitionProps}
-                        id="menu-list-grow"
-                        style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
-                    >
-                        <Paper>
-                            <ClickAwayListener onClickAway={this.handleClose}>
-                                <MenuList>
-                                    <MenuItem onClick={this.handleClose}>
-                                        <Link to="/service/1">Service item</Link>
-                                    </MenuItem>
-                                    <MenuItem onClick={this.handleClose}>
-                                        <Link to="/service/1">Service item</Link>
-                                    </MenuItem>
-                                    <MenuItem onClick={this.handleClose}>
-                                        <Link to="/service/1">Service item</Link>
-                                    </MenuItem>
-                                </MenuList>
-                            </ClickAwayListener>
-                        </Paper>
-                    </Grow>
-                )}
-            </Popper>
-        );
 
         const renderMobileMenu = (
             <Menu
@@ -174,26 +121,19 @@ class Navbar extends React.Component {
                 onClose={this.handleMobileMenuClose}
             >
                 <MenuItem>
-                    <IconButton color="inherit">
-                        <Badge badgeContent={4} color="secondary">
-                            <MailIcon />
-                        </Badge>
-                    </IconButton>
-                    <p>Messages</p>
+                    <Link to="/">Home</Link>
                 </MenuItem>
                 <MenuItem>
-                    <IconButton color="inherit">
-                        <Badge badgeContent={11} color="secondary">
-                            <NotificationsIcon />
-                        </Badge>
-                    </IconButton>
-                    <p>Notifications</p>
+                    <Link to="/services">Services</Link>
                 </MenuItem>
-                <MenuItem onClick={this.handleProfileMenuOpen}>
-                    <IconButton color="inherit">
-                        <AccountCircle />
-                    </IconButton>
-                    <p>Profile</p>
+                <MenuItem>
+                    <Link to="/gallery">Gallery</Link>
+                </MenuItem>
+                <MenuItem>
+                    <Link to="/about">About</Link>
+                </MenuItem>
+                <MenuItem>
+                    <Link to="/contact">Contact</Link>
                 </MenuItem>
             </Menu>
         );
@@ -210,17 +150,9 @@ class Navbar extends React.Component {
                             <Button color="inherit">
                                 <Link to="/">Home</Link>
                             </Button>
-                            <Button
-                                buttonRef={node => {
-                                    this.anchorEl = node;
-                                }}
-                                aria-owns={open ? 'menu-list-grow' : undefined}
-                                aria-haspopup="true"
-                                onClick={this.handleToggle}
-                            >
-                                Services
+                            <Button color="inherit">
+                                <Link to="/services">Services</Link>
                             </Button>
-
                             <Button color="inherit">
                                 <Link to="/gallery">Gallery</Link>
                             </Button>
@@ -238,7 +170,6 @@ class Navbar extends React.Component {
                         </div>
                     </Toolbar>
                 </AppBar>
-                {renderPopoverMenu}
                 {renderMobileMenu}
             </div>
         );
