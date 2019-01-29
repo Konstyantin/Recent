@@ -14,6 +14,12 @@ import AccountCircle from '@material-ui/icons/AccountCircle';
 import MailIcon from '@material-ui/icons/Mail';
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import Button from '@material-ui/core/Button';
+import Grow from '@material-ui/core/Grow';
+import Paper from '@material-ui/core/Paper';
+import Popper from '@material-ui/core/Popper';
+import ClickAwayListener from '@material-ui/core/ClickAwayListener';
+import MenuList from '@material-ui/core/MenuList';
 
 const styles = theme => ({
     root: {
@@ -83,6 +89,9 @@ const styles = theme => ({
             display: 'none',
         },
     },
+    paper: {
+        marginRight: theme.spacing.unit * 2,
+    },
 });
 
 class Navbar extends React.Component {
@@ -93,22 +102,14 @@ class Navbar extends React.Component {
         this.state = {
             anchorEl: null,
             mobileMoreAnchorEl: null,
+            open: false
         };
 
-        this.handleProfileMenuOpen = this.handleProfileMenuOpen.bind(this);
-        this.handleMenuClose = this.handleMenuClose.bind(this);
         this.handleMobileMenuOpen = this.handleMobileMenuOpen.bind(this);
         this.handleMobileMenuClose = this.handleMobileMenuClose.bind(this);
+        this.handleClose = this.handleClose.bind(this);
+        this.handleToggle = this.handleToggle.bind(this);
     }
-
-    handleProfileMenuOpen(event) {
-        this.setState({ anchorEl: event.currentTarget });
-    };
-
-    handleMenuClose() {
-        this.setState({ anchorEl: null });
-        this.handleMobileMenuClose();
-    };
 
     handleMobileMenuOpen(event) {
         this.setState({ mobileMoreAnchorEl: event.currentTarget });
@@ -118,23 +119,50 @@ class Navbar extends React.Component {
         this.setState({ mobileMoreAnchorEl: null });
     };
 
+    handleClose() {
+        if (this.anchorEl.contains(event.target)) {
+            return;
+        }
+
+        this.setState({ open: false });
+    };
+
+    handleToggle() {
+        this.setState(state => ({ open: !state.open }));
+    }
+
     render() {
         const { anchorEl, mobileMoreAnchorEl } = this.state;
         const { classes } = this.props;
-        const isMenuOpen = Boolean(anchorEl);
         const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+        const { open } = this.state;
 
-        const renderMenu = (
-            <Menu
-                anchorEl={anchorEl}
-                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-                open={isMenuOpen}
-                onClose={this.handleMenuClose}
-            >
-                <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
-                <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
-            </Menu>
+        const renderPopoverMenu = (
+            <Popper open={open} anchorEl={this.anchorEl} transition disablePortal>
+                {({ TransitionProps, placement }) => (
+                    <Grow
+                        {...TransitionProps}
+                        id="menu-list-grow"
+                        style={{ transformOrigin: placement === 'bottom' ? 'center top' : 'center bottom' }}
+                    >
+                        <Paper>
+                            <ClickAwayListener onClickAway={this.handleClose}>
+                                <MenuList>
+                                    <MenuItem onClick={this.handleClose}>
+                                        <Link to="/service/1">Service item</Link>
+                                    </MenuItem>
+                                    <MenuItem onClick={this.handleClose}>
+                                        <Link to="/service/1">Service item</Link>
+                                    </MenuItem>
+                                    <MenuItem onClick={this.handleClose}>
+                                        <Link to="/service/1">Service item</Link>
+                                    </MenuItem>
+                                </MenuList>
+                            </ClickAwayListener>
+                        </Paper>
+                    </Grow>
+                )}
+            </Popper>
         );
 
         const renderMobileMenu = (
@@ -175,28 +203,33 @@ class Navbar extends React.Component {
                 <AppBar position="static" color='default'>
                     <Toolbar>
                         <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-                            Material-UI
+                            Recovery Center
                         </Typography>
                         <div className={classes.grow} />
                         <div className={classes.sectionDesktop}>
-                            <IconButton color="inherit">
-                                <Badge badgeContent={4} color="secondary">
-                                    <MailIcon />
-                                </Badge>
-                            </IconButton>
-                            <IconButton color="inherit">
-                                <Badge badgeContent={17} color="secondary">
-                                    <NotificationsIcon />
-                                </Badge>
-                            </IconButton>
-                            <IconButton
-                                aria-owns={isMenuOpen ? 'material-appbar' : undefined}
+                            <Button color="inherit">
+                                <Link to="/">Home</Link>
+                            </Button>
+                            <Button
+                                buttonRef={node => {
+                                    this.anchorEl = node;
+                                }}
+                                aria-owns={open ? 'menu-list-grow' : undefined}
                                 aria-haspopup="true"
-                                onClick={this.handleProfileMenuOpen}
-                                color="inherit"
+                                onClick={this.handleToggle}
                             >
-                                <AccountCircle />
-                            </IconButton>
+                                Services
+                            </Button>
+
+                            <Button color="inherit">
+                                <Link to="/gallery">Gallery</Link>
+                            </Button>
+                            <Button color="inherit">
+                                <Link to="/about">About</Link>
+                            </Button>
+                            <Button color="inherit">
+                                <Link to="/contact">Contact</Link>
+                            </Button>
                         </div>
                         <div className={classes.sectionMobile}>
                             <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
@@ -205,7 +238,7 @@ class Navbar extends React.Component {
                         </div>
                     </Toolbar>
                 </AppBar>
-                {renderMenu}
+                {renderPopoverMenu}
                 {renderMobileMenu}
             </div>
         );
