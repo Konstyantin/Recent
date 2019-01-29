@@ -1,76 +1,216 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import {
-    MDBNavbar,
-    MDBNavbarBrand,
-    MDBNavbarNav,
-    MDBNavItem,
-    MDBNavLink,
-    MDBNavbarToggler,
-    MDBCollapse,
-    MDBFormInline,
-    MDBDropdown,
-    MDBDropdownToggle,
-    MDBDropdownMenu,
-    MDBDropdownItem,
-    MDBIcon
-} from 'mdbreact';
+import PropTypes from 'prop-types';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import IconButton from '@material-ui/core/IconButton';
+import Typography from '@material-ui/core/Typography';
+import Badge from '@material-ui/core/Badge';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import { fade } from '@material-ui/core/styles/colorManipulator';
+import { withStyles } from '@material-ui/core/styles';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import MailIcon from '@material-ui/icons/Mail';
+import NotificationsIcon from '@material-ui/icons/Notifications';
+import MoreIcon from '@material-ui/icons/MoreVert';
 
-class Navbar extends Component {
+const styles = theme => ({
+    root: {
+        width: '100%',
+    },
+    grow: {
+        flexGrow: 1,
+    },
+    menuButton: {
+        marginLeft: -12,
+        marginRight: 20,
+    },
+    title: {
+        display: 'none',
+        [theme.breakpoints.up('sm')]: {
+            display: 'block',
+        },
+    },
+    search: {
+        position: 'relative',
+        borderRadius: theme.shape.borderRadius,
+        backgroundColor: fade(theme.palette.common.white, 0.15),
+        '&:hover': {
+            backgroundColor: fade(theme.palette.common.white, 0.25),
+        },
+        marginRight: theme.spacing.unit * 2,
+        marginLeft: 0,
+        width: '100%',
+        [theme.breakpoints.up('sm')]: {
+            marginLeft: theme.spacing.unit * 3,
+            width: 'auto',
+        },
+    },
+    searchIcon: {
+        width: theme.spacing.unit * 9,
+        height: '100%',
+        position: 'absolute',
+        pointerEvents: 'none',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+    inputRoot: {
+        color: 'inherit',
+        width: '100%',
+    },
+    inputInput: {
+        paddingTop: theme.spacing.unit,
+        paddingRight: theme.spacing.unit,
+        paddingBottom: theme.spacing.unit,
+        paddingLeft: theme.spacing.unit * 10,
+        transition: theme.transitions.create('width'),
+        width: '100%',
+        [theme.breakpoints.up('md')]: {
+            width: 200,
+        },
+    },
+    sectionDesktop: {
+        display: 'none',
+        [theme.breakpoints.up('md')]: {
+            display: 'flex',
+        },
+    },
+    sectionMobile: {
+        display: 'flex',
+        [theme.breakpoints.up('md')]: {
+            display: 'none',
+        },
+    },
+});
+
+class Navbar extends React.Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
-            isOpen: false
+            anchorEl: null,
+            mobileMoreAnchorEl: null,
         };
 
-        this.toggleCollapse = this.toggleCollapse.bind(this);
+        this.handleProfileMenuOpen = this.handleProfileMenuOpen.bind(this);
+        this.handleMenuClose = this.handleMenuClose.bind(this);
+        this.handleMobileMenuOpen = this.handleMobileMenuOpen.bind(this);
+        this.handleMobileMenuClose = this.handleMobileMenuClose.bind(this);
     }
 
-    toggleCollapse() {
-        this.setState({isOpen: !this.state.isOpen});
-    }
+    handleProfileMenuOpen(event) {
+        this.setState({ anchorEl: event.currentTarget });
+    };
+
+    handleMenuClose() {
+        this.setState({ anchorEl: null });
+        this.handleMobileMenuClose();
+    };
+
+    handleMobileMenuOpen(event) {
+        this.setState({ mobileMoreAnchorEl: event.currentTarget });
+    };
+
+    handleMobileMenuClose() {
+        this.setState({ mobileMoreAnchorEl: null });
+    };
 
     render() {
+        const { anchorEl, mobileMoreAnchorEl } = this.state;
+        const { classes } = this.props;
+        const isMenuOpen = Boolean(anchorEl);
+        const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
+
+        const renderMenu = (
+            <Menu
+                anchorEl={anchorEl}
+                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+                open={isMenuOpen}
+                onClose={this.handleMenuClose}
+            >
+                <MenuItem onClick={this.handleMenuClose}>Profile</MenuItem>
+                <MenuItem onClick={this.handleMenuClose}>My account</MenuItem>
+            </Menu>
+        );
+
+        const renderMobileMenu = (
+            <Menu
+                anchorEl={mobileMoreAnchorEl}
+                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
+                open={isMobileMenuOpen}
+                onClose={this.handleMobileMenuClose}
+            >
+                <MenuItem>
+                    <IconButton color="inherit">
+                        <Badge badgeContent={4} color="secondary">
+                            <MailIcon />
+                        </Badge>
+                    </IconButton>
+                    <p>Messages</p>
+                </MenuItem>
+                <MenuItem>
+                    <IconButton color="inherit">
+                        <Badge badgeContent={11} color="secondary">
+                            <NotificationsIcon />
+                        </Badge>
+                    </IconButton>
+                    <p>Notifications</p>
+                </MenuItem>
+                <MenuItem onClick={this.handleProfileMenuOpen}>
+                    <IconButton color="inherit">
+                        <AccountCircle />
+                    </IconButton>
+                    <p>Profile</p>
+                </MenuItem>
+            </Menu>
+        );
+
         return (
-            <MDBNavbar color="black" dark expand="md">
-                <MDBNavbarBrand>
-                    <strong className="white-text">Navbar</strong>
-                </MDBNavbarBrand>
-                <MDBNavbarToggler onClick={this.toggleCollapse}/>
-                <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
-                    <MDBNavbarNav right>
-                        <MDBNavItem>
-                            <MDBNavLink to="/">Home</MDBNavLink>
-                        </MDBNavItem>
-                        <MDBNavItem>
-                            <MDBDropdown>
-                                <MDBDropdownToggle nav caret>
-                                    <div className="d-none d-md-inline">Services</div>
-                                </MDBDropdownToggle>
-                                <MDBDropdownMenu className="dropdown-default" right>
-                                    <MDBDropdownItem href="/service/1">Service item</MDBDropdownItem>
-                                    <MDBDropdownItem href="/service/2">Service item</MDBDropdownItem>
-                                    <MDBDropdownItem href="/service/3">Service item</MDBDropdownItem>
-                                    <MDBDropdownItem href="/service/4">Service item</MDBDropdownItem>
-                                </MDBDropdownMenu>
-                            </MDBDropdown>
-                        </MDBNavItem>
-                        <MDBNavItem>
-                            <MDBNavLink to="/gallery">Gallery</MDBNavLink>
-                        </MDBNavItem>
-                        <MDBNavItem>
-                            <MDBNavLink to="/about">About</MDBNavLink>
-                        </MDBNavItem>
-                        <MDBNavItem>
-                            <MDBNavLink to="/contact">Contact</MDBNavLink>
-                        </MDBNavItem>
-                    </MDBNavbarNav>
-                </MDBCollapse>
-            </MDBNavbar>
+            <div className={classes.root}>
+                <AppBar position="static" color='default'>
+                    <Toolbar>
+                        <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+                            Material-UI
+                        </Typography>
+                        <div className={classes.grow} />
+                        <div className={classes.sectionDesktop}>
+                            <IconButton color="inherit">
+                                <Badge badgeContent={4} color="secondary">
+                                    <MailIcon />
+                                </Badge>
+                            </IconButton>
+                            <IconButton color="inherit">
+                                <Badge badgeContent={17} color="secondary">
+                                    <NotificationsIcon />
+                                </Badge>
+                            </IconButton>
+                            <IconButton
+                                aria-owns={isMenuOpen ? 'material-appbar' : undefined}
+                                aria-haspopup="true"
+                                onClick={this.handleProfileMenuOpen}
+                                color="inherit"
+                            >
+                                <AccountCircle />
+                            </IconButton>
+                        </div>
+                        <div className={classes.sectionMobile}>
+                            <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
+                                <MoreIcon />
+                            </IconButton>
+                        </div>
+                    </Toolbar>
+                </AppBar>
+                {renderMenu}
+                {renderMobileMenu}
+            </div>
         );
     }
 }
 
-export default Navbar;
+
+export default withStyles(styles)(Navbar);

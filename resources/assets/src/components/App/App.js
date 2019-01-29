@@ -17,7 +17,7 @@ class App extends Component {
             <div>
                 <Navbar/>
                 {renderRoutes(route.routes)}
-                <Footer/>
+                {/*<Footer/>*/}
             </div>
         );
     }
