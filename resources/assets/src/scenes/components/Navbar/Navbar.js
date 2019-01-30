@@ -4,12 +4,17 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
-import { fade } from '@material-ui/core/styles/colorManipulator';
 import { withStyles } from '@material-ui/core/styles';
 import MoreIcon from '@material-ui/icons/MoreVert';
+import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import MailIcon from '@material-ui/icons/Mail';
 
 const styles = theme => ({
     root: {
@@ -18,53 +23,10 @@ const styles = theme => ({
     grow: {
         flexGrow: 1,
     },
-    menuButton: {
-        marginLeft: -12,
-        marginRight: 20,
-    },
     title: {
         display: 'none',
         [theme.breakpoints.up('sm')]: {
             display: 'block',
-        },
-    },
-    search: {
-        position: 'relative',
-        borderRadius: theme.shape.borderRadius,
-        backgroundColor: fade(theme.palette.common.white, 0.15),
-        '&:hover': {
-            backgroundColor: fade(theme.palette.common.white, 0.25),
-        },
-        marginRight: theme.spacing.unit * 2,
-        marginLeft: 0,
-        width: '100%',
-        [theme.breakpoints.up('sm')]: {
-            marginLeft: theme.spacing.unit * 3,
-            width: 'auto',
-        },
-    },
-    searchIcon: {
-        width: theme.spacing.unit * 9,
-        height: '100%',
-        position: 'absolute',
-        pointerEvents: 'none',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-    inputRoot: {
-        color: 'inherit',
-        width: '100%',
-    },
-    inputInput: {
-        paddingTop: theme.spacing.unit,
-        paddingRight: theme.spacing.unit,
-        paddingBottom: theme.spacing.unit,
-        paddingLeft: theme.spacing.unit * 10,
-        transition: theme.transitions.create('width'),
-        width: '100%',
-        [theme.breakpoints.up('md')]: {
-            width: 200,
         },
     },
     sectionDesktop: {
@@ -79,63 +41,54 @@ const styles = theme => ({
             display: 'none',
         },
     },
-    paper: {
-        marginRight: theme.spacing.unit * 2,
+    list: {
+        width: 250
     },
+    fullList: {
+        width: 'auto'
+    }
 });
 
-class Navbar extends React.Component {
+class Navbar extends Component {
 
     constructor(props) {
         super(props);
 
         this.state = {
             anchorEl: null,
-            mobileMoreAnchorEl: null,
-            open: false
+            left: false,
         };
 
-        this.handleMobileMenuOpen = this.handleMobileMenuOpen.bind(this);
-        this.handleMobileMenuClose = this.handleMobileMenuClose.bind(this);
+        this.openDrawer = this.openDrawer.bind(this);
+        this.closeDrawer = this.closeDrawer.bind(this);
     }
 
-    handleMobileMenuOpen(event) {
-        this.setState({ mobileMoreAnchorEl: event.currentTarget });
-    };
+    openDrawer() {
+        this.setState({
+            left: true
+        });
+    }
 
-    handleMobileMenuClose() {
-        this.setState({ mobileMoreAnchorEl: null });
-    };
+    closeDrawer() {
+        this.setState({
+            left: false
+        });
+    }
 
     render() {
-        const { mobileMoreAnchorEl } = this.state;
         const { classes } = this.props;
-        const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
 
-        const renderMobileMenu = (
-            <Menu
-                anchorEl={mobileMoreAnchorEl}
-                anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
-                transformOrigin={{ vertical: 'top', horizontal: 'right' }}
-                open={isMobileMenuOpen}
-                onClose={this.handleMobileMenuClose}
-            >
-                <MenuItem>
-                    <Link to="/">Home</Link>
-                </MenuItem>
-                <MenuItem>
-                    <Link to="/services">Services</Link>
-                </MenuItem>
-                <MenuItem>
-                    <Link to="/gallery">Gallery</Link>
-                </MenuItem>
-                <MenuItem>
-                    <Link to="/about">About</Link>
-                </MenuItem>
-                <MenuItem>
-                    <Link to="/contact">Contact</Link>
-                </MenuItem>
-            </Menu>
+        const sideList = (
+            <div className={classes.list}>
+                <List>
+                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                        <ListItem button key={text}>
+                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
+                            <ListItemText primary={text} />
+                        </ListItem>
+                    ))}
+                </List>
+            </div>
         );
 
         return (
@@ -164,13 +117,22 @@ class Navbar extends React.Component {
                             </Button>
                         </div>
                         <div className={classes.sectionMobile}>
-                            <IconButton aria-haspopup="true" onClick={this.handleMobileMenuOpen} color="inherit">
+                            <IconButton aria-haspopup="true" onClick={this.openDrawer} color="inherit">
                                 <MoreIcon />
                             </IconButton>
                         </div>
                     </Toolbar>
                 </AppBar>
-                {renderMobileMenu}
+                <Drawer open={this.state.left} onClose={this.closeDrawer}>
+                    <div
+                        tabIndex={0}
+                        role="button"
+                        onClick={this.closeDrawer}
+                        onKeyDown={this.closeDrawer}
+                    >
+                        {sideList}
+                    </div>
+                </Drawer>
             </div>
         );
     }
