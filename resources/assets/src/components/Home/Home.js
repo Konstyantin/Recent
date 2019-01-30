@@ -15,10 +15,10 @@ class Home extends Component {
         return (
             <div>
                 <Carousel/>
-                <ServicesCard/>
-                <About/>
-                <Repairs/>
-                <Statistics/>
+                {/*<ServicesCard/>*/}
+                {/*<About/>*/}
+                {/*<Repairs/>*/}
+                {/*<Statistics/>*/}
             </div>
         );
     }
