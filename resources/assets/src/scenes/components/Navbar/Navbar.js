@@ -9,12 +9,8 @@ import MoreIcon from '@material-ui/icons/MoreVert';
 import Drawer from '@material-ui/core/Drawer';
 import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
-import MailIcon from '@material-ui/icons/Mail';
 
 const styles = theme => ({
     root: {
@@ -46,16 +42,29 @@ const styles = theme => ({
     },
     fullList: {
         width: 'auto'
+    },
+    link: {
+        color: '#000',
+        '&:hover': {
+            color: '#000'
+        }
     }
 });
 
+/**
+ * Navbar component
+ */
 class Navbar extends Component {
 
+    /**
+     * Constructor
+     *
+     * @param props
+     */
     constructor(props) {
         super(props);
 
         this.state = {
-            anchorEl: null,
             left: false,
         };
 
@@ -63,30 +72,59 @@ class Navbar extends Component {
         this.closeDrawer = this.closeDrawer.bind(this);
     }
 
+    /**
+     * Open left sidebar
+     */
     openDrawer() {
         this.setState({
             left: true
         });
     }
 
+    /**
+     * Close left sidebar
+     */
     closeDrawer() {
         this.setState({
             left: false
         });
     }
 
+    /**
+     * Render func
+     * @returns {*}
+     */
     render() {
         const { classes } = this.props;
 
         const sideList = (
             <div className={classes.list}>
                 <List>
-                    {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItem>
-                    ))}
+                    <ListItem button key={'home'}>
+                        <ListItemText>
+                            <Link to="/" className={classes.link}>Home</Link>
+                        </ListItemText>
+                    </ListItem>
+                    <ListItem button key={'services'}>
+                        <ListItemText>
+                            <Link to="/services" className={classes.link}>Services</Link>
+                        </ListItemText>
+                    </ListItem>
+                    <ListItem button key={'gallery'}>
+                        <ListItemText>
+                            <Link to="/gallery" className={classes.link}>Gallery</Link>
+                        </ListItemText>
+                    </ListItem>
+                    <ListItem button key={'about'}>
+                        <ListItemText>
+                            <Link to="/about" className={classes.link}>About</Link>
+                        </ListItemText>
+                    </ListItem>
+                    <ListItem button key={'contact'}>
+                        <ListItemText>
+                            <Link to="/contact" className={classes.link}>Contact</Link>
+                        </ListItemText>
+                    </ListItem>
                 </List>
             </div>
         );
@@ -101,19 +139,19 @@ class Navbar extends Component {
                         <div className={classes.grow} />
                         <div className={classes.sectionDesktop}>
                             <Button color="inherit">
-                                <Link to="/">Home</Link>
+                                <Link to="/" className={classes.link}>Home</Link>
                             </Button>
                             <Button color="inherit">
-                                <Link to="/services">Services</Link>
+                                <Link to="/services" className={classes.link}>Services</Link>
                             </Button>
                             <Button color="inherit">
-                                <Link to="/gallery">Gallery</Link>
+                                <Link to="/gallery" className={classes.link}>Gallery</Link>
                             </Button>
                             <Button color="inherit">
-                                <Link to="/about">About</Link>
+                                <Link to="/about" className={classes.link}>About</Link>
                             </Button>
                             <Button color="inherit">
-                                <Link to="/contact">Contact</Link>
+                                <Link to="/contact" className={classes.link}>Contact</Link>
                             </Button>
                         </div>
                         <div className={classes.sectionMobile}>
