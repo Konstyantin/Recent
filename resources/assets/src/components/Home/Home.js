@@ -17,7 +17,7 @@ class Home extends Component {
                 <ServicesCard/>
                 <About/>
                 <Repairs/>
-                {/*<Statistics/>*/}
+                <Statistics/>
             </div>
         );
     }

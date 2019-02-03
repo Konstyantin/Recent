@@ -5,59 +5,74 @@ import Grid from '@material-ui/core/Grid';
 const styles = theme => ({
     root: {
         flexGrow: 1,
+        backgroundColor: '#000',
+        color: '#eee',
+        marginTop: 25,
+        marginBottom: 25,
+        padding: '30px 0'
     },
-    paper: {
-        padding: theme.spacing.unit * 2,
+    title: {
+        textAlign: 'center'
+    },
+    description: {
         textAlign: 'center',
-        color: theme.palette.text.secondary,
+        margin: '30px 0'
     },
-    icon: {
-        margin: theme.spacing.unit,
-        fontSize: 32,
+    list: {
+        padding: 12
     },
+    item: {
+        textAlign: 'center'
+    },
+    value: {
+        fontSize: 50,
+        marginBottom: 0
+    },
+    dimension: {
+        fontSize: 25,
+        paddingLeft: 10
+    }
 });
 
-const Statistics = (props) => {
+class Statistics extends Component {
+    constructor(props) {
+        super(props);
+    }
 
-    const {classes} = props;
+    render() {
+        const {classes} = this.props;
 
-    return (
-        <div className={classes.root}>
-            <Grid container>
-                <Grid item xs={12}>
-                    <div className={'text-center'}>
-                        <h2>OUR STATISTICS</h2>
-                        <p>
+        return (
+            <div className={classes.root}>
+                <Grid container direction={'row'} justify={'center'}>
+                    <Grid item xs={8}>
+                        <h2 className={classes.title}>Our statistics</h2>
+                        <p className={classes.description}>
                             The first mate and his Skipper too will do their very best to make the others comfortable in
-                            their tropic island nest
-                        </p>
-                    </div>
+                            their tropic island nest</p>
+                        <Grid container direction={'row'} justify={'space-between'} spacing={24} className={classes.list}>
+                            <Grid item xs={3} className={classes.item}>
+                                <p className={classes.value}>25<span className={classes.dimension}>+</span></p>
+                                <p>Years of experience</p>
+                            </Grid>
+                            <Grid item xs={3} className={classes.item}>
+                                <p className={classes.value}>88<span className={classes.dimension}>k</span></p>
+                                <p>Happy customers</p>
+                            </Grid>
+                            <Grid item xs={3} className={classes.item}>
+                                <p className={classes.value}>100<span className={classes.dimension}>%</span></p>
+                                <p>Satisfaction Guranteed</p>
+                            </Grid>
+                            <Grid item xs={3} className={classes.item}>
+                                <p className={classes.value}>250<span className={classes.dimension}>k</span></p>
+                                <p>Total Components Repairs</p>
+                            </Grid>
+                        </Grid>
+                    </Grid>
                 </Grid>
-            </Grid>
-            <Grid container justify="center" className={'text-center'}>
-                <Grid item xs={3}>
-                    <span className={'value'}>25</span>
-                    <span className={'dimension'}>+</span>
-                    <p>Years of Experience</p>
-                </Grid>
-                <Grid item xs={3}>
-                    <span className={'value'}>88</span>
-                    <span className={'dimension'}>k</span>
-                    <p>Happy Customers</p>
-                </Grid>
-                <Grid item xs={3}>
-                    <span className={'value'}>100%</span>
-                    <span className={'dimension'}>%</span>
-                    <p>Satisfaction Guranteed</p>
-                </Grid>
-                <Grid item xs={3}>
-                    <span className={'value'}>250</span>
-                    <span className={'dimension'}>k</span>
-                    <p>Total Components Repairs</p>
-                </Grid>
-            </Grid>
-        </div>
-    );
-};
+            </div>
+        );
+    }
+}
 
 export default withStyles(styles)(Statistics);

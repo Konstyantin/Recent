@@ -12,7 +12,8 @@ import Typography from '@material-ui/core/Typography';
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        paddingTop: 50
+        marginTop: 25,
+        marginBottom: 25
     },
     title: {
         textAlign: 'center',
@@ -26,7 +27,7 @@ const styles = theme => ({
         textAlign: 'center'
     },
     media: {
-        height: 140,
+        height: 260,
     },
     learn: {
         margin: '0 auto'

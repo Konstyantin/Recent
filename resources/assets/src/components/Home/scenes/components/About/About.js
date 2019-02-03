@@ -9,7 +9,8 @@ const styles = theme => ({
     root: {
         flexGrow: 1,
         backgroundColor: '#000',
-        color: '#eee'
+        color: '#eee',
+        marginBottom: 25
     },
     title: {
         paddingBottom: 10
