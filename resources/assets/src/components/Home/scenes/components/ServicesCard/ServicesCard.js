@@ -17,7 +17,6 @@ import DesctopWindowsIcon from '@material-ui/icons/DesktopWindows';
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        padding: 20,
         paddingTop: 80
     },
     paper: {
@@ -33,7 +32,6 @@ const styles = theme => ({
         paddingBottom: 15,
     },
     serviceList: {
-        width: '75%',
         margin: '0 auto'
     },
     card: {
@@ -66,132 +64,136 @@ class ServicesCard extends Component {
 
         return (
             <div className={classes.root}>
-                <div className={classes.header}>
-                    <h2>Our extreme services</h2>
-                    <p className={classes.headerDescription}>The first mate and his Skipper too will do their very best to make the others comfortable in
-                        their tropic island nest</p>
-                </div>
-
-                <Grid container spacing={40} className={classes.serviceList}>
-                    <Grid item xs={4}>
-                        <Card className={classes.card}>
-                            <CardActionArea>
-                                <CardContent>
-                                    <PhoneIphoneIcon className={classes.icon} />
-                                    <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
-                                        Smart phone repair
-                                    </Typography>
-                                    <Typography component="p">
-                                        The first mate and his Skipper too will do their best to make comfortable.
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                            <CardActions>
-                                <Button size="small" color="primary" className={classes.learn}>
-                                    Learn More
-                                </Button>
-                            </CardActions>
-                        </Card>
-                    </Grid>
-                    <Grid item xs={4}>
-                        <Card className={classes.card}>
-                            <CardActionArea>
-                                <CardContent>
-                                    <TabletMacIcon className={classes.icon} />
-                                    <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
-                                        Tablet - iPad repair
-                                    </Typography>
-                                    <Typography component="p">
-                                        The first mate and his Skipper too will do their best to make comfortable.
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                            <CardActions>
-                                <Button size="small" color="primary" className={classes.learn}>
-                                    Learn More
-                                </Button>
-                            </CardActions>
-                        </Card>
-                    </Grid>
-                    <Grid item xs={4}>
-                        <Card className={classes.card}>
-                            <CardActionArea>
-                                <CardContent>
-                                    <DesctopWindowsIcon className={classes.icon} />
-                                    <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
-                                        PC & Mac computers
-                                    </Typography>
-                                    <Typography component="p">
-                                        The first mate and his Skipper too will do their best to make comfortable.
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                            <CardActions>
-                                <Button size="small" color="primary" className={classes.learn}>
-                                    Learn More
-                                </Button>
-                            </CardActions>
-                        </Card>
-                    </Grid>
-                    <Grid item xs={4}>
-                        <Card className={classes.card}>
-                            <CardActionArea>
-                                <CardContent>
-                                    <LaptopMacIcon className={classes.icon} />
-                                    <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
-                                        Laptop - Macbook repair
-                                    </Typography>
-                                    <Typography component="p">
-                                        The first mate and his Skipper too will do their best to make comfortable.
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                            <CardActions>
-                                <Button size="small" color="primary" className={classes.learn}>
-                                    Learn More
-                                </Button>
-                            </CardActions>
-                        </Card>
-                    </Grid>
-                    <Grid item xs={4}>
-                        <Card className={classes.card}>
-                            <CardActionArea>
-                                <CardContent>
-                                    <RouterIcon className={classes.icon} />
-                                    <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
-                                        Wifi - Network problem
-                                    </Typography>
-                                    <Typography component="p">
-                                        The first mate and his Skipper too will do their best to make comfortable.
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                            <CardActions>
-                                <Button size="small" color="primary" className={classes.learn}>
-                                    Learn More
-                                </Button>
-                            </CardActions>
-                        </Card>
-                    </Grid>
-                    <Grid item xs={4}>
-                        <Card className={classes.card}>
-                            <CardActionArea>
-                                <CardContent>
-                                    <StorageIcon className={classes.icon} />
-                                    <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
-                                        Data recovery
-                                    </Typography>
-                                    <Typography component="p">
-                                        The first mate and his Skipper too will do their best to make comfortable.
-                                    </Typography>
-                                </CardContent>
-                            </CardActionArea>
-                            <CardActions>
-                                <Button size="small" color="primary" className={classes.learn}>
-                                    Learn More
-                                </Button>
-                            </CardActions>
-                        </Card>
+                <Grid container direction={'row'} justify={'center'}>
+                    <div className={classes.header}>
+                        <h2>Our extreme services</h2>
+                        <p className={classes.headerDescription}>The first mate and his Skipper too will do their very best
+                            to make the others comfortable in
+                            their tropic island nest</p>
+                    </div>
+                    <Grid item xs={8}>
+                        <Grid container spacing={40} className={classes.serviceList}>
+                            <Grid item xs={4}>
+                                <Card className={classes.card}>
+                                    <CardActionArea>
+                                        <CardContent>
+                                            <PhoneIphoneIcon className={classes.icon} />
+                                            <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
+                                                Smart phone repair
+                                            </Typography>
+                                            <Typography component="p">
+                                                The first mate and his Skipper too will do their best to make comfortable.
+                                            </Typography>
+                                        </CardContent>
+                                    </CardActionArea>
+                                    <CardActions>
+                                        <Button size="small" color="primary" className={classes.learn}>
+                                            Learn More
+                                        </Button>
+                                    </CardActions>
+                                </Card>
+                            </Grid>
+                            <Grid item xs={4}>
+                                <Card className={classes.card}>
+                                    <CardActionArea>
+                                        <CardContent>
+                                            <TabletMacIcon className={classes.icon} />
+                                            <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
+                                                Tablet - iPad repair
+                                            </Typography>
+                                            <Typography component="p">
+                                                The first mate and his Skipper too will do their best to make comfortable.
+                                            </Typography>
+                                        </CardContent>
+                                    </CardActionArea>
+                                    <CardActions>
+                                        <Button size="small" color="primary" className={classes.learn}>
+                                            Learn More
+                                        </Button>
+                                    </CardActions>
+                                </Card>
+                            </Grid>
+                            <Grid item xs={4}>
+                                <Card className={classes.card}>
+                                    <CardActionArea>
+                                        <CardContent>
+                                            <DesctopWindowsIcon className={classes.icon} />
+                                            <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
+                                                PC & Mac computers
+                                            </Typography>
+                                            <Typography component="p">
+                                                The first mate and his Skipper too will do their best to make comfortable.
+                                            </Typography>
+                                        </CardContent>
+                                    </CardActionArea>
+                                    <CardActions>
+                                        <Button size="small" color="primary" className={classes.learn}>
+                                            Learn More
+                                        </Button>
+                                    </CardActions>
+                                </Card>
+                            </Grid>
+                            <Grid item xs={4}>
+                                <Card className={classes.card}>
+                                    <CardActionArea>
+                                        <CardContent>
+                                            <LaptopMacIcon className={classes.icon} />
+                                            <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
+                                                Laptop - Macbook repair
+                                            </Typography>
+                                            <Typography component="p">
+                                                The first mate and his Skipper too will do their best to make comfortable.
+                                            </Typography>
+                                        </CardContent>
+                                    </CardActionArea>
+                                    <CardActions>
+                                        <Button size="small" color="primary" className={classes.learn}>
+                                            Learn More
+                                        </Button>
+                                    </CardActions>
+                                </Card>
+                            </Grid>
+                            <Grid item xs={4}>
+                                <Card className={classes.card}>
+                                    <CardActionArea>
+                                        <CardContent>
+                                            <RouterIcon className={classes.icon} />
+                                            <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
+                                                Wifi - Network problem
+                                            </Typography>
+                                            <Typography component="p">
+                                                The first mate and his Skipper too will do their best to make comfortable.
+                                            </Typography>
+                                        </CardContent>
+                                    </CardActionArea>
+                                    <CardActions>
+                                        <Button size="small" color="primary" className={classes.learn}>
+                                            Learn More
+                                        </Button>
+                                    </CardActions>
+                                </Card>
+                            </Grid>
+                            <Grid item xs={4}>
+                                <Card className={classes.card}>
+                                    <CardActionArea>
+                                        <CardContent>
+                                            <StorageIcon className={classes.icon} />
+                                            <Typography gutterBottom variant="h5" component="h2" className={classes.title}>
+                                                Data recovery
+                                            </Typography>
+                                            <Typography component="p">
+                                                The first mate and his Skipper too will do their best to make comfortable.
+                                            </Typography>
+                                        </CardContent>
+                                    </CardActionArea>
+                                    <CardActions>
+                                        <Button size="small" color="primary" className={classes.learn}>
+                                            Learn More
+                                        </Button>
+                                    </CardActions>
+                                </Card>
+                            </Grid>
+                        </Grid>
                     </Grid>
                 </Grid>
             </div>

@@ -12,24 +12,25 @@ import Typography from '@material-ui/core/Typography';
 const styles = theme => ({
     root: {
         flexGrow: 1,
+        paddingTop: 50
     },
-    paper: {
-        padding: theme.spacing.unit * 2,
+    title: {
         textAlign: 'center',
-        color: theme.palette.text.secondary,
+        marginBottom: 10
     },
-    icon: {
-        margin: theme.spacing.unit,
-        fontSize: 32,
+    list: {
+        padding: 12
     },
     card: {
         maxWidth: 345,
-        margin: '0 auto'
+        textAlign: 'center'
     },
     media: {
-        // ⚠️ object-fit is not supported by IE 11.
-        objectFit: 'cover',
+        height: 140,
     },
+    learn: {
+        margin: '0 auto'
+    }
 });
 
 const Repairs = (props) => {
@@ -37,107 +38,88 @@ const Repairs = (props) => {
 
     return (
         <div className={classes.root}>
-            <Grid container>
-                <Grid item xs={12}>
-                    <div className='text-center'>
-                        <h2>What we repair</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet, ipsum.</p>
-                    </div>
-                </Grid>
-            </Grid>
-            <Grid container justify="center" className={'text-center'}>
-                <Grid item xs={3}>
-                    <Card className={classes.card}>
-                        <CardActionArea>
-                            <CardMedia
-                                component="img"
-                                alt="Contemplative Reptile"
-                                className={classes.media}
-                                height="140"
-                                image="https://mdbootstrap.com/img/Photos/Others/images/43.jpg"
-                                title="Contemplative Reptile"
-                            />
-                            <CardContent>
-                                <Typography gutterBottom variant="h5" component="h2">
-                                    Lizard
-                                </Typography>
-                                <Typography component="p">
-                                    Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                                    across all continents except Antarctica
-                                </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                            <Button size="small" color="primary">
-                                Share
-                            </Button>
-                            <Button size="small" color="primary">
-                                Learn More
-                            </Button>
-                        </CardActions>
-                    </Card>
-                </Grid>
-                <Grid item xs={3}>
-                    <Card className={classes.card}>
-                        <CardActionArea>
-                            <CardMedia
-                                component="img"
-                                alt="Contemplative Reptile"
-                                className={classes.media}
-                                height="140"
-                                image="https://mdbootstrap.com/img/Photos/Others/images/43.jpg"
-                                title="Contemplative Reptile"
-                            />
-                            <CardContent>
-                                <Typography gutterBottom variant="h5" component="h2">
-                                    Lizard
-                                </Typography>
-                                <Typography component="p">
-                                    Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                                    across all continents except Antarctica
-                                </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                            <Button size="small" color="primary">
-                                Share
-                            </Button>
-                            <Button size="small" color="primary">
-                                Learn More
-                            </Button>
-                        </CardActions>
-                    </Card>
-                </Grid>
-                <Grid item xs={3}>
-                    <Card className={classes.card}>
-                        <CardActionArea>
-                            <CardMedia
-                                component="img"
-                                alt="Contemplative Reptile"
-                                className={classes.media}
-                                height="140"
-                                image="https://mdbootstrap.com/img/Photos/Others/images/43.jpg"
-                                title="Contemplative Reptile"
-                            />
-                            <CardContent>
-                                <Typography gutterBottom variant="h5" component="h2">
-                                    Lizard
-                                </Typography>
-                                <Typography component="p">
-                                    Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                                    across all continents except Antarctica
-                                </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                            <Button size="small" color="primary">
-                                Share
-                            </Button>
-                            <Button size="small" color="primary">
-                                Learn More
-                            </Button>
-                        </CardActions>
-                    </Card>
+            <Grid container direction={'row'} justify={'center'}>
+                <Grid item xs={8}>
+                    <h2 className={classes.title}>What we repair</h2>
+                    <p className={'text-center'}>The first mate and his Skipper too will do their very best to make the
+                        others comfortable</p>
+                    <Grid container direction={'row'} justify={'space-between'} spacing={24} className={classes.list}>
+                        <Grid item xs={4}>
+                            <Card className={classes.card}>
+                                <CardActionArea>
+                                    <CardMedia
+                                        className={classes.media}
+                                        image="http://t.commonsupport.com/catania/images/resource/service-2.jpg"
+                                        title="Contemplative Reptile"
+                                    />
+                                    <CardContent>
+                                        <Typography gutterBottom variant="h5" component="h2">
+                                            Water damage
+                                        </Typography>
+                                        <Typography component="p">
+                                            The first mate and his Skipper too will do their very best to make the
+                                            others bee comfortable in their tropic
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                                <CardActions>
+                                    <Button size="small" color="primary" className={classes.learn}>
+                                        Learn More
+                                    </Button>
+                                </CardActions>
+                            </Card>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Card className={classes.card}>
+                                <CardActionArea>
+                                    <CardMedia
+                                        className={classes.media}
+                                        image="http://t.commonsupport.com/catania/images/resource/service-3.jpg"
+                                        title="Contemplative Reptile"
+                                    />
+                                    <CardContent>
+                                        <Typography gutterBottom variant="h5" component="h2">
+                                            Screen broken
+                                        </Typography>
+                                        <Typography component="p">
+                                            The first mate and his Skipper too will do their very best to make the
+                                            others bee comfortable in their tropic.
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                                <CardActions>
+                                    <Button size="small" color="primary" className={classes.learn}>
+                                        Learn More
+                                    </Button>
+                                </CardActions>
+                            </Card>
+                        </Grid>
+                        <Grid item xs={4}>
+                            <Card className={classes.card}>
+                                <CardActionArea>
+                                    <CardMedia
+                                        className={classes.media}
+                                        image="http://t.commonsupport.com/catania/images/resource/service-4.jpg"
+                                        title="Contemplative Reptile"
+                                    />
+                                    <CardContent>
+                                        <Typography gutterBottom variant="h5" component="h2">
+                                            Speaker failure
+                                        </Typography>
+                                        <Typography component="p">
+                                            The first mate and his Skipper too will do their very best to make the
+                                            others bee comfortable in their tropic.
+                                        </Typography>
+                                    </CardContent>
+                                </CardActionArea>
+                                <CardActions>
+                                    <Button size="small" color="primary" className={classes.learn}>
+                                        Learn More
+                                    </Button>
+                                </CardActions>
+                            </Card>
+                        </Grid>
+                    </Grid>
                 </Grid>
             </Grid>
         </div>
