@@ -1,70 +1,80 @@
 import React, {Component} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-
-import ThreeDRotationIcon from '@material-ui/icons/ThreeDRotation';
-import FourKIcon from '@material-ui/icons/FourK';
-import ThreeSixtyIcon from '@material-ui/icons/ThreeSixty';
-
-import './style.css';
+import AlarmIcon from '@material-ui/icons/Alarm';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import NearMeIcon from '@material-ui/icons/NearMe';
 
 const styles = theme => ({
     root: {
         flexGrow: 1,
+        backgroundColor: '#000',
+        color: '#eee'
     },
-    paper: {
-        padding: theme.spacing.unit * 2,
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
+    title: {
+        paddingBottom: 10
     },
     icon: {
         margin: theme.spacing.unit,
         fontSize: 32,
     },
+    img: {
+        width: '100%',
+        maxHeight: 550
+    },
+    description: {
+        paddingRight: 100
+    }
 });
 
-const About = (props) => {
+class About extends Component {
+    constructor(props) {
+        super(props);
+    }
 
-    const {classes} = props;
+    render() {
 
-    return (
-        <div className={classes.root}>
-            <Grid container spacing={0}>
-                <Grid item xs={6}>
-                    <Grid container>
-                        <Grid item xs={3}></Grid>
-                        <Grid item xs={8}>
-                            <h2>Who we are</h2>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias animi distinctio, dolorem
-                                numquam officia perferendis tempore. Accusamus accusantium, adipisci consequuntur cumque
-                                cupiditate delectus ducimus ea eligendi exercitationem id inventore ipsam itaque
-                                mollitia natus neque obcaecati officiis quae quaerat quia quibusdam repellat rerum sequi
-                                similique sit temporibus unde, vero. Aperiam, corporis?</p>
-                            <Grid container>
-                                <Grid item xs={4}>
-                                    <ThreeDRotationIcon className={classes.icon} />
-                                    <span>Fast delivery</span>
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <FourKIcon className={classes.icon} />
-                                    <span>Lifetime warranty</span>
-                                </Grid>
-                                <Grid item xs={4}>
-                                    <ThreeSixtyIcon className={classes.icon} />
-                                    <span>Certified experts</span>
+        const {classes} = this.props;
+
+        return (
+            <div className={classes.root}>
+                <Grid container alignItems={'center'}>
+                    <Grid item xs={6}>
+                        <Grid container direction={'row'} justify={'flex-end'}>
+                            <Grid item xs={8} className={classes.description}>
+                                <div>
+                                    <h2 className={classes.title}>Who we are</h2>
+                                    <p>The first mate and his Skipper too will do their very best to make the others bee
+                                        comfortable in their tropic island nest the love Boat promises something for the
+                                        everyone michael Knight a young loner on a crusade to champion.</p>
+                                    <p>The others comfortable in their tropic island nest the love Boat promises to have
+                                        something for everyone michael Knight a young loner.</p>
+                                </div>
+                                <Grid container direction={'row'} justify={'space-between'}>
+                                    <Grid item xs={4}>
+                                        <AlarmIcon className={classes.icon} />
+                                        <span>Lifetime Warranty</span>
+                                    </Grid>
+                                    <Grid item xs={4}>
+                                        <AssignmentIcon className={classes.icon} />
+                                        <span>Certified Experts</span>
+                                    </Grid>
+                                    <Grid item xs={4}>
+                                        <NearMeIcon className={classes.icon} />
+                                        <span>Fast Delivery</span>
+                                    </Grid>
                                 </Grid>
                             </Grid>
                         </Grid>
-                        <Grid item/>
+                    </Grid>
+                    <Grid item xs={6}>
+                        <img className={classes.img} src="http://t.commonsupport.com/catania/images/resource/fullwidth-1.jpg" alt=""/>
                     </Grid>
                 </Grid>
-                <Grid item xs={6}>
-                    <img className="card-img-top" src="https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg"
-                         alt="Card image cap"/>
-                </Grid>
-            </Grid>
-        </div>
-    );
-};
+            </div>
+        );
+    }
+}
+
 
 export default withStyles(styles)(About);
