@@ -1,6 +1,13 @@
-.footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    background-color: #f5f5f5;
+body {
+    padding-bottom: 0 !important;
+}
+
+.content-body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+footer {
+    margin: auto auto 0 auto
 }

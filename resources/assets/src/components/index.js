@@ -12,9 +12,7 @@ import 'mdbreact/dist/css/mdb.css';
 
 render(
     <Router history={history}>
-        <div>
-            {renderRoutes(publicRoutes)}
-        </div>
+        {renderRoutes(publicRoutes)}
     </Router>,
     document.getElementById('app')
 );

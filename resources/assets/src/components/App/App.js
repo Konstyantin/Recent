@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {renderRoutes} from "react-router-config";
 import Navbar from "../../scenes/components/Navbar/Navbar";
 import Footer from "../../scenes/components/Footer/Footer";
-import {Container, Row, Col} from 'reactstrap';
+import Grid from '@material-ui/core/Grid';
 import './style.css';
 
 /**
@@ -14,10 +14,10 @@ class App extends Component {
         const {route} = this.props;
 
         return (
-            <div>
+            <div className={'content-body'}>
                 <Navbar/>
                 {renderRoutes(route.routes)}
-                {/*<Footer/>*/}
+                <Footer/>
             </div>
         );
     }
