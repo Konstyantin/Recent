@@ -5,10 +5,8 @@ import Grid from '@material-ui/core/Grid';
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        backgroundColor: '#000',
-        color: '#eee',
+        backgroundColor: '#eee',
         marginTop: 25,
-        marginBottom: 25,
         padding: '30px 0'
     },
     title: {
@@ -34,7 +32,16 @@ const styles = theme => ({
     }
 });
 
+/**
+ * Statistics component
+ */
 class Statistics extends Component {
+
+    /**
+     * Constructor
+     *
+     * @param props
+     */
     constructor(props) {
         super(props);
     }
