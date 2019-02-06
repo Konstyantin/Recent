@@ -17,12 +17,7 @@ import DesctopWindowsIcon from '@material-ui/icons/DesktopWindows';
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        paddingTop: 80
-    },
-    paper: {
-        padding: theme.spacing.unit * 2,
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
+        margin: '50px 0'
     },
     header: {
         textAlign: 'center'
@@ -31,15 +26,9 @@ const styles = theme => ({
         paddingTop: 15,
         paddingBottom: 15,
     },
-    serviceList: {
-        margin: '0 auto'
-    },
     card: {
         maxWidth: 345,
         textAlign: 'center'
-    },
-    media: {
-        height: 140,
     },
     icon: {
         margin: theme.spacing.unit,
@@ -50,6 +39,12 @@ const styles = theme => ({
     },
     title: {
         padding: '10px 0'
+    },
+    list: {
+        padding: 12
+    },
+    item: {
+        textAlign: 'center'
     }
 });
 
@@ -65,15 +60,15 @@ class ServicesCard extends Component {
         return (
             <div className={classes.root}>
                 <Grid container direction={'row'} justify={'center'}>
-                    <div className={classes.header}>
-                        <h2>Our extreme services</h2>
-                        <p className={classes.headerDescription}>The first mate and his Skipper too will do their very best
-                            to make the others comfortable in
-                            their tropic island nest</p>
-                    </div>
                     <Grid item xs={8}>
-                        <Grid container spacing={40} className={classes.serviceList}>
-                            <Grid item xs={4}>
+                        <div className={classes.header}>
+                            <h2>Our extreme services</h2>
+                            <p className={classes.headerDescription}>The first mate and his Skipper too will do their very best
+                                to make the others comfortable in
+                                their tropic island nest</p>
+                        </div>
+                        <Grid container direction={'row'} justify={'space-between'} spacing={24} className={classes.list}>
+                            <Grid item xs={4} className={classes.item}>
                                 <Card className={classes.card}>
                                     <CardActionArea>
                                         <CardContent>
@@ -93,7 +88,7 @@ class ServicesCard extends Component {
                                     </CardActions>
                                 </Card>
                             </Grid>
-                            <Grid item xs={4}>
+                            <Grid item xs={4} className={classes.item}>
                                 <Card className={classes.card}>
                                     <CardActionArea>
                                         <CardContent>
@@ -113,7 +108,7 @@ class ServicesCard extends Component {
                                     </CardActions>
                                 </Card>
                             </Grid>
-                            <Grid item xs={4}>
+                            <Grid item xs={4} className={classes.item}>
                                 <Card className={classes.card}>
                                     <CardActionArea>
                                         <CardContent>
@@ -133,7 +128,7 @@ class ServicesCard extends Component {
                                     </CardActions>
                                 </Card>
                             </Grid>
-                            <Grid item xs={4}>
+                            <Grid item xs={4} className={classes.item}>
                                 <Card className={classes.card}>
                                     <CardActionArea>
                                         <CardContent>
@@ -153,7 +148,7 @@ class ServicesCard extends Component {
                                     </CardActions>
                                 </Card>
                             </Grid>
-                            <Grid item xs={4}>
+                            <Grid item xs={4} className={classes.item}>
                                 <Card className={classes.card}>
                                     <CardActionArea>
                                         <CardContent>
@@ -173,7 +168,7 @@ class ServicesCard extends Component {
                                     </CardActions>
                                 </Card>
                             </Grid>
-                            <Grid item xs={4}>
+                            <Grid item xs={4} className={classes.item}>
                                 <Card className={classes.card}>
                                     <CardActionArea>
                                         <CardContent>
