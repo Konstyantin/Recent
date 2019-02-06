@@ -10,6 +10,7 @@ import FolderIcon from '@material-ui/icons/Folder';
 import LocationOn from '@material-ui/icons/LocationOn';
 import PhoneIphone from '@material-ui/icons/PhoneIphone';
 import Mail from '@material-ui/icons/Mail';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
 
 const styles = theme => ({
     root: {
@@ -40,11 +41,23 @@ const styles = theme => ({
         padding: '4px 6px 5px',
         margin: 0
     },
+    icon: {
+        color: '#eee'
+    }
 });
 
 import './style.css';
 
+/**
+ * Footer component
+ */
 class Footer extends Component {
+
+    /**
+     * Constructor
+     *
+     * @param props
+     */
     constructor(props) {
         super(props);
 
@@ -106,25 +119,25 @@ class Footer extends Component {
                                             <h3 className={classes.header}>Contact info</h3>
                                             <List dense={dense}>
                                                 <ListItem>
-                                                    <ListItemAvatar>
+                                                    <ListItemIcon className={classes.icon}>
                                                         <LocationOn/>
-                                                    </ListItemAvatar>
+                                                    </ListItemIcon>
                                                     <ListItemText>
                                                         <span className={classes.itemText}>Pushkinska street 64</span>
                                                     </ListItemText>
                                                 </ListItem>
                                                 <ListItem>
-                                                    <ListItemAvatar>
+                                                    <ListItemIcon className={classes.icon}>
                                                         <PhoneIphone/>
-                                                    </ListItemAvatar>
+                                                    </ListItemIcon>
                                                     <ListItemText>
                                                         <span className={classes.itemText}>+380771231123</span>
                                                     </ListItemText>
                                                 </ListItem>
                                                 <ListItem>
-                                                    <ListItemAvatar>
+                                                    <ListItemIcon className={classes.icon}>
                                                         <Mail/>
-                                                    </ListItemAvatar>
+                                                    </ListItemIcon>
                                                     <ListItemText>
                                                         <span className={classes.itemText}>recovery_center@mail.com</span>
                                                     </ListItemText>

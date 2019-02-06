@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {renderRoutes} from "react-router-config";
 import Navbar from "../../scenes/components/Navbar/Navbar";
 import Footer from "../../scenes/components/Footer/Footer";
-import Grid from '@material-ui/core/Grid';
 import './style.css';
 
 /**

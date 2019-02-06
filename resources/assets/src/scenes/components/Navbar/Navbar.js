@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
+import Grid from '@material-ui/core/Grid';
 
 const styles = theme => ({
     root: {
@@ -132,34 +133,38 @@ class Navbar extends Component {
         return (
             <div className={classes.root}>
                 <AppBar position="static" color='default'>
-                    <Toolbar>
-                        <Typography className={classes.title} variant="h6" color="inherit" noWrap>
-                            Recovery Center
-                        </Typography>
-                        <div className={classes.grow} />
-                        <div className={classes.sectionDesktop}>
-                            <Button color="inherit">
-                                <Link to="/" className={classes.link}>Home</Link>
-                            </Button>
-                            <Button color="inherit">
-                                <Link to="/services" className={classes.link}>Services</Link>
-                            </Button>
-                            <Button color="inherit">
-                                <Link to="/gallery" className={classes.link}>Gallery</Link>
-                            </Button>
-                            <Button color="inherit">
-                                <Link to="/about" className={classes.link}>About</Link>
-                            </Button>
-                            <Button color="inherit">
-                                <Link to="/contact" className={classes.link}>Contact</Link>
-                            </Button>
-                        </div>
-                        <div className={classes.sectionMobile}>
-                            <IconButton aria-haspopup="true" onClick={this.openDrawer} color="inherit">
-                                <MoreIcon />
-                            </IconButton>
-                        </div>
-                    </Toolbar>
+                    <Grid container direction={'row'} justify={'center'}>
+                        <Grid item xs={8}>
+                            <Toolbar>
+                                <Typography className={classes.title} variant="h6" color="inherit" noWrap>
+                                    Recovery Center
+                                </Typography>
+                                <div className={classes.grow} />
+                                <div className={classes.sectionDesktop}>
+                                    <Button color="inherit">
+                                        <Link to="/" className={classes.link}>Home</Link>
+                                    </Button>
+                                    <Button color="inherit">
+                                        <Link to="/services" className={classes.link}>Services</Link>
+                                    </Button>
+                                    <Button color="inherit">
+                                        <Link to="/gallery" className={classes.link}>Gallery</Link>
+                                    </Button>
+                                    <Button color="inherit">
+                                        <Link to="/about" className={classes.link}>About</Link>
+                                    </Button>
+                                    <Button color="inherit">
+                                        <Link to="/contact" className={classes.link}>Contact</Link>
+                                    </Button>
+                                </div>
+                                <div className={classes.sectionMobile}>
+                                    <IconButton aria-haspopup="true" onClick={this.openDrawer} color="inherit">
+                                        <MoreIcon />
+                                    </IconButton>
+                                </div>
+                            </Toolbar>
+                        </Grid>
+                    </Grid>
                 </AppBar>
                 <Drawer open={this.state.left} onClose={this.closeDrawer}>
                     <div

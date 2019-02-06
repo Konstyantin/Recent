@@ -10,7 +10,7 @@ const styles = theme => ({
         flexGrow: 1,
         backgroundColor: '#000',
         color: '#eee',
-        marginBottom: 25
+        margin: '50px 0'
     },
     title: {
         paddingBottom: 10
@@ -21,14 +21,23 @@ const styles = theme => ({
     },
     img: {
         width: '100%',
-        maxHeight: 550
+        maxHeight: 600
     },
     description: {
         paddingRight: 100
     }
 });
 
+/**
+ * About component
+ */
 class About extends Component {
+
+    /**
+     * Constructor
+     *
+     * @param props
+     */
     constructor(props) {
         super(props);
     }

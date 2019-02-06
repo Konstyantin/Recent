@@ -6,7 +6,6 @@ const styles = theme => ({
     root: {
         flexGrow: 1,
         backgroundColor: '#eee',
-        marginTop: 25,
         padding: '30px 0'
     },
     title: {

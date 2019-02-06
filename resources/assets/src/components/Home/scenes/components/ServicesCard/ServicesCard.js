@@ -48,7 +48,16 @@ const styles = theme => ({
     }
 });
 
+/**
+ * Services card
+ */
 class ServicesCard extends Component {
+
+    /**
+     * Constructor
+     *
+     * @param props
+     */
     constructor(props) {
         super(props);
     }
