@@ -29,12 +29,12 @@ class Header extends Component {
 
     render() {
 
-        const {classes} = this.props;
+        const {classes, title} = this.props;
 
         return (
             <div className={classes.root}>
                 <Grid className={classes.header} container justify={'center'} alignItems={'center'}>
-                    <p>Services</p>
+                    <p>{title}</p>
                 </Grid>
             </div>
         );

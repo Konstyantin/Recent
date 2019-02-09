@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {renderRoutes} from 'react-router-config';
-import Header from './scenes/components/Header';
+import Header from './../../scenes/components/Header';
 import TabsList from './scenes/components/TabList';
 
 /**
@@ -12,7 +12,7 @@ class Services extends Component {
 
         return (
             <div>
-                <Header/>
+                <Header title={'Services'}/>
                 <TabsList/>
                 {renderRoutes(route.routes)}
             </div>
