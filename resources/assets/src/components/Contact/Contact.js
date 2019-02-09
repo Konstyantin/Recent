@@ -1,4 +1,6 @@
 import React, {Component} from 'react';
+import Header from './../../scenes/components/Header';
+import ContactForm from './scenes/components/ContactForm';
 
 /**
  * Contact component
@@ -6,7 +8,10 @@ import React, {Component} from 'react';
 class Contact extends Component {
     render() {
         return (
-            <div>Contact component</div>
+            <div>
+                <Header title={'Contact Us'}/>
+                <ContactForm/>
+            </div>
         );
     }
 }
