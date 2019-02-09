@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {renderRoutes} from 'react-router-config';
 import Header from './scenes/components/Header';
-import List from './scenes/components/List';
+import TabsList from './scenes/components/TabList';
 
 /**
  * Services component
@@ -13,7 +13,7 @@ class Services extends Component {
         return (
             <div>
                 <Header/>
-                <List/>
+                <TabsList/>
                 {renderRoutes(route.routes)}
             </div>
         );
