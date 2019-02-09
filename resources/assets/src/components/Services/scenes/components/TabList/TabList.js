@@ -30,19 +30,19 @@ const styles = theme => ({
     }
 });
 
-const TabContainer = ({children, dir}) => {
-    return (
-        <Typography component="div" dir={dir} style={{padding: 8 * 3}}>
-            {children}
-        </Typography>
-    );
+const TabContainer = ({children}) => {
+    return children;
 };
 
-const ListItemLink = (props) => {
-    return <ListItem button component="a" {...props} />;
-}
-
+/**
+ * TabList component
+ */
 class TabList extends Component {
+
+    /**
+     * Constructor
+     * @param props
+     */
     constructor(props) {
         super(props);
 
@@ -54,17 +54,54 @@ class TabList extends Component {
         this.handleChangeIndex = this.handleChangeIndex.bind(this);
     }
 
+    /**
+     * Handle change tab
+     *
+     * @param event
+     * @param value
+     */
     handleChange(event, value) {
         this.setState({value});
     }
 
+    /**
+     * Handle change tab index
+     * @param index
+     */
     handleChangeIndex(index) {
         this.setState({value: index});
     }
 
     render() {
 
-        const {classes, theme} = this.props;
+        const tabsList = [
+            {
+                imgSrc: 'http://t.commonsupport.com/catania/images/resource/service-single.jpg',
+                title: 'Smart phone repairs'
+            },
+            {
+                imgSrc: 'http://t.commonsupport.com/catania/images/resource/service-single.jpg',
+                title: 'Tablet - iPad repairs'
+            },
+            {
+                imgSrc: 'http://t.commonsupport.com/catania/images/resource/service-single.jpg',
+                title: 'PC & Mac computers'
+            },
+            {
+                imgSrc: 'http://t.commonsupport.com/catania/images/resource/service-single.jpg',
+                title: 'Laptop MacBook repairs'
+            },
+            {
+                imgSrc: 'http://t.commonsupport.com/catania/images/resource/service-single.jpg',
+                title: 'Wifi - Network problem'
+            },
+            {
+                imgSrc: 'http://t.commonsupport.com/catania/images/resource/service-single.jpg',
+                title: 'Data recovery'
+            }
+        ];
+
+        const {classes} = this.props;
 
         return (
             <div className={classes.root}>
@@ -96,66 +133,63 @@ class TabList extends Component {
                                 index={this.state.value}
                                 onChangeIndex={this.handleChangeIndex}
                             >
-                                <TabContainer>
-                                    <div>
-                                        <img src="http://t.commonsupport.com/catania/images/resource/service-single.jpg"
-                                             alt="" className={classes.image}/>
-                                        <h2 className={classes.title}>Smart phone repairs</h2>
-                                        <p>The first mate and his Skipper too will do their best to make comfortable
-                                            these are voyages of the need no welfare states starship enterprise the
-                                            Brady Bunch that's the way we all became the Brady Bunch these days are all
-                                            Happy and Free these days are all share them with me oh baby so lets make
-                                            the most of this beautiful day since we are together the Love Boat soon will
-                                            be making another run the Love Boat promises something for everyone at some
-                                            food and up through the ground.</p>
-                                        <p>The need no welfare states starship enterprise the Brady Bunch that's the
-                                            way we all became the Brady won Bunch these days are all Happy and Free
-                                            these days are all share them with me oh baby so lets make the bit most of
-                                            this beautiful day since we are together the Love Boat.</p>
-                                        <h2>Service repairs</h2>
-                                        <p>The need no welfare states starship enterprise the Brady Bunch that's the way
-                                            we all became the Brady mes Bunch these days are all Happy and Free these
-                                            days are all share.</p>
-                                        <List component="nav">
-                                            <ListItem button>
-                                                <ListItemIcon>
-                                                    <DoneIcon />
-                                                </ListItemIcon>
-                                                <ListItemText primary="Beats all you've ever saw been in trouble with the law since the day they was born" />
-                                            </ListItem>
-                                            <ListItem button>
-                                                <ListItemIcon>
-                                                    <DoneIcon />
-                                                </ListItemIcon>
-                                                <ListItemText primary="Five passengers set sail that day for a three hour tour a three hour tour." />
-                                            </ListItem>
-                                            <ListItem button>
-                                                <ListItemIcon>
-                                                    <DoneIcon />
-                                                </ListItemIcon>
-                                                <ListItemText primary="Took a whole lotta tryin' just to get up that hill." />
-                                            </ListItem>
-                                            <ListItem button>
-                                                <ListItemIcon>
-                                                    <DoneIcon />
-                                                </ListItemIcon>
-                                                <ListItemText primary="Flying away on a wing and a prayer who could it be? Believe it or not its just me." />
-                                            </ListItem>
-                                            <ListItem button>
-                                                <ListItemIcon>
-                                                    <DoneIcon />
-                                                </ListItemIcon>
-                                                <ListItemText primary="Love Boat soon will be making another run." />
-                                            </ListItem>
-                                        </List>
-                                        <Divider />
-                                    </div>
-                                </TabContainer>
-                                <TabContainer>Item Two</TabContainer>
-                                <TabContainer>Item Three</TabContainer>
-                                <TabContainer>Item Four</TabContainer>
-                                <TabContainer>Item Five</TabContainer>
-                                <TabContainer>Item Six</TabContainer>
+                                {tabsList.map((item, index) => (
+                                    <TabContainer index={index} key={index}>
+                                        <div>
+                                            <img src={item.imgSrc}
+                                                 alt="" className={classes.image}/>
+                                            <h2 className={classes.title}>{item.title}</h2>
+                                            <p>The first mate and his Skipper too will do their best to make comfortable
+                                                these are voyages of the need no welfare states starship enterprise the
+                                                Brady Bunch that's the way we all became the Brady Bunch these days are all
+                                                Happy and Free these days are all share them with me oh baby so lets make
+                                                the most of this beautiful day since we are together the Love Boat soon will
+                                                be making another run the Love Boat promises something for everyone at some
+                                                food and up through the ground.</p>
+                                            <p>The need no welfare states starship enterprise the Brady Bunch that's the
+                                                way we all became the Brady won Bunch these days are all Happy and Free
+                                                these days are all share them with me oh baby so lets make the bit most of
+                                                this beautiful day since we are together the Love Boat.</p>
+                                            <h2>Service repairs</h2>
+                                            <p>The need no welfare states starship enterprise the Brady Bunch that's the way
+                                                we all became the Brady mes Bunch these days are all Happy and Free these
+                                                days are all share.</p>
+                                            <List component="nav">
+                                                <ListItem button>
+                                                    <ListItemIcon>
+                                                        <DoneIcon />
+                                                    </ListItemIcon>
+                                                    <ListItemText primary="Beats all you've ever saw been in trouble with the law since the day they was born" />
+                                                </ListItem>
+                                                <ListItem button>
+                                                    <ListItemIcon>
+                                                        <DoneIcon />
+                                                    </ListItemIcon>
+                                                    <ListItemText primary="Five passengers set sail that day for a three hour tour a three hour tour." />
+                                                </ListItem>
+                                                <ListItem button>
+                                                    <ListItemIcon>
+                                                        <DoneIcon />
+                                                    </ListItemIcon>
+                                                    <ListItemText primary="Took a whole lotta tryin' just to get up that hill." />
+                                                </ListItem>
+                                                <ListItem button>
+                                                    <ListItemIcon>
+                                                        <DoneIcon />
+                                                    </ListItemIcon>
+                                                    <ListItemText primary="Flying away on a wing and a prayer who could it be? Believe it or not its just me." />
+                                                </ListItem>
+                                                <ListItem button>
+                                                    <ListItemIcon>
+                                                        <DoneIcon />
+                                                    </ListItemIcon>
+                                                    <ListItemText primary="Love Boat soon will be making another run." />
+                                                </ListItem>
+                                            </List>
+                                            <Divider />
+                                        </div>
+                                    </TabContainer>
+                                ))}
                             </SwipeableViews>
                         </div>
                     </Grid>
