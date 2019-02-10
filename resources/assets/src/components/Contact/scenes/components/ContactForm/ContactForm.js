@@ -27,11 +27,24 @@ const styles = theme => ({
     },
 });
 
+/**
+ * Contact form component
+ */
 class ContactForm extends Component {
+
+    /**
+     * Constructor
+     *
+     * @param props
+     */
     constructor(props) {
         super(props);
     }
 
+    /**
+     * Render component
+     * @returns {*}
+     */
     render() {
 
         const {classes} = this.props;
