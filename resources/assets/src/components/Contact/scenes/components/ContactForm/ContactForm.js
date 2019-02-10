@@ -13,7 +13,6 @@ const styles = theme => ({
         width: '100%'
     },
     textField: {
-        marginLeft: theme.spacing.unit,
         marginRight: theme.spacing.unit,
     },
     dense: {
@@ -25,6 +24,9 @@ const styles = theme => ({
     margin: {
         margin: theme.spacing.unit,
     },
+    field: {
+        marginLeft: 0
+    }
 });
 
 /**
@@ -61,7 +63,7 @@ class ContactForm extends Component {
                                 <h2>Get in touch</h2>
                                 <form action="">
                                     <Grid container spacing={16}>
-                                        <Grid item xs={6}>
+                                        <Grid item xs={6} className={classes.field}>
                                             <TextField
                                                 id="standard-with-placeholder"
                                                 label="Name"
@@ -71,7 +73,7 @@ class ContactForm extends Component {
                                                 fullWidth={true}
                                             />
                                         </Grid>
-                                        <Grid item xs={6}>
+                                        <Grid item xs={6} className={classes.field}>
                                             <TextField
                                                 id="standard-with-placeholder"
                                                 label="Email"
@@ -81,7 +83,7 @@ class ContactForm extends Component {
                                                 fullWidth={true}
                                             />
                                         </Grid>
-                                        <Grid item xs={12}>
+                                        <Grid item xs={12} className={classes.field}>
                                             <TextField
                                                 id="standard-with-placeholder"
                                                 label="Subject"
@@ -91,7 +93,7 @@ class ContactForm extends Component {
                                                 fullWidth={true}
                                             />
                                         </Grid>
-                                        <Grid item xs={12}>
+                                        <Grid item xs={12} className={classes.field}>
                                             <TextField
                                                 id="standard-with-placeholder"
                                                 label="Message"
