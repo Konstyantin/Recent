@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Header from './../../scenes/components/Header';
 import ContactForm from './scenes/components/ContactForm';
+import MapContainer from './scenes/components/MapContainer';
 
 /**
  * Contact component
@@ -11,6 +12,7 @@ class Contact extends Component {
             <div>
                 <Header title={'Contact Us'}/>
                 <ContactForm/>
+                <MapContainer/>
             </div>
         );
     }
