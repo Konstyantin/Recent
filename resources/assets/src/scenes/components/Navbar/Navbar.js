@@ -134,7 +134,7 @@ class Navbar extends Component {
             <div className={classes.root}>
                 <AppBar position="static" color='default'>
                     <Grid container direction={'row'} justify={'center'}>
-                        <Grid item xs={8}>
+                        <Grid item xs={12} lg={8}>
                             <Toolbar>
                                 <Typography className={classes.title} variant="h6" color="inherit" noWrap>
                                     Recovery Center

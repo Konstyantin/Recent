@@ -6,3 +6,29 @@
     width: 100%;
     max-height: 860px;
 }
+
+@media only screen and (max-width: 1200px) {
+    .slick-slide-item {
+        max-height: 650px;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .slick-slide-item {
+        max-height: 550px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .slick-slide-item {
+        max-height: 480px;
+        padding: 0 50px;
+    }
+}
+
+@media only screen and (max-width: 576px) {
+    .slick-slide-item {
+        max-height: 400px;
+        padding: 0 50px;
+    }
+}

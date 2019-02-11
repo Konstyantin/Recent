@@ -13,6 +13,9 @@ import LaptopMacIcon from '@material-ui/icons/LaptopMac';
 import TabletMacIcon from '@material-ui/icons/TabletMac';
 import StorageIcon from '@material-ui/icons/Storage';
 import DesctopWindowsIcon from '@material-ui/icons/DesktopWindows';
+import classNames from 'classnames';
+
+import './style.css';
 
 const styles = theme => ({
     root: {
@@ -69,16 +72,16 @@ class ServicesCard extends Component {
         return (
             <div className={classes.root}>
                 <Grid container direction={'row'} justify={'center'}>
-                    <Grid item xs={8}>
+                    <Grid item lg={8} xs={10}>
                         <div className={classes.header}>
                             <h2>Our extreme services</h2>
                             <p className={classes.headerDescription}>The first mate and his Skipper too will do their very best
                                 to make the others comfortable in
                                 their tropic island nest</p>
                         </div>
-                        <Grid container direction={'row'} justify={'space-between'} spacing={24} className={classes.list}>
-                            <Grid item xs={4} className={classes.item}>
-                                <Card className={classes.card}>
+                        <Grid container direction={'row'} justify={'center'} spacing={24} className={classes.list}>
+                            <Grid item lg={4} md={6} xs={8} className={classes.item}>
+                                <Card className={classNames(classes.card, 'service-item')}>
                                     <CardActionArea>
                                         <CardContent>
                                             <PhoneIphoneIcon className={classes.icon} />
@@ -97,8 +100,8 @@ class ServicesCard extends Component {
                                     </CardActions>
                                 </Card>
                             </Grid>
-                            <Grid item xs={4} className={classes.item}>
-                                <Card className={classes.card}>
+                            <Grid item lg={4} md={6} xs={8} className={classes.item}>
+                                <Card className={classNames(classes.card, 'service-item')}>
                                     <CardActionArea>
                                         <CardContent>
                                             <TabletMacIcon className={classes.icon} />
@@ -117,8 +120,8 @@ class ServicesCard extends Component {
                                     </CardActions>
                                 </Card>
                             </Grid>
-                            <Grid item xs={4} className={classes.item}>
-                                <Card className={classes.card}>
+                            <Grid item lg={4} md={6} xs={8} className={classes.item}>
+                                <Card className={classNames(classes.card, 'service-item')}>
                                     <CardActionArea>
                                         <CardContent>
                                             <DesctopWindowsIcon className={classes.icon} />
@@ -137,8 +140,8 @@ class ServicesCard extends Component {
                                     </CardActions>
                                 </Card>
                             </Grid>
-                            <Grid item xs={4} className={classes.item}>
-                                <Card className={classes.card}>
+                            <Grid item lg={4} md={6} xs={8} className={classes.item}>
+                                <Card className={classNames(classes.card, 'service-item')}>
                                     <CardActionArea>
                                         <CardContent>
                                             <LaptopMacIcon className={classes.icon} />
@@ -157,8 +160,8 @@ class ServicesCard extends Component {
                                     </CardActions>
                                 </Card>
                             </Grid>
-                            <Grid item xs={4} className={classes.item}>
-                                <Card className={classes.card}>
+                            <Grid item lg={4} md={6} xs={8} className={classes.item}>
+                                <Card className={classNames(classes.card, 'service-item')}>
                                     <CardActionArea>
                                         <CardContent>
                                             <RouterIcon className={classes.icon} />
@@ -177,8 +180,8 @@ class ServicesCard extends Component {
                                     </CardActions>
                                 </Card>
                             </Grid>
-                            <Grid item xs={4} className={classes.item}>
-                                <Card className={classes.card}>
+                            <Grid item lg={4} md={6} xs={8} className={classes.item}>
+                                <Card className={classNames(classes.card, 'service-item')}>
                                     <CardActionArea>
                                         <CardContent>
                                             <StorageIcon className={classes.icon} />

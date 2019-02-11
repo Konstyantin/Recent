@@ -3,6 +3,7 @@ import Slider from "react-slick";
 import {withStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import classNames from 'classnames';
 
 import './style.css';
 
@@ -10,23 +11,19 @@ const styles = theme => ({
     root: {
         flexGrow: 1
     },
-    slideFirst: {
+    item: {
         height: 860,
-        background: 'linear-gradient(rgba(127, 114, 114, 0.45), #495057), url(http://t.commonsupport.com/catania/images/main-slider/image-1.jpg) no-repeat center',
         fontSize: 60,
         color: '#eee',
+    },
+    slideFirst: {
+        background: 'linear-gradient(rgba(127, 114, 114, 0.45), #495057), url(http://t.commonsupport.com/catania/images/main-slider/image-1.jpg) no-repeat center',
     },
     slideSecond: {
-        height: 860,
         background: 'linear-gradient(rgba(127, 114, 114, 0.45), #495057), url(http://t.commonsupport.com/catania/images/main-slider/image-2.jpg) no-repeat center',
-        fontSize: 60,
-        color: '#eee',
     },
     slideThird: {
-        height: 860,
         background: 'linear-gradient(rgba(127, 114, 114, 0.45), #495057), url(http://t.commonsupport.com/catania/images/main-slider/image-3.jpg) no-repeat center',
-        fontSize: 60,
-        color: '#eee',
     },
     slideContainer: {
         height: '100%'
@@ -62,18 +59,18 @@ class Carousel extends Component {
         const settings = {
             dots: true,
             infinite: true,
-            speed: 500,
+            speed: 800,
             slidesToShow: 1,
             slidesToScroll: 1,
             arrows: false,
-            autoplay: true,
-            autoplaySpeed: 3000
+            // autoplay: true,
+            // autoplaySpeed: 3000
         };
 
         return (
             <div className={classes.root}>
                 <Slider {...settings} className={'carousel-slider'}>
-                    <div className={classes.slideFirst}>
+                    <div className={classNames(classes.slideFirst, classes.item, 'slick-slide-item')}>
                         <Grid container className={classes.slideContainer}>
                             <Grid item className={classes.header} container justify={'center'} alignItems={'center'}>
                                 <div>
@@ -89,7 +86,7 @@ class Carousel extends Component {
                             </Grid>
                         </Grid>
                     </div>
-                    <div className={classes.slideSecond}>
+                    <div className={classNames(classes.slideSecond, classes.item, 'slick-slide-item')}>
                         <Grid container className={classes.slideContainer}>
                             <Grid item className={classes.header} container justify={'center'} alignItems={'center'}>
                                 <div>
@@ -102,7 +99,7 @@ class Carousel extends Component {
                             </Grid>
                         </Grid>
                     </div>
-                    <div className={classes.slideThird}>
+                    <div className={classNames(classes.slideThird, classes.item, 'slick-slide-item')}>
                         <Grid container className={classes.slideContainer}>
                             <Grid item className={classes.header} container justify={'center'} alignItems={'center'}>
                                 <div>
