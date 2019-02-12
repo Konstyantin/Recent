@@ -106,7 +106,7 @@ class TabList extends Component {
         return (
             <div className={classes.root}>
                 <Grid container justify={'center'}>
-                    <Grid item xs={8}>
+                    <Grid item xs={10} lg={8}>
                         <div className={classes.header}>
                             <h2>Our extreme services</h2>
                             <p>The first mate and his Skipper too will do their very best to make the others comfortable
