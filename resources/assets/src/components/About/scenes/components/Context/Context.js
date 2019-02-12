@@ -27,11 +27,23 @@ const styles = theme => ({
     }
 });
 
+/**
+ * Context component
+ */
 class Context extends Component {
+
+    /**
+     * Constructor
+     * @param props
+     */
     constructor(props) {
         super(props);
     }
 
+    /**
+     * Render component
+     * @returns {*}
+     */
     render() {
 
         const {classes} = this.props;

@@ -19,7 +19,8 @@ const styles = theme => ({
         marginTop: 19,
     },
     form: {
-        paddingLeft: 50
+        paddingLeft: 50,
+        paddingBottom: 50
     },
     margin: {
         margin: theme.spacing.unit,
@@ -54,12 +55,9 @@ class ContactForm extends Component {
         return (
             <div className={classes.root}>
                 <Grid container justify={'center'}>
-                    <Grid item xs={8}>
-                        <Grid container>
-                            <Grid item xs={4}>
-                                <img className={classes.image} src="http://t.commonsupport.com/catania/images/resource/user.png" alt=""/>
-                            </Grid>
-                            <Grid item xs={8} className={classes.form}>
+                    <Grid item xs={10} lg={8}>
+                        <Grid container direction={'row-reverse'}>
+                            <Grid item md={8} sm={12} className={classes.form}>
                                 <h2>Get in touch</h2>
                                 <form action="">
                                     <Grid container spacing={16}>
@@ -111,6 +109,9 @@ class ContactForm extends Component {
                                         </Grid>
                                     </Grid>
                                 </form>
+                            </Grid>
+                            <Grid item md={4} sm={12}>
+                                <img className={classes.image} src="http://t.commonsupport.com/catania/images/resource/user.png" alt=""/>
                             </Grid>
                         </Grid>
                     </Grid>
