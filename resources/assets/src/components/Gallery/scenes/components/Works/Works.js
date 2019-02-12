@@ -97,7 +97,7 @@ class Works extends Component {
         return (
             <div className={classes.root}>
                 <Grid container justify={'center'}>
-                    <Grid item xs={8}>
+                    <Grid item lg={10} xl={8}>
                         <div className={classes.title}>
                             <h2>Our gallery</h2>
                             <p>These men promptly escaped from a maximum security stockade to the Los Angeles underground texas
