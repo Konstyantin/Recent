@@ -41,7 +41,7 @@ class Context extends Component {
                 <Grid container justify={'center'}>
                     <Grid item xs={10} lg={8}>
                         <Grid container alignItems={'center'}>
-                            <Grid item xs={6}>
+                            <Grid item md={6} sm={12}>
                                 <h2>Welcome to Recovery Center</h2>
                                 <p>
                                     The first mate and his Skipper too will do their very best to make the others
@@ -66,7 +66,7 @@ class Context extends Component {
                                     </Grid>
                                 </Grid>
                             </Grid>
-                            <Grid item xs={6}>
+                            <Grid item md={6} sm={12}>
                                 <img className={classes.img} src="http://t.commonsupport.com/catania/images/resource/image-1.png" alt=""/>
                             </Grid>
                         </Grid>
