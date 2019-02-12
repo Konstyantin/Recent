@@ -51,25 +51,25 @@ class Statistics extends Component {
         return (
             <div className={classes.root}>
                 <Grid container direction={'row'} justify={'center'}>
-                    <Grid item xs={8}>
+                    <Grid item lg={8} xs={10}>
                         <h2 className={classes.title}>Our statistics</h2>
                         <p className={classes.description}>
                             The first mate and his Skipper too will do their very best to make the others comfortable in
                             their tropic island nest</p>
                         <Grid container direction={'row'} justify={'space-between'} spacing={24} className={classes.list}>
-                            <Grid item xs={3} className={classes.item}>
+                            <Grid item sm={6} md={3} className={classes.item}>
                                 <p className={classes.value}>25<span className={classes.dimension}>+</span></p>
                                 <p>Years of experience</p>
                             </Grid>
-                            <Grid item xs={3} className={classes.item}>
+                            <Grid item sm={6} md={3} className={classes.item}>
                                 <p className={classes.value}>88<span className={classes.dimension}>k</span></p>
                                 <p>Happy customers</p>
                             </Grid>
-                            <Grid item xs={3} className={classes.item}>
+                            <Grid item sm={6} md={3} className={classes.item}>
                                 <p className={classes.value}>100<span className={classes.dimension}>%</span></p>
                                 <p>Satisfaction Guranteed</p>
                             </Grid>
-                            <Grid item xs={3} className={classes.item}>
+                            <Grid item sm={6} md={3} className={classes.item}>
                                 <p className={classes.value}>250<span className={classes.dimension}>k</span></p>
                                 <p>Total Components Repairs</p>
                             </Grid>

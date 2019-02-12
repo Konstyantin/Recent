@@ -4,6 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import AlarmIcon from '@material-ui/icons/Alarm';
 import AssignmentIcon from '@material-ui/icons/Assignment';
 import NearMeIcon from '@material-ui/icons/NearMe';
+import './style.css';
+import classNames from 'classnames';
 
 const styles = theme => ({
     root: {
@@ -19,10 +21,7 @@ const styles = theme => ({
         margin: theme.spacing.unit,
         fontSize: 32,
     },
-    img: {
-        width: '100%',
-        maxHeight: 600
-    },
+
     description: {
         paddingRight: 100
     }
@@ -49,9 +48,9 @@ class About extends Component {
         return (
             <div className={classes.root}>
                 <Grid container alignItems={'center'}>
-                    <Grid item xs={6}>
+                    <Grid item lg={6} md={12}>
                         <Grid container direction={'row'} justify={'flex-end'}>
-                            <Grid item xs={8} className={classes.description}>
+                            <Grid item xl={8} md={11} className={classNames(classes.description, 'about-description')}>
                                 <div>
                                     <h2 className={classes.title}>Who we are</h2>
                                     <p>The first mate and his Skipper too will do their very best to make the others bee
@@ -61,15 +60,15 @@ class About extends Component {
                                         something for everyone michael Knight a young loner.</p>
                                 </div>
                                 <Grid container direction={'row'} justify={'space-between'}>
-                                    <Grid item xs={4}>
+                                    <Grid item xl={4} lg={6} md={6}>
                                         <AlarmIcon className={classes.icon} />
                                         <span>Lifetime Warranty</span>
                                     </Grid>
-                                    <Grid item xs={4}>
+                                    <Grid item xl={4} lg={6} md={6}>
                                         <AssignmentIcon className={classes.icon} />
                                         <span>Certified Experts</span>
                                     </Grid>
-                                    <Grid item xs={4}>
+                                    <Grid item xl={4} lg={6} md={6}>
                                         <NearMeIcon className={classes.icon} />
                                         <span>Fast Delivery</span>
                                     </Grid>
@@ -77,8 +76,8 @@ class About extends Component {
                             </Grid>
                         </Grid>
                     </Grid>
-                    <Grid item xs={6}>
-                        <img className={classes.img} src="http://t.commonsupport.com/catania/images/resource/fullwidth-1.jpg" alt=""/>
+                    <Grid item lg={6} md={12} className={'about-image'}>
+                        <img src="http://t.commonsupport.com/catania/images/resource/fullwidth-1.jpg" alt=""/>
                     </Grid>
                 </Grid>
             </div>

@@ -76,18 +76,18 @@ class Footer extends Component {
             <footer>
                 <div className={classes.root}>
                     <Grid container direction={'row'} justify={'center'}>
-                        <Grid item xs={8}>
+                        <Grid item lg={8} xs={10}>
                             <Grid container direction={'row'} className={classes.content}>
-                                <Grid item xs={4} className={classes.description}>
+                                <Grid item md={4} xs={12} className={classes.description}>
                                     <h3 className={classes.header}>Recovery Center</h3>
                                     <p>Repairplus brings 41 years of Digital Repairs experience right to your Device.
                                         Our Texhnicians are equipped to help you that work best.</p>
                                     <p>Our commitment to bring professionalism, good service & trust to the Phone repair
                                         service & maintenance business.</p>
                                 </Grid>
-                                <Grid item xs={8}>
+                                <Grid item md={8} xs={12}>
                                     <Grid container direction={'row'} justify={'space-between'}>
-                                        <Grid item xs={4}>
+                                        <Grid item md={6} lg={4}>
                                             <h3 className={classes.header}>Our Services</h3>
                                             <List dense={dense} className={classes.list}>
                                                 <ListItem className={classes.itemText}>
@@ -104,7 +104,7 @@ class Footer extends Component {
                                                 </ListItem>
                                             </List>
                                         </Grid>
-                                        <Grid item xs={4}>
+                                        <Grid item md={6} lg={4}>
                                             <h3 className={classes.header}>Subscribe us</h3>
                                             <p>Subscribe to our newsletter!</p>
                                             <Input
@@ -115,7 +115,7 @@ class Footer extends Component {
                                                 }}
                                             />
                                         </Grid>
-                                        <Grid item xs={4}>
+                                        <Grid item md={6} lg={4}>
                                             <h3 className={classes.header}>Contact info</h3>
                                             <List dense={dense}>
                                                 <ListItem>

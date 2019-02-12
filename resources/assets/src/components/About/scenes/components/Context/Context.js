@@ -39,7 +39,7 @@ class Context extends Component {
         return (
             <div className={classes.root}>
                 <Grid container justify={'center'}>
-                    <Grid item xs={8}>
+                    <Grid item xs={10} lg={8}>
                         <Grid container alignItems={'center'}>
                             <Grid item xs={6}>
                                 <h2>Welcome to Recovery Center</h2>

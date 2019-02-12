@@ -8,6 +8,8 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import classNames from 'classnames';
+import './style.css';
 
 const styles = theme => ({
     root: {
@@ -44,13 +46,13 @@ class Repairs extends Component {
         return (
             <div className={classes.root}>
                 <Grid container direction={'row'} justify={'center'}>
-                    <Grid item xs={8}>
+                    <Grid item xs={10} lg={8}>
                         <h2 className={classes.title}>What we repair</h2>
                         <p className={'text-center'}>The first mate and his Skipper too will do their very best to make the
                             others comfortable</p>
                         <Grid container direction={'row'} justify={'space-between'} spacing={24} className={classes.list}>
-                            <Grid item xs={4}>
-                                <Card className={classes.card}>
+                            <Grid item md={4} sm={12}>
+                                <Card className={classNames(classes.card, 'service-item')}>
                                     <CardActionArea>
                                         <CardMedia
                                             className={classes.media}
@@ -74,8 +76,8 @@ class Repairs extends Component {
                                     </CardActions>
                                 </Card>
                             </Grid>
-                            <Grid item xs={4}>
-                                <Card className={classes.card}>
+                            <Grid item md={4} sm={12}>
+                                <Card className={classNames(classes.card, 'service-item')}>
                                     <CardActionArea>
                                         <CardMedia
                                             className={classes.media}
@@ -99,8 +101,8 @@ class Repairs extends Component {
                                     </CardActions>
                                 </Card>
                             </Grid>
-                            <Grid item xs={4}>
-                                <Card className={classes.card}>
+                            <Grid item md={4} sm={12}>
+                                <Card className={classNames(classes.card, 'repair-item')}>
                                     <CardActionArea>
                                         <CardMedia
                                             className={classes.media}
