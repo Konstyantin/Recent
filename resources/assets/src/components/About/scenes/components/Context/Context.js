@@ -89,4 +89,4 @@ class Context extends Component {
     }
 }
 
-export default withStyles(styles)(Context)
+export default withStyles(styles)(Context);
