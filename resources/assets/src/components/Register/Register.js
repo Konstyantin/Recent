@@ -3,6 +3,8 @@ import {withStyles} from "@material-ui/core/styles/index";
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import { connect } from 'react-redux';
+import {userActions} from "../../_actions";
 
 const styles = theme => ({
     root: {
