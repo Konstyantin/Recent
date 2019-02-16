@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import {userActions} from "../../_actions";
+import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 
 const styles = theme => ({
     root: {
@@ -13,6 +14,7 @@ const styles = theme => ({
     },
     textField: {
         marginRight: theme.spacing.unit,
+        width: '100%'
     },
     form: {
         paddingLeft: 50,
@@ -51,6 +53,11 @@ class Register extends Component{
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    /**
+     * Handle submit form
+     *
+     * @param e
+     */
     handleSubmit(e) {
         e.preventDefault();
 
@@ -58,11 +65,31 @@ class Register extends Component{
         const {firstName, lastName, email, phone, password, password_confirmation} = this.state;
         const {dispatch} = this.props;
 
+        console.log(firstName, lastName, email, phone, password, password_confirmation);
+
         if (firstName && lastName && email && phone && password && password_confirmation) {
             dispatch(userActions.register(firstName, lastName, email, phone, password, password_confirmation));
         }
     }
 
+    /**
+     * Component did mount
+     */
+    componentDidMount() {
+        // custom rule will have name 'isPasswordMatch'
+        ValidatorForm.addValidationRule('isPasswordMatch', (value) => {
+            if (value !== this.state.password) {
+                return false;
+            }
+            return true;
+        });
+    }
+
+    /**
+     * Handle change
+     *
+     * @param e
+     */
     handleChange(e) {
         const {name, value} = e.target;
         this.setState({[name]: value});
@@ -83,81 +110,88 @@ class Register extends Component{
                 <Grid container justify={'center'}>
                     <Grid item xs={6}>
                         <h2>Registration</h2>
-                        <form action="" onSubmit={this.handleSubmit}>
+                        <ValidatorForm
+                            ref="form"
+                            onSubmit={this.handleSubmit}
+                            onError={errors => console.log(errors)}
+                        >
                             <Grid container spacing={16}>
                                 <Grid item xs={6} className={classes.field}>
-                                    <TextField
-                                        id="register-first-name"
+                                    <TextValidator
                                         label="First Name"
+                                        onChange={this.handleChange}
+                                        className={classes.textField}
+                                        name="firstName"
+                                        margin="normal"
                                         placeholder="First Name"
-                                        className={classes.textField}
-                                        margin="normal"
-                                        name={'firstName'}
-                                        fullWidth={true}
-                                        onChange={this.handleChange}
+                                        value={firstName}
+                                        validators={['required']}
+                                        errorMessages={['this field is required']}
                                     />
                                 </Grid>
                                 <Grid item xs={6} className={classes.field}>
-                                    <TextField
-                                        id="register-last-name"
+                                    <TextValidator
                                         label="Last Name"
+                                        onChange={this.handleChange}
+                                        className={classes.textField}
+                                        name="lastName"
+                                        margin="normal"
                                         placeholder="Last Name"
-                                        className={classes.textField}
-                                        margin="normal"
-                                        name={'lastName'}
-                                        fullWidth={true}
-                                        onChange={this.handleChange}
+                                        value={lastName}
+                                        validators={['required']}
+                                        errorMessages={['this field is required']}
                                     />
                                 </Grid>
                                 <Grid item xs={6} className={classes.field}>
-                                    <TextField
-                                        id="register-email"
+                                    <TextValidator
                                         label="Email"
-                                        type="email"
+                                        onChange={this.handleChange}
+                                        className={classes.textField}
+                                        name="email"
+                                        margin="normal"
                                         placeholder="Email"
-                                        className={classes.textField}
-                                        margin="normal"
-                                        name={'email'}
-                                        fullWidth={true}
-                                        onChange={this.handleChange}
+                                        value={email}
+                                        validators={['required', 'isEmail']}
+                                        errorMessages={['this field is required', 'email is not valid']}
                                     />
                                 </Grid>
                                 <Grid item xs={6} className={classes.field}>
-                                    <TextField
-                                        id="register-phone"
+                                    <TextValidator
                                         label="Phone"
+                                        onChange={this.handleChange}
+                                        className={classes.textField}
+                                        name="phone"
+                                        margin="normal"
                                         placeholder="Phone"
-                                        className={classes.textField}
-                                        margin="normal"
-                                        name={'phone'}
-                                        fullWidth={true}
-                                        onChange={this.handleChange}
+                                        value={phone}
+                                        validators={['required']}
+                                        errorMessages={['this field is required']}
                                     />
                                 </Grid>
                                 <Grid item xs={6} className={classes.field}>
-                                    <TextField
-                                        id="register-password"
+                                    <TextValidator
                                         label="Password"
-                                        placeholder="Password"
-                                        type="password"
-                                        className={classes.textField}
-                                        margin="normal"
-                                        name={'password'}
-                                        fullWidth={true}
                                         onChange={this.handleChange}
+                                        className={classes.textField}
+                                        name="password"
+                                        type="password"
+                                        margin="normal"
+                                        validators={['required']}
+                                        errorMessages={['this field is required']}
+                                        value={password}
                                     />
                                 </Grid>
                                 <Grid item xs={6} className={classes.field}>
-                                    <TextField
-                                        id="register-confirm-password"
-                                        label="Confirm Password"
-                                        placeholder="Confirm Password"
-                                        type="password"
-                                        className={classes.textField}
-                                        margin="normal"
-                                        name={'password_confirmation'}
-                                        fullWidth={true}
+                                    <TextValidator
+                                        label="Repeat password"
                                         onChange={this.handleChange}
+                                        className={classes.textField}
+                                        name="password_confirmation"
+                                        type="password"
+                                        margin="normal"
+                                        validators={['isPasswordMatch', 'required']}
+                                        errorMessages={['password mismatch', 'this field is required']}
+                                        value={password_confirmation}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -166,7 +200,7 @@ class Register extends Component{
                                     </Button>
                                 </Grid>
                             </Grid>
-                        </form>
+                        </ValidatorForm>
                     </Grid>
                 </Grid>
             </div>

@@ -49,7 +49,7 @@ class UserController extends Controller
     {
         $validator = $request->validated();
 
-        if ($validator->fails()) {
+        if (!$validator) {
             return response()->json($validator->errors()->toJson(), 400);
         }
 
