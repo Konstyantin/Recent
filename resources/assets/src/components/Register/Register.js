@@ -34,6 +34,38 @@ class Register extends Component{
      */
     constructor(props) {
         super(props);
+
+        this.state = {
+            firstName: '',
+            lastName: '',
+            email: '',
+            phone: '',
+            password: '',
+            password_confirmation: '',
+            submitted: false
+        };
+
+        this.props.dispatch(userActions.logout());
+
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleSubmit(e) {
+        e.preventDefault();
+
+        this.setState({submitted: true});
+        const {firstName, lastName, email, phone, password, password_confirmation} = this.state;
+        const {dispatch} = this.props;
+
+        if (firstName && lastName && email && phone && password && password_confirmation) {
+            dispatch(userActions.register(firstName, lastName, email, phone, password, password_confirmation));
+        }
+    }
+
+    handleChange(e) {
+        const {name, value} = e.target;
+        this.setState({[name]: value});
     }
 
     /**
@@ -44,12 +76,14 @@ class Register extends Component{
 
         const {classes} = this.props;
 
+        const {firstName, lastName, email, phone, password, password_confirmation, submitted} = this.state;
+
         return (
             <div className={classes.root}>
                 <Grid container justify={'center'}>
                     <Grid item xs={6}>
                         <h2>Registration</h2>
-                        <form action="">
+                        <form action="" onSubmit={this.handleSubmit}>
                             <Grid container spacing={16}>
                                 <Grid item xs={6} className={classes.field}>
                                     <TextField
@@ -58,7 +92,9 @@ class Register extends Component{
                                         placeholder="First Name"
                                         className={classes.textField}
                                         margin="normal"
+                                        name={'firstName'}
                                         fullWidth={true}
+                                        onChange={this.handleChange}
                                     />
                                 </Grid>
                                 <Grid item xs={6} className={classes.field}>
@@ -68,7 +104,9 @@ class Register extends Component{
                                         placeholder="Last Name"
                                         className={classes.textField}
                                         margin="normal"
+                                        name={'lastName'}
                                         fullWidth={true}
+                                        onChange={this.handleChange}
                                     />
                                 </Grid>
                                 <Grid item xs={6} className={classes.field}>
@@ -79,7 +117,9 @@ class Register extends Component{
                                         placeholder="Email"
                                         className={classes.textField}
                                         margin="normal"
+                                        name={'email'}
                                         fullWidth={true}
+                                        onChange={this.handleChange}
                                     />
                                 </Grid>
                                 <Grid item xs={6} className={classes.field}>
@@ -89,7 +129,9 @@ class Register extends Component{
                                         placeholder="Phone"
                                         className={classes.textField}
                                         margin="normal"
+                                        name={'phone'}
                                         fullWidth={true}
+                                        onChange={this.handleChange}
                                     />
                                 </Grid>
                                 <Grid item xs={6} className={classes.field}>
@@ -100,7 +142,9 @@ class Register extends Component{
                                         type="password"
                                         className={classes.textField}
                                         margin="normal"
+                                        name={'password'}
                                         fullWidth={true}
+                                        onChange={this.handleChange}
                                     />
                                 </Grid>
                                 <Grid item xs={6} className={classes.field}>
@@ -111,11 +155,13 @@ class Register extends Component{
                                         type="password"
                                         className={classes.textField}
                                         margin="normal"
+                                        name={'password_confirmation'}
                                         fullWidth={true}
+                                        onChange={this.handleChange}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Button variant="contained" color="primary" className={classes.button}>
+                                    <Button variant="contained" color="primary" className={classes.button} type={'submit'}>
                                         Submit
                                     </Button>
                                 </Grid>
@@ -128,4 +174,12 @@ class Register extends Component{
     }
 }
 
-export default withStyles(styles)(Register);
+function mapStateToProps(state) {
+    const { loggingIn } = state.authentication;
+    return { loggingIn };
+}
+
+const styledRegister = withStyles(styles)(Register);
+const connectedRegister = connect(mapStateToProps)(styledRegister);
+
+export { connectedRegister as Register};

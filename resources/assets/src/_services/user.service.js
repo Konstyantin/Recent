@@ -36,17 +36,19 @@ function login(email, password) {
 /**
  * Register function
  *
- * @param name
+ * @param firstName
+ * @param lastName
  * @param email
+ * @param phone
  * @param password
  * @param password_confirmation
  * @returns {Promise<Response>}
  */
-function register(name, email, password, password_confirmation) {
+function register(firstName, lastName, email, phone, password, password_confirmation) {
     const requestOptions = {
         method: 'PUT',
         headers: {'Accept': 'application/json','Content-Type': 'application/json'},
-        body: JSON.stringify({name, email, password, password_confirmation})
+        body: JSON.stringify({firstName, lastName, email, phone, password, password_confirmation})
     };
 
     return fetch('/api/register', requestOptions)

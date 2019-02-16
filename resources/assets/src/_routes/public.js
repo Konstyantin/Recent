@@ -5,7 +5,7 @@ import {Contact} from '../components/Contact';
 import {Services, Service} from '../components/Services';
 import {About} from '../components/About';
 import Login from '../components/Login';
-import Register from '../components/Register';
+import {Register} from '../components/Register';
 
 /**
  * @type {*[]}

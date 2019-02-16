@@ -1,6 +1,5 @@
 import {userConstants} from '../_constants';
 import {userService} from '../_services';
-import {alertActions} from './';
 import {history} from '../_helpers';
 
 export const userActions = {
@@ -30,7 +29,6 @@ function login(email, password) {
                 },
                 error => {
                     dispatch(failure(error));
-                    dispatch(alertActions.error(error));
                 }
             );
     };
@@ -53,27 +51,28 @@ function logout() {
 /**
  * Register function
  *
- * @param name
+ * @param firstName
+ * @param lastName
  * @param email
+ * @param phone
  * @param password
  * @param passwordConfirmation
- * @returns {Function}
  */
-function register(name, email, password, passwordConfirmation) {
+function register(firstName, lastName, email, phone, password, passwordConfirmation) {
+    console.log('call register action');
+    console.log(firstName, lastName, email, phone, password, passwordConfirmation);
     return dispatch => {
         dispatch(request({name}));
 
-        userService.register(name, email, password, passwordConfirmation)
+        userService.register(firstName, lastName, email, phone, password, passwordConfirmation)
             .then(
                 user => {
                     dispatch(success(user));
-                    history.push('/');
-                    dispatch(alertActions.success('User was registered successful'));
+                    // history.push('/register');
 
                 },
                 error => {
                     dispatch(failure(error));
-                    dispatch(alertActions.error(error));
                 }
             )
     };
@@ -120,7 +119,6 @@ function profileUpdate(id, name, email) {
             .then(
                 user => {
                     dispatch(success(user.user));
-                    dispatch(alertActions.success('Profile updated successful'))
                 },
                 error => dispatch(failure(error))
             );
