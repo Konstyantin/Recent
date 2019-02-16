@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreUserPut;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -41,18 +42,12 @@ class UserController extends Controller
     /**
      * Register action method
      *
-     * @param Request $request
+     * @param StoreUserPut $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function register(Request $request)
+    public function register(StoreUserPut $request)
     {
-        $validator = Validator::make($request->all(), [
-            'firstName' => 'required|string|max:45',
-            'lastName' => 'required|string|max:45',
-            'email' => 'required|string|email|max:45|unique:users',
-            'phone' => 'required|string|max:45|unique:users',
-            'password' => 'required|string|min:6|confirmed',
-        ]);
+        $validator = $request->validated();
 
         if ($validator->fails()) {
             return response()->json($validator->errors()->toJson(), 400);
