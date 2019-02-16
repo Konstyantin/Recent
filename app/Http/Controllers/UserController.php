@@ -38,11 +38,19 @@ class UserController extends Controller
         return response()->json(compact('token'));
     }
 
+    /**
+     * Register action method
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'firstName' => 'required|string|max:45',
+            'lastName' => 'required|string|max:45',
+            'email' => 'required|string|email|max:45|unique:users',
+            'phone' => 'required|string|max:45|unique:users',
             'password' => 'required|string|min:6|confirmed',
         ]);
 
@@ -51,8 +59,10 @@ class UserController extends Controller
         }
 
         $user = User::create([
-            'name' => $request->get('name'),
+            'first_name' => $request->get('firstName'),
+            'last_name' => $request->get('lastName'),
             'email' => $request->get('email'),
+            'phone' => $request->get('phone'),
             'password' => Hash::make($request->get('password')),
         ]);
 

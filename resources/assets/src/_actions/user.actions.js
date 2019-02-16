@@ -59,8 +59,6 @@ function logout() {
  * @param passwordConfirmation
  */
 function register(firstName, lastName, email, phone, password, passwordConfirmation) {
-    console.log('call register action');
-    console.log(firstName, lastName, email, phone, password, passwordConfirmation);
     return dispatch => {
         dispatch(request({name}));
 
