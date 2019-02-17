@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {withStyles} from "@material-ui/core/styles/index";
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { connect } from 'react-redux';
 import {userActions} from "../../_actions";
@@ -65,7 +64,6 @@ class Register extends Component{
         const {firstName, lastName, email, phone, password, password_confirmation} = this.state;
         const {dispatch} = this.props;
 
-        console.log(firstName, lastName, email, phone, password, password_confirmation);
 
         if (firstName && lastName && email && phone && password && password_confirmation) {
             dispatch(userActions.register(firstName, lastName, email, phone, password, password_confirmation));

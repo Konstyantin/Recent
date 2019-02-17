@@ -5,6 +5,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
+import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 
 const styles = theme => ({
     root: {
@@ -13,6 +14,7 @@ const styles = theme => ({
     },
     textField: {
         marginRight: theme.spacing.unit,
+        width: '100%'
     },
 });
 
@@ -29,10 +31,15 @@ class Login extends Component {
         super(props);
 
         this.state = {
-            remember: false
+            email: '',
+            password: '',
+            remember: false,
+            submitted: false
         };
 
         this.handleChange = this.handleChange.bind(this);
+        this.handleCheckbox = this.handleCheckbox.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     /**
@@ -40,8 +47,29 @@ class Login extends Component {
      *
      * @param event
      */
-    handleChange(event) {
-        this.setState({remember: event.target.checked});
+    handleChange(e) {
+        const {name, value} = e.target;
+        this.setState({[name]: value});
+    }
+
+    /**
+     * Handle checkbox change
+     *
+     * @param e
+     */
+    handleCheckbox(e) {
+        this.setState({remember: e.target.checked});
+    }
+
+    /**
+     * Handle submit form
+     *
+     * @param e
+     */
+    handleSubmit(e) {
+        e.preventDefault();
+
+        this.setState({submitted: true});
     }
 
     /**
@@ -51,32 +79,43 @@ class Login extends Component {
 
         const {classes} = this.props;
 
+        const {email, password} = this.state;
+
         return (
             <div className={classes.root}>
                 <Grid container justify={'center'}>
                     <Grid item xs={4}>
                         <h2>Login</h2>
-                        <form action="">
+                        <ValidatorForm
+                            ref="form"
+                            onSubmit={this.handleSubmit}
+                            onError={errors => console.log(errors)}
+                        >
                             <Grid container>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        id="login-name"
-                                        label="Name"
-                                        placeholder="Name"
+                                <Grid item xs={12} className={classes.field}>
+                                    <TextValidator
+                                        label="Email"
+                                        onChange={this.handleChange}
                                         className={classes.textField}
+                                        name="email"
                                         margin="normal"
-                                        fullWidth={true}
+                                        placeholder="Email"
+                                        value={email}
+                                        validators={['required', 'isEmail']}
+                                        errorMessages={['this field is required', 'email is not valid']}
                                     />
                                 </Grid>
-                                <Grid item xs={12}>
-                                    <TextField
-                                        id="login-password"
+                                <Grid item xs={12} className={classes.field}>
+                                    <TextValidator
                                         label="Password"
-                                        placeholder="Password"
-                                        type="password"
+                                        onChange={this.handleChange}
                                         className={classes.textField}
+                                        name="password"
+                                        type="password"
                                         margin="normal"
-                                        fullWidth={true}
+                                        validators={['required']}
+                                        errorMessages={['this field is required']}
+                                        value={password}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
@@ -84,7 +123,7 @@ class Login extends Component {
                                         control={
                                             <Checkbox
                                                 checked={this.state.remember}
-                                                onChange={this.handleChange}
+                                                onChange={this.handleCheckbox}
                                                 value="remember"
                                                 color="primary"
                                             />
@@ -93,10 +132,10 @@ class Login extends Component {
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Button variant="contained"  color="primary">Login</Button>
+                                    <Button variant="contained" type="submit"  color="primary">Login</Button>
                                 </Grid>
                             </Grid>
-                        </form>
+                        </ValidatorForm>
                     </Grid>
                 </Grid>
             </div>
