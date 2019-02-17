@@ -112,7 +112,7 @@ function handlerResponse(response) {
                 location.reload(true);
             }
 
-            const error = (data && data.error) || response.statusText;
+            const error = (data && data.errors) || response.statusText;
             return Promise.reject(error);
         }
 

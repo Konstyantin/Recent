@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 import {withStyles} from "@material-ui/core/styles/index";
 import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 import {userActions} from "../../_actions";
-import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 
 const styles = theme => ({
     root: {
@@ -27,7 +27,7 @@ const styles = theme => ({
 /**
  * Register component
  */
-class Register extends Component{
+class Register extends Component {
 
     /**
      * Constructor
@@ -63,7 +63,6 @@ class Register extends Component{
         this.setState({submitted: true});
         const {firstName, lastName, email, phone, password, password_confirmation} = this.state;
         const {dispatch} = this.props;
-
 
         if (firstName && lastName && email && phone && password && password_confirmation) {
             dispatch(userActions.register(firstName, lastName, email, phone, password, password_confirmation));
@@ -123,8 +122,12 @@ class Register extends Component{
                                         margin="normal"
                                         placeholder="First Name"
                                         value={firstName}
-                                        validators={['required']}
-                                        errorMessages={['this field is required']}
+                                        validators={['required', 'minStringLength:5', 'maxStringLength:45']}
+                                        errorMessages={[
+                                            'this field is required',
+                                            'input must be more 5 letters',
+                                            'input must be less 5 letters'
+                                        ]}
                                     />
                                 </Grid>
                                 <Grid item xs={6} className={classes.field}>
@@ -136,8 +139,12 @@ class Register extends Component{
                                         margin="normal"
                                         placeholder="Last Name"
                                         value={lastName}
-                                        validators={['required']}
-                                        errorMessages={['this field is required']}
+                                        validators={['required', 'minStringLength:5', 'maxStringLength:45']}
+                                        errorMessages={[
+                                            'this field is required',
+                                            'input must be more 5 letters',
+                                            'input must be less 5 letters'
+                                        ]}
                                     />
                                 </Grid>
                                 <Grid item xs={6} className={classes.field}>
@@ -149,8 +156,13 @@ class Register extends Component{
                                         margin="normal"
                                         placeholder="Email"
                                         value={email}
-                                        validators={['required', 'isEmail']}
-                                        errorMessages={['this field is required', 'email is not valid']}
+                                        validators={['required', 'isEmail', 'minStringLength:5', 'maxStringLength:45']}
+                                        errorMessages={[
+                                            'this field is required',
+                                            'email is not valid',
+                                            'input must be more 5 letters',
+                                            'input must be less 5 letters'
+                                        ]}
                                     />
                                 </Grid>
                                 <Grid item xs={6} className={classes.field}>
@@ -162,8 +174,12 @@ class Register extends Component{
                                         margin="normal"
                                         placeholder="Phone"
                                         value={phone}
-                                        validators={['required']}
-                                        errorMessages={['this field is required']}
+                                        validators={['required', 'minStringLength:5', 'maxStringLength:45']}
+                                        errorMessages={[
+                                            'this field is required',
+                                            'input must be more 5 letters',
+                                            'input must be less 5 letters'
+                                        ]}
                                     />
                                 </Grid>
                                 <Grid item xs={6} className={classes.field}>
@@ -174,8 +190,11 @@ class Register extends Component{
                                         name="password"
                                         type="password"
                                         margin="normal"
-                                        validators={['required']}
-                                        errorMessages={['this field is required']}
+                                        validators={['required', 'minStringLength:5']}
+                                        errorMessages={[
+                                            'this field is required',
+                                            'input must be more 5 letters'
+                                        ]}
                                         value={password}
                                     />
                                 </Grid>
@@ -187,13 +206,18 @@ class Register extends Component{
                                         name="password_confirmation"
                                         type="password"
                                         margin="normal"
-                                        validators={['isPasswordMatch', 'required']}
-                                        errorMessages={['password mismatch', 'this field is required']}
+                                        validators={['isPasswordMatch', 'required', 'minStringLength:5']}
+                                        errorMessages={[
+                                            'password mismatch',
+                                            'this field is required',
+                                            'input must be more 5 letters'
+                                        ]}
                                         value={password_confirmation}
                                     />
                                 </Grid>
                                 <Grid item xs={12}>
-                                    <Button variant="contained" color="primary" className={classes.button} type={'submit'}>
+                                    <Button variant="contained" color="primary" className={classes.button}
+                                            type={'submit'}>
                                         Submit
                                     </Button>
                                 </Grid>
@@ -208,11 +232,11 @@ class Register extends Component{
 
 function mapStateToProps(state) {
     const {alert} = state;
-    const { loggingIn } = state.authentication;
-    return { loggingIn, alert };
+    const {loggingIn} = state.authentication;
+    return {loggingIn, alert};
 }
 
 const styledRegister = withStyles(styles)(Register);
 const connectedRegister = connect(mapStateToProps)(styledRegister);
 
-export { connectedRegister as Register};
+export {connectedRegister as Register};
