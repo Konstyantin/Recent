@@ -1,5 +1,6 @@
 import {userConstants} from '../_constants';
 import {userService} from '../_services';
+import {alertActions} from './alert.actions';
 import {history} from '../_helpers';
 
 export const userActions = {
@@ -66,11 +67,13 @@ function register(firstName, lastName, email, phone, password, passwordConfirmat
             .then(
                 user => {
                     dispatch(success(user));
-                    // history.push('/register');
+                    history.push('/register');
+                    dispatch(alertActions.success('User was registered successful'));
 
                 },
                 error => {
                     dispatch(failure(error));
+                    dispatch(alertActions.error(error));
                 }
             )
     };

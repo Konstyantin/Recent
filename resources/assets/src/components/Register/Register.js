@@ -207,8 +207,9 @@ class Register extends Component{
 }
 
 function mapStateToProps(state) {
+    const {alert} = state;
     const { loggingIn } = state.authentication;
-    return { loggingIn };
+    return { loggingIn, alert };
 }
 
 const styledRegister = withStyles(styles)(Register);

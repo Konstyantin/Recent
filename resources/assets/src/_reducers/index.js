@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 
 import {authentication} from './authentication.reducer';
 import {auth} from './auth.reducer';
+import {alert} from './alert.reducer';
 import {authProfile} from './authProfile.reducer';
 
 /**
@@ -12,6 +13,7 @@ import {authProfile} from './authProfile.reducer';
 const rootReducer = combineReducers({
     authentication,
     auth,
+    alert,
     authProfile
 });
 
