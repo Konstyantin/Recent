@@ -5,6 +5,7 @@ import Button from '@material-ui/core/Button';
 import {connect} from 'react-redux';
 import {userActions} from "../../_actions";
 import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import CustomSnackBar from '../../scenes/components/CustomSnackBar';
 
 const styles = theme => ({
     root: {
@@ -107,6 +108,11 @@ class Register extends Component {
                 <Grid container justify={'center'}>
                     <Grid item xs={6}>
                         <h2>Registration</h2>
+                        <CustomSnackBar
+                            variant="warning"
+                            className={classes.margin}
+                            message="This is a warning message!"
+                        />
                         <ValidatorForm
                             ref="form"
                             onSubmit={this.handleSubmit}
