@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import green from '@material-ui/core/colors/green';
 import amber from '@material-ui/core/colors/amber';
 import IconButton from '@material-ui/core/IconButton';
-import Snackbar from '@material-ui/core/Snackbar';
 import SnackbarContent from '@material-ui/core/SnackbarContent';
 import WarningIcon from '@material-ui/icons/Warning';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
@@ -11,7 +10,6 @@ import InfoIcon from '@material-ui/icons/Info';
 import classNames from 'classnames';
 import CloseIcon from '@material-ui/icons/Close';
 import {withStyles} from "@material-ui/core/styles/index";
-
 
 const variantIcon = {
     success: CheckCircleIcon,
@@ -45,21 +43,62 @@ const styles = theme => ({
         alignItems: 'center',
     },
     snack: {
-        maxWidth: '100%'
+        maxWidth: '100%',
+        marginBottom: 20
     }
 });
 
+/**
+ * Custom Snack Bar
+ */
 class CustomSnackBar extends Component {
+
+    /**
+     * Constructor
+     *
+     * @param props
+     */
     constructor(props) {
         super(props);
+
+        this.state = {
+            open: null
+        };
+
+        this.handleClose = this.handleClose.bind(this);
     }
 
+    /**
+     * Component did mount
+     */
+    componentDidMount() {
+        const {open} = this.props;
+
+        this.setState({open: open});
+    }
+
+    /**
+     * Handle close
+     */
+    handleClose() {
+        this.setState({
+            open: false
+        });
+    }
+
+    /**
+     * Render component
+     *
+     * @returns {*}
+     */
     render() {
-        const { classes, className, message, onClose, variant, ...other } = this.props;
+        const { classes, className, message, variant, ...other } = this.props;
         const Icon = variantIcon[variant];
+        const {open} = this.state;
 
         return (
             <div>
+                {open &&
                 <SnackbarContent
                     className={classNames(classes[variant], className, classes.snack)}
                     aria-describedby="client-snackbar"
@@ -75,13 +114,14 @@ class CustomSnackBar extends Component {
                             aria-label="Close"
                             color="inherit"
                             className={classes.close}
-                            onClick={onClose}
+                            onClick={this.handleClose}
                         >
                             <CloseIcon className={classes.icon}/>
                         </IconButton>,
                     ]}
                     {...other}
                 />
+                }
             </div>
         );
     }

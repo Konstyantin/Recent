@@ -107,12 +107,13 @@ class Register extends Component {
             <div className={classes.root}>
                 <Grid container justify={'center'}>
                     <Grid item xs={6}>
-                        <h2>Registration</h2>
                         <CustomSnackBar
-                            variant="warning"
+                            variant="error"
                             className={classes.margin}
                             message="This is a warning message!"
+                            open={true}
                         />
+                        <h2>Registration</h2>
                         <ValidatorForm
                             ref="form"
                             onSubmit={this.handleSubmit}
