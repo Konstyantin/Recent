@@ -28,9 +28,8 @@ function login(email, password) {
             if (user.token) {
                 localStorage.setItem('user', JSON.stringify(user));
             }
-
             return user;
-        })
+        });
 }
 
 /**

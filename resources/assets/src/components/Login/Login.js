@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import {withStyles} from '@material-ui/core/styles';
 import Grid from '@material-ui/core/Grid';
-import TextField from '@material-ui/core/TextField';
+import {userActions} from '../../_actions';
 import Button from '@material-ui/core/Button';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import {connect} from 'react-redux';
 
 const styles = theme => ({
     root: {
@@ -70,6 +71,13 @@ class Login extends Component {
         e.preventDefault();
 
         this.setState({submitted: true});
+
+        const {email, password} = this.state;
+        const {dispatch} = this.props;
+
+        if (email && password) {
+            dispatch(userActions.login(email, password));
+        }
     }
 
     /**
@@ -143,4 +151,12 @@ class Login extends Component {
     }
 }
 
-export default withStyles(styles)(Login)
+function mapStateToProps(state) {
+    const {loggingIn} = state.authentication;
+    return {loggingIn}
+}
+
+const styledLogin = withStyles(styles)(Login);
+const connectedLogin = connect(mapStateToProps)(styledLogin);
+
+export {connectedLogin as Login};

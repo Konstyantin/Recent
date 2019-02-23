@@ -62,7 +62,7 @@ class CustomSnackBar extends Component {
         super(props);
 
         this.state = {
-            open: null
+            open: true
         };
 
         this.handleClose = this.handleClose.bind(this);
@@ -95,6 +95,8 @@ class CustomSnackBar extends Component {
         const { classes, className, message, variant, ...other } = this.props;
         const Icon = variantIcon[variant];
         const {open} = this.state;
+
+        console.log(open);
 
         return (
             <div>

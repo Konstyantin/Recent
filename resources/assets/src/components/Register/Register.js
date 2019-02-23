@@ -25,6 +25,30 @@ const styles = theme => ({
     }
 });
 
+const SnackBarList = ({alert}) => {
+
+    const {type, message} = alert;
+
+    if (message) {
+        const result = Object.keys(message).map(function (key) {
+            return message[key].shift();
+        });
+
+        if (result) {
+            return result.map((item, index) => (
+                <CustomSnackBar
+                    key={index}
+                    variant="error"
+                    message={item}
+                    open={true}
+                />
+            ));
+        }
+    }
+
+    return null;
+};
+
 /**
  * Register component
  */
@@ -99,7 +123,7 @@ class Register extends Component {
      */
     render() {
 
-        const {classes} = this.props;
+        const {classes, alert} = this.props;
 
         const {firstName, lastName, email, phone, password, password_confirmation, submitted} = this.state;
 
@@ -107,12 +131,7 @@ class Register extends Component {
             <div className={classes.root}>
                 <Grid container justify={'center'}>
                     <Grid item xs={6}>
-                        <CustomSnackBar
-                            variant="error"
-                            className={classes.margin}
-                            message="This is a warning message!"
-                            open={true}
-                        />
+                        {/*<SnackBarList alert={alert}/>*/}
                         <h2>Registration</h2>
                         <ValidatorForm
                             ref="form"
