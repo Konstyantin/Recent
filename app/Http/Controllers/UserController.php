@@ -85,6 +85,8 @@ class UserController extends Controller
             return response()->json(['token_absent'], $e->getStatusCode());
         }
 
+        $user->isAdmin = $user->hasRole('admin') ? true : false;
+
         return response()->json(compact('user'));
     }
 }
