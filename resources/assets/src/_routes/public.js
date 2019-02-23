@@ -6,6 +6,8 @@ import {Services, Service} from '../components/Services';
 import {About} from '../components/About';
 import {Login} from '../components/Login';
 import {Register} from '../components/Register';
+import Admin from "../components/Admin/scenes/Admin";
+import Client from "../components/Client/Client";
 
 /**
  * @type {*[]}
@@ -34,12 +36,6 @@ export const publicRoutes = [
             {
                 path: '/services',
                 component: Services,
-                routes: [
-                    {
-                        path: '/services/:id',
-                        component: Service
-                    }
-                ]
             },
             {
                 path: '/login',
@@ -48,6 +44,14 @@ export const publicRoutes = [
             {
                 path: '/register',
                 component: Register
+            },
+            {
+                path: '/admin',
+                component: Admin
+            },
+            {
+                path: '/client',
+                component: Client
             }
         ]
     }
