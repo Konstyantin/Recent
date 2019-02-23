@@ -1,4 +1,5 @@
 import {authHeader} from '../_helpers';
+import {BehaviorSubject} from 'rxjs';
 
 export const userService = {
     login,
@@ -60,7 +61,7 @@ function register(firstName, lastName, email, phone, password, password_confirma
 /**
  * Logout function
  */
-function logout() {
+export function logout() {
     localStorage.removeItem('user');
 }
 
