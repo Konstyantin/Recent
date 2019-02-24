@@ -2,12 +2,14 @@ import {Gallery} from '../components/Gallery';
 import {Home} from '../components/Home';
 import {App} from '../components/App';
 import {Contact} from '../components/Contact';
-import {Services, Service} from '../components/Services';
+import {Services} from '../components/Services';
 import {About} from '../components/About';
 import {Login} from '../components/Login';
 import {Register} from '../components/Register';
 import Admin from "../components/Admin/scenes/Admin";
 import Client from "../components/Client/Client";
+import {default as AdminServices} from '../components/Admin/scenes/components/Services'
+import {default as AdminDashboard} from '../components/Admin/scenes/components/Dashboard'
 
 /**
  * @type {*[]}
@@ -47,7 +49,17 @@ export const publicRoutes = [
             },
             {
                 path: '/admin',
-                component: Admin
+                component: Admin,
+                routes: [
+                    {
+                        path: '/',
+                        component: AdminDashboard
+                    },
+                    {
+                        path: '/admin/services',
+                        component: AdminServices,
+                    }
+                ]
             },
             {
                 path: '/client',

@@ -10,12 +10,12 @@ import './style.css';
 class App extends Component {
 
     render() {
-        const {route} = this.props;
+        const {routes} = this.props.route;
 
         return (
             <div className={'content-body'}>
                 <Navbar/>
-                {renderRoutes(route.routes)}
+                    {renderRoutes(routes)}
                 <Footer/>
             </div>
         );

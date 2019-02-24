@@ -96,8 +96,6 @@ class CustomSnackBar extends Component {
         const Icon = variantIcon[variant];
         const {open} = this.state;
 
-        console.log(open);
-
         return (
             <div>
                 {open &&

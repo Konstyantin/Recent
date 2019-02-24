@@ -1,13 +1,16 @@
 import React, {Component} from 'react';
+import { renderRoutes } from "react-router-config";
 
 class Admin extends Component{
-    constructor(props) {
-        super(props);
-    }
-
     render() {
+
+        const {route} = this.props;
+
         return (
-            <div>Admin component page</div>
+            <div>
+                Admin component page
+                {renderRoutes(route.routes)}
+            </div>
         );
     }
 }
