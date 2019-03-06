@@ -73,9 +73,6 @@ class Register extends Component {
 
         const {dispatch} = this.props;
 
-        // dispatch(userActions.logout());
-        // dispatch(userActions.getAuth());
-
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
     }

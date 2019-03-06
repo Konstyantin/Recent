@@ -5,8 +5,8 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserPut;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Validator;
 use JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
@@ -36,7 +36,11 @@ class UserController extends Controller
             return response()->json(['error' => 'cloud_not_create_token'], 500);
         }
 
-        return response()->json(compact('token'));
+        $user = Auth::user();
+
+        $user->hasRole('admin') ? $role = 'admin' : $role = 'user';
+
+        return response()->json(['token' => $token, 'role' => $role]);
     }
 
     /**

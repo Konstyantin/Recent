@@ -6,7 +6,7 @@ import {Services} from '../components/Services';
 import {About} from '../components/About';
 import {Login} from '../components/Login';
 import {Register} from '../components/Register';
-import Admin from "../components/Admin/scenes/Admin";
+import {Admin} from "../components/Admin/scenes/Admin";
 import Client from "../components/Client/Client";
 import {default as AdminServices} from '../components/Admin/scenes/components/Services'
 import {default as AdminDashboard} from '../components/Admin/scenes/components/Dashboard'
