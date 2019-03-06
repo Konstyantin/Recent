@@ -6,16 +6,12 @@ import MapContainer from './scenes/components/MapContainer';
 /**
  * Contact component
  */
-class Contact extends Component {
-    render() {
-        return (
-            <div>
-                <Header title={'Contact Us'}/>
-                <ContactForm/>
-                <MapContainer/>
-            </div>
-        );
-    }
-}
+const Contact = () => (
+    <div>
+        <Header title={'Contact Us'}/>
+        <ContactForm/>
+        <MapContainer/>
+    </div>
+);
 
 export {Contact};

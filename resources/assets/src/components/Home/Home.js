@@ -9,18 +9,14 @@ import Statistics from './scenes/components/Statistics';
 /**
  * Home component
  */
-class Home extends Component {
-    render() {
-        return (
-            <div>
-                <Carousel/>
-                <ServicesCard/>
-                <About/>
-                <Repairs/>
-                <Statistics/>
-            </div>
-        );
-    }
-}
+const Home = () => (
+    <div>
+        <Carousel/>
+        <ServicesCard/>
+        <About/>
+        <Repairs/>
+        <Statistics/>
+    </div>
+);
 
 export {Home};
