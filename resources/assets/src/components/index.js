@@ -2,7 +2,7 @@ import React from 'react';
 import {render} from 'react-dom';
 import {Router} from 'react-router-dom';
 import {history} from '../_helpers';
-import {renderRoutes} from "react-router-config";
+import renderRoutes from './../_components';
 import {publicRoutes} from "../_routes";
 import { Provider } from 'react-redux';
 import {store} from '../_helpers';
