@@ -1,10 +1,10 @@
 import React from 'react';
-import {Switch, Route} from 'react-router-dom';
+import {Switch, Route, Redirect} from 'react-router-dom';
 
 const renderRoutes = (routes, extraProps = {}, switchProps = {}) => {
 
     const user = getLocalStorageUser();
-
+    
     return routes ? (
         <Switch {...switchProps}>
             {routes.map((route, i) => (
@@ -13,13 +13,20 @@ const renderRoutes = (routes, extraProps = {}, switchProps = {}) => {
                     path={route.path}
                     exact={route.exact}
                     strict={route.strict}
-                    render={props =>
-                        route.render ? (
-                            route.render({ ...props, ...extraProps, route: route })
-                        ) : (
-                            <route.component {...props} {...extraProps} route={route} />
-                        )
-                    }
+                    render={props => {
+
+                        if (route.permissions && (!user || !route.permissions.includes(user.role))) {
+                            return <Redirect to={route.redirect}/>
+                        }
+
+                        return (
+                            route.render ? (
+                                route.render({ ...props, ...extraProps, route: route })
+                            ) : (
+                                <route.component {...props} {...extraProps} route={route} />
+                            )
+                        );
+                    }}
                 />
             ))}
         </Switch>
