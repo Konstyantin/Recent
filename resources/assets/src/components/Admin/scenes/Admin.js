@@ -1,20 +1,15 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {userActions} from './../../../_actions';
+import renderRoutes from './../../../_components';
 
+/**
+ * Admin scene component
+ */
 class Admin extends Component {
-
-    constructor(props) {
-        super(props);
-
-        const {dispatch} = this.props;
-    }
-
     render() {
+        const {routes} = this.props.route;
         return (
-            <div>
-                Admin component page
-            </div>
+            renderRoutes(routes)
         )
     }
 }

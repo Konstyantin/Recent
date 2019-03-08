@@ -54,8 +54,9 @@ export const publicRoutes = [
                 redirect: '/',
                 routes: [
                     {
-                        path: '/',
+                        path: '/admin',
                         permissions: ['admin'],
+                        exact: true,
                         redirect: '/',
                         component: AdminDashboard
                     },
