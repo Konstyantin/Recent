@@ -1,5 +1,4 @@
 import {authHeader} from '../_helpers';
-import {BehaviorSubject} from 'rxjs';
 
 export const userService = {
     login,
@@ -26,7 +25,6 @@ function login(email, password) {
     return fetch(`/api/login`, requestOptions)
         .then(handlerResponse)
         .then(user => {
-            console.log(user);
             if (user.token) {
                 localStorage.setItem('user', JSON.stringify(user));
             }

@@ -7,6 +7,8 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import {connect} from 'react-redux';
+import {alertActions} from './../../_actions';
+import {history} from "../../_helpers";
 
 const styles = theme => ({
     root: {
@@ -37,6 +39,12 @@ class Login extends Component {
             remember: false,
             submitted: false
         };
+
+        const { dispatch } = this.props;
+        history.listen((location, action) => {
+            // clear alert on location change
+            dispatch(alertActions.clear());
+        });
 
         this.handleChange = this.handleChange.bind(this);
         this.handleCheckbox = this.handleCheckbox.bind(this);
@@ -153,7 +161,9 @@ class Login extends Component {
 
 function mapStateToProps(state) {
     const {loggingIn} = state.authentication;
-    return {loggingIn}
+    const {alert} = state;
+
+    return {loggingIn, alert}
 }
 
 const styledLogin = withStyles(styles)(Login);
