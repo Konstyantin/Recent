@@ -2,6 +2,9 @@ import React from 'react';
 import {Switch, Route} from 'react-router-dom';
 
 const renderRoutes = (routes, extraProps = {}, switchProps = {}) => {
+
+    const user = getLocalStorageUser();
+
     return routes ? (
         <Switch {...switchProps}>
             {routes.map((route, i) => (
@@ -21,6 +24,14 @@ const renderRoutes = (routes, extraProps = {}, switchProps = {}) => {
             ))}
         </Switch>
     ) : null;
+};
+
+const getLocalStorageUser = () => {
+    let user = localStorage.getItem('user');
+
+    (user) ? user = JSON.parse(localStorage.getItem('user')) : user = null;
+
+    return user;
 };
 
 export default renderRoutes;

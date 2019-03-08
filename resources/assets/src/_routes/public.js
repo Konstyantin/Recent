@@ -50,13 +50,19 @@ export const publicRoutes = [
             {
                 path: '/admin',
                 component: Admin,
+                permissions: ['admin'],
+                redirect: '/',
                 routes: [
                     {
                         path: '/',
+                        permissions: ['admin'],
+                        redirect: '/',
                         component: AdminDashboard
                     },
                     {
                         path: '/admin/services',
+                        permissions: ['admin'],
+                        redirect: '/',
                         component: AdminServices,
                     }
                 ]
