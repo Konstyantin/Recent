@@ -9,6 +9,7 @@ import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import {connect} from 'react-redux';
 import {alertActions} from './../../_actions';
 import {history} from "../../_helpers";
+import {CustomSnackBar} from './../../scenes/components/CustomSnackBar'
 
 const styles = theme => ({
     root: {
@@ -93,14 +94,17 @@ class Login extends Component {
      */
     render() {
 
-        const {classes} = this.props;
+        const {classes, alert} = this.props;
 
         const {email, password} = this.state;
 
         return (
             <div className={classes.root}>
                 <Grid container justify={'center'}>
-                    <Grid item xs={4}>
+                    <Grid item xs={6}>
+                        { !$.isEmptyObject(alert) &&
+                        <CustomSnackBar message={alert.message} variant={alert.type} open={true}/>
+                        }
                         <h2>Login</h2>
                         <ValidatorForm
                             ref="form"

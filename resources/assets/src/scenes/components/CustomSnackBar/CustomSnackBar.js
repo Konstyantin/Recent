@@ -10,6 +10,8 @@ import InfoIcon from '@material-ui/icons/Info';
 import classNames from 'classnames';
 import CloseIcon from '@material-ui/icons/Close';
 import {withStyles} from "@material-ui/core/styles/index";
+import {connect} from "react-redux";
+import {alertActions} from '../../../_actions';
 
 const variantIcon = {
     success: CheckCircleIcon,
@@ -84,6 +86,10 @@ class CustomSnackBar extends Component {
         this.setState({
             open: false
         });
+
+        const {dispatch} = this.props;
+
+        dispatch(alertActions.clear());
     }
 
     /**
@@ -92,7 +98,8 @@ class CustomSnackBar extends Component {
      * @returns {*}
      */
     render() {
-        const { classes, className, message, variant, ...other } = this.props;
+        const { classes, className, message, variant} = this.props;
+
         const Icon = variantIcon[variant];
         const {open} = this.state;
 
@@ -119,7 +126,6 @@ class CustomSnackBar extends Component {
                             <CloseIcon className={classes.icon}/>
                         </IconButton>,
                     ]}
-                    {...other}
                 />
                 }
             </div>
@@ -127,7 +133,16 @@ class CustomSnackBar extends Component {
     }
 }
 
-export default withStyles(styles)(CustomSnackBar);
+function mapStateToProps(state) {
+    const {alert} = state;
+
+    return {alert}
+}
+
+const styleCustomSnackBar = withStyles(styles)(CustomSnackBar);
+const connectedCustomSnackBar = connect(mapStateToProps)(styleCustomSnackBar);
+
+export {connectedCustomSnackBar as CustomSnackBar};
 
 
 
