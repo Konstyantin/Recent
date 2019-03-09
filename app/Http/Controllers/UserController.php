@@ -30,7 +30,7 @@ class UserController extends Controller
 
         try {
             if (!$token = JWTAuth::attempt($credential)) {
-                return response()->json(['errors' => 'invalid_credential'], 400);
+                return response()->json(['errors' => 'Invalid credential'], 400);
             }
         } catch (JWTException $e) {
             return response()->json(['errors' => 'cloud_not_create_token'], 500);
