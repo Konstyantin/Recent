@@ -71,25 +71,12 @@ class CustomSnackBar extends Component {
     }
 
     /**
-     * Component did mount
-     */
-    componentDidMount() {
-        const {open} = this.props;
-
-        this.setState({open: open});
-    }
-
-    /**
      * Handle close
      */
     handleClose() {
         this.setState({
             open: false
         });
-
-        const {dispatch} = this.props;
-
-        dispatch(alertActions.clear());
     }
 
     /**

@@ -21,6 +21,7 @@ export const userActions = {
 function login(email, password) {
     return dispatch => {
         dispatch(request({email}));
+        dispatch(alertActions.clear());
 
         userService.login(email, password)
             .then(
@@ -63,6 +64,7 @@ function logout() {
 function register(firstName, lastName, email, phone, password, passwordConfirmation) {
     return dispatch => {
         dispatch(request({name}));
+        dispatch(alertActions.clear());
 
         userService.register(firstName, lastName, email, phone, password, passwordConfirmation)
             .then(

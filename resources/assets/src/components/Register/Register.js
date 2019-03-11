@@ -33,7 +33,7 @@ const RegisterErrorSnackBar = ({alert}) => {
         let messageArray = Object.keys(message).map((k) => message[k]);
 
         return messageArray.map((error, i) => (
-            <CustomSnackBar key={i} message={error.shift()} variant={type} open={true}/>
+            <CustomSnackBar key={i} message={error.shift()} variant={type}/>
         ));
     }
 
@@ -105,9 +105,7 @@ class Register extends Component {
      */
     handleChange(e) {
         const {name, value} = e.target;
-        const {dispatch} = this.props;
         this.setState({[name]: value});
-        dispatch(alertActions.clear());
     }
 
     /**
