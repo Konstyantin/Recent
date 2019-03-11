@@ -5,7 +5,8 @@ import Button from '@material-ui/core/Button';
 import {connect} from 'react-redux';
 import {userActions} from "../../_actions";
 import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
-import CustomSnackBar from '../../scenes/components/CustomSnackBar';
+import {CustomSnackBar} from '../../scenes/components/CustomSnackBar';
+import {alertActions} from './../../_actions';
 
 const styles = theme => ({
     root: {
@@ -25,25 +26,15 @@ const styles = theme => ({
     }
 });
 
-const SnackBarList = ({alert}) => {
-
+const RegisterErrorSnackBar = ({alert}) => {
     const {type, message} = alert;
 
-    if (message) {
-        const result = Object.keys(message).map(function (key) {
-            return message[key].shift();
-        });
+    if (!$.isEmptyObject(alert)) {
+        let messageArray = Object.keys(message).map((k) => message[k]);
 
-        if (result) {
-            return result.map((item, index) => (
-                <CustomSnackBar
-                    key={index}
-                    variant="error"
-                    message={item}
-                    open={true}
-                />
-            ));
-        }
+        return messageArray.map((error, i) => (
+            <CustomSnackBar key={i} message={error.shift()} variant={type} open={true}/>
+        ));
     }
 
     return null;
@@ -114,7 +105,9 @@ class Register extends Component {
      */
     handleChange(e) {
         const {name, value} = e.target;
+        const {dispatch} = this.props;
         this.setState({[name]: value});
+        dispatch(alertActions.clear());
     }
 
     /**
@@ -131,6 +124,7 @@ class Register extends Component {
             <div className={classes.root}>
                 <Grid container justify={'center'}>
                     <Grid item xs={6}>
+                        <RegisterErrorSnackBar alert={alert}/>
                         {/*<SnackBarList alert={alert}/>*/}
                         <h2>Registration</h2>
                         <ValidatorForm
