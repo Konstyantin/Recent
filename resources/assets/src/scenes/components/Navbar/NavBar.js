@@ -55,7 +55,7 @@ const styles = theme => ({
 /**
  * Navbar component
  */
-class Navbar extends Component {
+class NavBar extends Component {
 
     /**
      * Constructor
@@ -182,4 +182,4 @@ class Navbar extends Component {
 }
 
 
-export default withStyles(styles)(Navbar);
+export default withStyles(styles)(NavBar);

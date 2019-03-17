@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import renderRoutes from './../../_components';
-import Navbar from "../../scenes/components/Navbar/Navbar";
-import Footer from "../../scenes/components/Footer/Footer";
+
 import './style.css';
 
 /**
@@ -14,9 +13,7 @@ class App extends Component {
 
         return (
             <div className={'content-body'}>
-                <Navbar/>
-                    {renderRoutes(routes)}
-                <Footer/>
+                {renderRoutes(routes)}
             </div>
         );
     }
