@@ -10,6 +10,9 @@ import {Admin} from "../components/Admin/scenes/Admin";
 import Client from "../components/Client/Client";
 import {default as AdminServices} from '../components/Admin/scenes/components/Services'
 import {default as AdminDashboard} from '../components/Admin/scenes/components/Dashboard'
+import {clientRoutes} from './client'
+import {adminRoutes} from './admin'
+
 
 /**
  * @type {*[]}
@@ -52,25 +55,12 @@ export const publicRoutes = [
                 component: Admin,
                 permissions: ['admin'],
                 redirect: '/',
-                routes: [
-                    {
-                        path: '/admin',
-                        permissions: ['admin'],
-                        exact: true,
-                        redirect: '/',
-                        component: AdminDashboard
-                    },
-                    {
-                        path: '/admin/services',
-                        permissions: ['admin'],
-                        redirect: '/',
-                        component: AdminServices,
-                    }
-                ]
+                routes: adminRoutes
             },
             {
                 path: '/client',
-                component: Client
+                component: Client,
+                routes: clientRoutes
             }
         ]
     }
