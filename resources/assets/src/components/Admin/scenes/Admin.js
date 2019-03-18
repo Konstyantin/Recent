@@ -3,6 +3,8 @@ import {connect} from 'react-redux';
 import {withStyles} from '@material-ui/core/styles';
 import renderRoutes from './../../../_components';
 import Grid from '@material-ui/core/Grid';
+import {NavBar} from './../layout/scenes/NavBar'
+import {SideBar} from './../layout/scenes/SideBar'
 
 const style = theme => ({
     root: {
@@ -22,10 +24,10 @@ class Admin extends Component {
             <div className={classes.root}>
                 <Grid container>
                     <Grid item xs={2}>
-                        <p>Lorem ipsum dolor sit amet.</p>
+                        <SideBar/>
                     </Grid>
                     <Grid item xs={10}>
-                        <p>Lorem ipsum dolor sit amet.</p>
+                        <NavBar/>
                         {renderRoutes(routes)}
                     </Grid>
                 </Grid>
