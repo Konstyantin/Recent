@@ -10,6 +10,9 @@ import {connect} from 'react-redux';
 import {alertActions} from './../../_actions';
 import {history} from "../../_helpers";
 import {CustomSnackBar} from './../../scenes/components/CustomSnackBar'
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import {Link} from 'react-router-dom';
 
 const styles = theme => ({
     root: {
@@ -20,6 +23,12 @@ const styles = theme => ({
         marginRight: theme.spacing.unit,
         width: '100%'
     },
+    paperLink: {
+        ...theme.mixins.gutters(),
+        marginTop: 30,
+        paddingTop: theme.spacing.unit * 2,
+        paddingBottom: theme.spacing.unit * 2
+    }
 });
 
 /**
@@ -156,6 +165,12 @@ class Login extends Component {
                                 </Grid>
                             </Grid>
                         </ValidatorForm>
+
+                        <Paper className={classes.paperLink} elevation={1}>
+                            <Typography component="p">
+                                New to Recovery Center? <Link to={'/register'}>Create an account</Link>
+                            </Typography>
+                        </Paper>
                     </Grid>
                 </Grid>
             </div>
