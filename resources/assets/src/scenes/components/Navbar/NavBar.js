@@ -156,6 +156,9 @@ class NavBar extends Component {
                                     <Button color="inherit">
                                         <Link to="/contact" className={classes.link}>Contact</Link>
                                     </Button>
+                                    <Button color="inherit">
+                                        <Link to="/login" className={classes.link}>Login</Link>
+                                    </Button>
                                 </div>
                                 <div className={classes.sectionMobile}>
                                     <IconButton aria-haspopup="true" onClick={this.openDrawer} color="inherit">
