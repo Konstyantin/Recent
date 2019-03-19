@@ -39,7 +39,7 @@ class SideBar extends Component {
                     }}
                     anchor="left"
                 >
-                    <Header/>
+                    <Header title={'Dashboard'}/>
                     <MenuList/>
                 </Drawer>
             </div>
