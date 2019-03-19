@@ -4,7 +4,8 @@ import {withStyles} from '@material-ui/core/styles';
 const style = theme => ({
     header: {
         textAlign: 'center',
-        padding: 7
+        padding: '10px 7px',
+        marginBottom: 0,
     }
 });
 
@@ -14,7 +15,7 @@ class Header extends Component {
         const {classes} = this.props;
 
         return (
-            <h3 className={classes.header}>Admin Recovery</h3>
+            <h4 className={classes.header}>Admin Recovery</h4>
         );
     }
 }

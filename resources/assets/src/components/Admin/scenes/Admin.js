@@ -2,14 +2,17 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withStyles} from '@material-ui/core/styles';
 import renderRoutes from './../../../_components';
-import Grid from '@material-ui/core/Grid';
 import {NavBar} from './../layout/scenes/NavBar'
 import SideBar from './../layout/scenes/SideBar'
 
 const style = theme => ({
     root: {
+        display: 'flex',
+    },
+    toolbar: theme.mixins.toolbar,
+    content: {
         flexGrow: 1,
-    }
+    },
 });
 
 /**
@@ -22,15 +25,11 @@ class Admin extends Component {
 
         return (
             <div className={classes.root}>
-                <Grid container>
-                    <Grid item xs={2}>
-                        <SideBar/>
-                    </Grid>
-                    <Grid item xs={10}>
-                        <NavBar/>
-                        {renderRoutes(routes)}
-                    </Grid>
-                </Grid>
+                <SideBar/>
+                <main className={classes.content}>
+                    <NavBar/>
+                    {renderRoutes(routes)}
+                </main>
             </div>
         )
     }
