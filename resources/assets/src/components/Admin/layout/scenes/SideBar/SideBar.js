@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {withStyles} from '@material-ui/core/styles';
-import {Header} from './component/Header'
+import Header from './component/Header'
 import {MenuList} from './component/MenuList'
 
 const style = theme => ({
