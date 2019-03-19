@@ -4,7 +4,7 @@ import {withStyles} from '@material-ui/core/styles';
 import renderRoutes from './../../../_components';
 import Grid from '@material-ui/core/Grid';
 import {NavBar} from './../layout/scenes/NavBar'
-import {SideBar} from './../layout/scenes/SideBar'
+import SideBar from './../layout/scenes/SideBar'
 
 const style = theme => ({
     root: {
