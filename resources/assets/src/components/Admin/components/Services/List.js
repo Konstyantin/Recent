@@ -7,6 +7,8 @@ import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import {Link} from 'react-router-dom';
 
 const styles = themes => ({
     root: {
@@ -20,6 +22,9 @@ const styles = themes => ({
     table: {
         minWidth: 700,
     },
+    button: {
+        marginBottom: 15
+    }
 });
 
 let id = 0;
@@ -46,6 +51,11 @@ class List extends Component {
             <div className={classes.root}>
                 <Grid container>
                     <Grid item xs={12}>
+                        <Link to={'/admin/services/create'}>
+                            <Button variant="contained" color="primary" className={classes.button}>
+                                Add new
+                            </Button>
+                        </Link>
                         <Paper className={classes.paper}>
                             <Table className={classes.table}>
                                 <TableHead>
