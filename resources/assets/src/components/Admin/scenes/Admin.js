@@ -19,15 +19,18 @@ const style = theme => ({
  * Admin scene component
  */
 class Admin extends Component {
+
     render() {
         const {routes} = this.props.route;
-        const {classes} = this.props;
+        const {classes, location} = this.props;
+
+        const routePathName = location.pathname.split('/').pop();
 
         return (
             <div className={classes.root}>
                 <SideBar/>
                 <main className={classes.content}>
-                    <NavBar/>
+                    <NavBar title={routePathName}/>
                     {renderRoutes(routes)}
                 </main>
             </div>

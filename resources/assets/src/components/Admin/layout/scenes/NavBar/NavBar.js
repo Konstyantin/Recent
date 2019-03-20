@@ -14,22 +14,37 @@ const styles = theme => ({
         margin: theme.spacing.unit * 2,
         marginRight: theme.spacing.unit * 3,
     },
+    title: {
+        padding: '8px 20px',
+        fontSize: 20,
+        fontWeight: 300
+    }
 });
 
 class NavBar extends Component {
 
     constructor(props) {
         super(props);
+
+        this.capitalizeFirstLetter = this.capitalizeFirstLetter.bind(this);
+    }
+
+    capitalizeFirstLetter(letter) {
+        return letter.charAt(0).toUpperCase() + letter.slice(1);
     }
 
     render() {
 
-        const {classes} = this.props;
+        const {classes, title} = this.props;
+
+        const sectionTitle = this.capitalizeFirstLetter(title);
 
         return (
             <div className={classes.root}>
                 <Grid container direction={'row'}>
-                    <Grid item xs={6}>Dashboard</Grid>
+                    <Grid item xs={6}>
+                        <p className={classes.title}>{sectionTitle}</p>
+                    </Grid>
                     <Grid item xs={6}>
                         <Grid container justify={'flex-end'} direction={'row'}>
                             <Badge className={classes.margin} badgeContent={99} color="primary">
