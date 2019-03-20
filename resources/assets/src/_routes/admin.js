@@ -2,6 +2,7 @@ import {default as AdminServices} from '../components/Admin/scenes/components/Se
 import {default as AdminDashboard} from '../components/Admin/scenes/components/Dashboard'
 import {Users} from "../components/Admin/components/Users";
 import {Services} from "../components/Admin/components/Services";
+import {Mails} from "../components/Admin/components/Mails";
 
 export const adminRoutes = [
     {
@@ -24,5 +25,9 @@ export const adminRoutes = [
     {
         path: '/admin/services',
         component: Services
+    },
+    {
+        path: '/admin/mails',
+        component: Mails
     }
 ];
