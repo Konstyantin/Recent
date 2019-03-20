@@ -12,7 +12,7 @@ import {Link} from 'react-router-dom';
 
 const styles = themes => ({
     root: {
-        display: 'fixed',
+        display: 'flex',
         padding: 20
     },
     paper: {
