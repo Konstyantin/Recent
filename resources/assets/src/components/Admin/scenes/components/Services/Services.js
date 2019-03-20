@@ -1,14 +1,18 @@
 import React, {Component} from 'react';
+import renderRoutes from './../../../../../_components';
 
+/**
+ * Service component
+ */
 class Services extends Component{
 
-    constructor(props) {
-        super(props);
-    }
-
     render() {
+        const {routes} = this.props.route;
+
         return(
-            <div>Admin service component</div>
+            <div>
+                {renderRoutes(routes)}
+            </div>
         );
     }
 }
