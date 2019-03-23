@@ -25,18 +25,17 @@ Route::group(['middleware' => ['jwt.verify']], function () {
 
     Route::prefix('services')->group(function () {
         Route::get('/', 'ServiceController@index')->name('service.index');
-        Route::get('/{id}', 'ServiceController@show')->name('service.show');
+        Route::get('/{id}', 'ServiceController@show')->where('id', '[0-9]+')->name('service.show');
         Route::post('/', 'ServiceController@store')->name('service.store');
-        Route::put('/{id}', 'ServiceController@update')->name('service.update');
-        Route::delete('/{id}', 'ServiceController@delete')->name('service.delete');
+        Route::put('/{id}', 'ServiceController@update')->where('id', '[0-9]+')->name('service.update');
+        Route::delete('/{id}', 'ServiceController@delete')->where('id', '[0-9]+')->name('service.delete');
     });
 
     Route::prefix('services/benefits')->group(function () {
         Route::get('/', 'ServiceBenefitsController@index')->name('service.benefits.index');
-        Route::get('/{id}', 'ServiceBenefitsController@show')->name('service.benefits.show');
+        Route::get('/{id}', 'ServiceBenefitsController@show')->where('id', '[0-9]+')->name('service.benefits.show');
         Route::post('/', 'ServiceBenefitsController@store')->name('service.benefits.store');
-        Route::put('/{id}', 'ServiceBenefitsController@update')->name('service.benefits.update');
-        Route::delete('/{id}', 'ServiceBenefitsController@delete')->name('service.benefits.delete');
+        Route::put('/{id}', 'ServiceBenefitsController@update')->where('id', '[0-9]+')->name('service.benefits.update');
+        Route::delete('/{id}', 'ServiceBenefitsController@delete')->where('id', '[0-9]+')->name('service.benefits.delete');
     });
-
 });
