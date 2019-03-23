@@ -30,4 +30,13 @@ Route::group(['middleware' => ['jwt.verify']], function () {
         Route::put('/{id}', 'ServiceController@update')->name('service.update');
         Route::delete('/{id}', 'ServiceController@delete')->name('service.delete');
     });
+
+    Route::prefix('services/benefits')->group(function () {
+        Route::get('/', 'ServiceBenefitsController@index')->name('service.benefits.index');
+        Route::get('/{id}', 'ServiceBenefitsController@show')->name('service.benefits.show');
+        Route::post('/', 'ServiceBenefitsController@store')->name('service.benefits.store');
+        Route::put('/{id}', 'ServiceBenefitsController@update')->name('service.benefits.update');
+        Route::delete('/{id}', 'ServiceBenefitsController@delete')->name('service.benefits.delete');
+    });
+
 });
