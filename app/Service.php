@@ -33,4 +33,14 @@ class Service extends Model
     {
         return new self();
     }
+
+    /**
+     * Define relation between Service and ServiceBenefits entities
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function benefits()
+    {
+        return $this->hasMany(ServiceBenefits::class);
+    }
 }

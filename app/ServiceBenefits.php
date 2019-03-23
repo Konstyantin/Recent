@@ -31,4 +31,14 @@ class ServiceBenefits extends Model
     {
         return new self();
     }
+
+    /**
+     * Define relation between Service and ServiceBenefits entities
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function service()
+    {
+        return $this->belongsTo(Service::class);
+    }
 }

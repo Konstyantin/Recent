@@ -40,13 +40,13 @@ class ServiceController extends Controller
      */
     public function show($id)
     {
-        $service = Service::find($id);
+        $service = Service::where('id', $id);
 
         if (!$service) {
             return Response::json(['message' => 'Service item not found']);
         }
 
-        return Response::json($service->toArray(), 200);
+        return Response::json($service->with('benefits')->get()->toArray(), 200);
     }
 
     /**
