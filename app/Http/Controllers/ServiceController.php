@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreServicePost;
 use App\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -48,11 +49,17 @@ class ServiceController extends Controller
      *
      * The method responsible for create new service item
      *
-     * @param Request $request
+     * @param StoreServicePost $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function store(Request $request)
+    public function store(StoreServicePost $request)
     {
+        $validator = $request->validated();
+
+        if (!$validator) {
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+
         $input = $request->all();
 
         $baseImageFolder = public_path() . '/images/vendor/services/';
