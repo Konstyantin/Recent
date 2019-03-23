@@ -14,9 +14,23 @@ class ServiceBenefitsController extends Controller
         dd('service benefit index action');
     }
 
+    /**
+     * Show action method
+     *
+     * The method is responsible for getting a service benefit item record by the passed  id param
+     *
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function show($id)
     {
-        dd('service benefit show action');
+        $benefit = ServiceBenefits::find($id);
+
+        if (!$benefit) {
+            return Response::json(['message' => 'Service benefit item not found']);
+        }
+
+        return Response::json($benefit->toArray(), 200);
     }
 
     /**
