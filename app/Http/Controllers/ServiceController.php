@@ -76,8 +76,23 @@ class ServiceController extends Controller
         dd('service update action');
     }
 
+    /**
+     * Delete action method
+     *
+     * The method is responsible for delete a service item by passed id param value
+     *
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function delete($id)
     {
-        dd('service delete action');
+        $service = Service::find($id);
+
+        if ($service) {
+            $service->delete();
+            return Response::json(['id' => $id], 200);
+        }
+
+        return Response::json([], 404);
     }
 }
