@@ -22,4 +22,12 @@ Route::post('login', 'UserController@authenticate');
 
 Route::group(['middleware' => ['jwt.verify']], function () {
     Route::get('user', 'UserController@getAuthenticatedUser');
+
+    Route::prefix('services')->group(function () {
+        Route::get('/', 'ServiceController@index')->name('service.index');
+        Route::get('/{id}', 'ServiceController@show')->name('service.show');
+        Route::post('/', 'ServiceController@store')->name('service.store');
+        Route::put('/{id}', 'ServiceController@update')->name('service.update');
+        Route::delete('/{id}', 'ServiceController@delete')->name('service.delete');
+    });
 });
