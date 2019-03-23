@@ -67,9 +67,28 @@ class ServiceBenefitsController extends Controller
         return Response::json($benefit, 201);
     }
 
-    public function update(Request $request, $id)
+    /**
+     * Updated action method
+     *
+     * The method is responsible for update a service benefit item data
+     *
+     * @param StoreServiceBenefitsPost $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(StoreServiceBenefitsPost $request, $id)
     {
-        dd('service benefit update action');
+        $input = $request->except(['id', '_method']);
+
+        $benefit = ServiceBenefits::find($id);
+
+        if (!$benefit) {
+            return Response::json(['message' => 'Service benefits item not found'], 404);
+        }
+
+        $benefit->update($input);
+
+        return Response::json(['updated' => $benefit], 204);
     }
 
     /**
