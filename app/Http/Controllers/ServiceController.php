@@ -12,9 +12,19 @@ use Illuminate\Support\Facades\Response;
  */
 class ServiceController extends Controller
 {
+    /**
+     * Index action method
+     *
+     * The method is responsible for getting list of service as paginate list
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index(Request $request)
     {
-        dd('service index action');
+        $list = Service::paginate(10);
+
+        return Response::json($list, 200);
     }
 
     /**
