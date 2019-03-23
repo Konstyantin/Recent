@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreServiceBenefitsPost;
+use App\ServiceBenefits;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
 
 class ServiceBenefitsController extends Controller
 {
@@ -16,9 +19,27 @@ class ServiceBenefitsController extends Controller
         dd('service benefit show action');
     }
 
-    public function store()
+    /**
+     * Store action method
+     *
+     * The method is responsible for create a new service benefit item record
+     *
+     * @param StoreServiceBenefitsPost $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function store(StoreServiceBenefitsPost $request)
     {
-        dd('service benefit store action');
+        $validator = $request->validated();
+
+        if (!$validator) {
+            return response()->json($validator->errors()->toJson(), 400);
+        }
+
+        $input = $request->all();
+
+        $benefit = ServiceBenefits::create($input)->toArray();
+
+        return Response::json($benefit, 201);
     }
 
     public function update(Request $request, $id)
