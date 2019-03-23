@@ -18,8 +18,8 @@ class CreateServicesTable extends Migration
             $table->string('title', 45);
             $table->string('short_description', 255);
             $table->text('description');
-            $table->string('icon_path', 45);
-            $table->string('image_path', 45);
+            $table->string('icon', 45);
+            $table->string('image', 45);
             $table->timestamps();
         });
     }
