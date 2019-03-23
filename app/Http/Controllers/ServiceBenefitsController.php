@@ -7,11 +7,22 @@ use App\ServiceBenefits;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 
+/**
+ * Class ServiceBenefitsController
+ * @package App\Http\Controllers
+ */
 class ServiceBenefitsController extends Controller
 {
+    /**
+     * Index action method
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function index()
     {
-        dd('service benefit index action');
+        $list = ServiceBenefits::paginate(10) ?? [];
+
+        return Response::json($list, 200);
     }
 
     /**
