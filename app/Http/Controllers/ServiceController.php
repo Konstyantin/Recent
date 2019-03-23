@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Service;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 
 /**
@@ -71,9 +72,30 @@ class ServiceController extends Controller
         return Response::json($service, 201);
     }
 
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function update(Request $request, $id)
     {
-        dd('service update action');
+        $input = $request->except(['id', '_method']);
+
+        $baseImageFolder = public_path() . '/images/vendor/services/';
+
+        $iconImage = $request->file('icon');
+        $iconName = $iconImage->getClientOriginalName();
+        $iconImage->move($baseImageFolder . 'icon/', $iconName);
+        $input['icon'] = $iconName;
+
+        $serviceImage = $request->file('image');
+        $imageName = $serviceImage->getClientOriginalName();
+        $serviceImage->move($baseImageFolder . 'image/', $imageName);
+        $input['image'] = $imageName;
+
+        $service = Service::find($id)->update($input);
+
+        return Response::json(['updated' => $service], 204);
     }
 
     /**
