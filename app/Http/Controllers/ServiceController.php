@@ -20,12 +20,11 @@ class ServiceController extends Controller
      *
      * The method is responsible for getting list of service as paginate list
      *
-     * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(Request $request)
+    public function index()
     {
-        $list = Service::paginate(10);
+        $list = Service::paginate(10) ?? [];
 
         return Response::json($list, 200);
     }
@@ -40,9 +39,13 @@ class ServiceController extends Controller
      */
     public function show($id)
     {
-        $service = Service::find($id)->toArray();
+        $service = Service::find($id);
 
-        return Response::json($service, 200);
+        if (!$service) {
+            return Response::json(['message' => 'Service item not found']);
+        }
+
+        return Response::json($service->toArray(), 200);
     }
 
     /**
@@ -93,6 +96,12 @@ class ServiceController extends Controller
     {
         $input = $request->except(['id', '_method']);
 
+        $service = Service::find($id);
+
+        if (!$service) {
+            return Response::json(['message' => 'Service item not found'], 404);
+        }
+
         $baseImageFolder = public_path() . '/images/vendor/services/';
 
         $iconImage = $request->file('icon');
@@ -105,7 +114,7 @@ class ServiceController extends Controller
         $serviceImage->move($baseImageFolder . 'image/', $imageName);
         $input['image'] = $imageName;
 
-        $service = Service::find($id)->update($input);
+        $service->update($input);
 
         return Response::json(['updated' => $service], 204);
     }
@@ -122,11 +131,12 @@ class ServiceController extends Controller
     {
         $service = Service::find($id);
 
-        if ($service) {
-            $service->delete();
-            return Response::json(['id' => $id], 200);
+        if (!$service) {
+            return Response::json(['message' => 'Service item not found'], 404);
         }
 
-        return Response::json([], 404);
+        $service->delete();
+
+        return Response::json(['id' => $id], 200);
     }
 }
