@@ -66,7 +66,7 @@ class ServiceController extends Controller
         }
 
         $input = $request->all();
-        
+
         $input['icon'] = $this->uploadIcon($request);
 
         $input['image'] = $this->uploadImage($request);

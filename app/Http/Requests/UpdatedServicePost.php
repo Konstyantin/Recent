@@ -29,8 +29,8 @@ class UpdatedServicePost extends FormRequest
             'title' => 'required|string|max:45|unique:services,title,' . $routeId,
             'short_description' => 'required|string|max:45',
             'description' => 'required|string',
-            'icon' => 'required|mimes:jpeg,bmp,png',
-            'image' => 'required|mimes:jpeg,bmp,png',
+            'icon' => 'mimes:jpeg,bmp,png',
+            'image' => 'mimes:jpeg,bmp,png',
         ];
     }
 }
