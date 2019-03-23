@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreServicePost;
+use App\Http\Requests\UpdatedServicePost;
 use App\Service;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Input;
@@ -80,11 +81,15 @@ class ServiceController extends Controller
     }
 
     /**
-     * @param Request $request
+     * Update action method
+     *
+     * The method is responsible for update a service item data
+     *
+     * @param UpdatedServicePost $request
      * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, $id)
+    public function update(UpdatedServicePost $request, $id)
     {
         $input = $request->except(['id', '_method']);
 
