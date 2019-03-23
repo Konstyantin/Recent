@@ -61,8 +61,24 @@ class ServiceBenefitsController extends Controller
         dd('service benefit update action');
     }
 
+    /**
+     * Delete action method
+     *
+     * The method is responsible for delete a service benefit item record by the passed id param
+     *
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function delete($id)
     {
-        dd('service benefit delete action');
+        $benefit = ServiceBenefits::find($id);
+
+        if (!$benefit) {
+            return Response::json(['message' => 'Service benefit item not found']);
+        }
+
+        $benefit->delete();
+
+        return Response::json(['id' => $id], 200);
     }
 }
