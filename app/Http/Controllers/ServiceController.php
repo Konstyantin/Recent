@@ -17,9 +17,19 @@ class ServiceController extends Controller
         dd('service index action');
     }
 
+    /**
+     * Show action method
+     *
+     * The method is responsible for getting service item by the passed id param value
+     *
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function show($id)
     {
-        dd('service show action');
+        $service = Service::find($id)->toArray();
+
+        return Response::json($service, 200);
     }
 
     /**
