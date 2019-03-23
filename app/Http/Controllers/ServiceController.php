@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreServicePost;
 use App\Http\Requests\UpdatedServicePost;
+use App\Http\Traits\UploadServiceImages;
 use App\Service;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Response;
 
 /**
@@ -15,6 +14,8 @@ use Illuminate\Support\Facades\Response;
  */
 class ServiceController extends Controller
 {
+    use UploadServiceImages;
+
     /**
      * Index action method
      *
@@ -65,18 +66,10 @@ class ServiceController extends Controller
         }
 
         $input = $request->all();
+        
+        $input['icon'] = $this->uploadIcon($request);
 
-        $baseImageFolder = public_path() . '/images/vendor/services/';
-
-        $iconImage = $request->file('icon');
-        $iconName = $iconImage->getClientOriginalName();
-        $iconImage->move($baseImageFolder . 'icon/', $iconName);
-        $input['icon'] = $iconName;
-
-        $serviceImage = $request->file('image');
-        $imageName = $serviceImage->getClientOriginalName();
-        $serviceImage->move($baseImageFolder . 'image/', $imageName);
-        $input['image'] = $imageName;
+        $input['image'] = $this->uploadImage($request);
 
         $service = Service::create($input)->toArray();
 
@@ -102,17 +95,9 @@ class ServiceController extends Controller
             return Response::json(['message' => 'Service item not found'], 404);
         }
 
-        $baseImageFolder = public_path() . '/images/vendor/services/';
+        $input['icon'] = $this->uploadIcon($request);
 
-        $iconImage = $request->file('icon');
-        $iconName = $iconImage->getClientOriginalName();
-        $iconImage->move($baseImageFolder . 'icon/', $iconName);
-        $input['icon'] = $iconName;
-
-        $serviceImage = $request->file('image');
-        $imageName = $serviceImage->getClientOriginalName();
-        $serviceImage->move($baseImageFolder . 'image/', $imageName);
-        $input['image'] = $imageName;
+        $input['image'] = $this->uploadImage($request);
 
         $service->update($input);
 
