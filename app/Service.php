@@ -20,7 +20,17 @@ class Service extends Model
      */
     protected $fillable = [
         'title',
+        'short_description',
         'description',
+        'icon',
         'image'
     ];
+
+    /**
+     * @return Service
+     */
+    public static function getInstance()
+    {
+        return new self();
+    }
 }
