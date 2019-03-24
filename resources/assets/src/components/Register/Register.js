@@ -123,7 +123,6 @@ class Register extends Component {
                 <Grid container justify={'center'}>
                     <Grid item xs={6}>
                         <RegisterErrorSnackBar alert={alert}/>
-                        {/*<SnackBarList alert={alert}/>*/}
                         <h2>Registration</h2>
                         <ValidatorForm
                             ref="form"

@@ -12,6 +12,7 @@ const styles = theme => ({
         flexWrap: 'wrap',
     },
     textField: {
+        marginRight: theme.spacing.unit,
         width: '100%',
     },
     dense: {
@@ -31,30 +32,44 @@ class Create extends Component {
             <div className={classes.root}>
                 <Grid container>
                     <Grid item xs={8}>
-                        <TextField
-                            id="service-title"
-                            label="Title"
-                            className={classes.textField}
-                            type="text"
-                            autoComplete="service title"
-                            margin="normal"
-                        />
-                    </Grid>
-                    <Grid item xs={8}>
-                        <TextField
-                            id="service-description"
-                            label="Description"
-                            className={classes.textField}
-                            type="text"
-                            multiline
-                            autoComplete="service description"
-                            margin="normal"
-                        />
-                    </Grid>
-                    <Grid item xs={8}>
-                        <Button variant="contained" color="primary" className={classes.button}>
-                            Submit
-                        </Button>
+                        <Grid container spacing={16}>
+                            <Grid item xs={6}>
+                                <TextField
+                                    id="service-title"
+                                    label="Title"
+                                    className={classes.textField}
+                                    type="text"
+                                    autoComplete="service title"
+                                    margin="normal"
+                                />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <TextField
+                                    id="service-short-description"
+                                    label="Short description"
+                                    className={classes.textField}
+                                    type="text"
+                                    autoComplete="service short description"
+                                    margin="normal"
+                                />
+                            </Grid>
+                            <Grid item xs={12}>
+                                <TextField
+                                    id="service-description"
+                                    label="Description"
+                                    className={classes.textField}
+                                    type="text"
+                                    multiline
+                                    autoComplete="service description"
+                                    margin="normal"
+                                />
+                            </Grid>
+                            <Grid item xs={8}>
+                                <Button variant="contained" color="primary" className={classes.button}>
+                                    Submit
+                                </Button>
+                            </Grid>
+                        </Grid>
                     </Grid>
                 </Grid>
             </div>
