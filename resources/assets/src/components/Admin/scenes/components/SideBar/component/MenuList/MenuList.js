@@ -8,27 +8,36 @@ import MessageIcon from '@material-ui/icons/Message';
 import MailIcon from '@material-ui/icons/Mail';
 import BuildIcon from '@material-ui/icons/Build';
 import Divider from '@material-ui/core/Divider';
+import {Link} from 'react-router-dom';
 
 export const MenuList = () => (
     <div>
         <Divider />
         <List>
-            <ListItem button key={'users'}>
-                <ListItemIcon><PersonIcon/></ListItemIcon>
-                <ListItemText primary={'Users'} />
-            </ListItem>
-            <ListItem button key={'services'}>
-                <ListItemIcon><BuildIcon/></ListItemIcon>
-                <ListItemText primary={'Services'} />
-            </ListItem>
-            <ListItem button key={'comments'}>
-                <ListItemIcon><MessageIcon/></ListItemIcon>
-                <ListItemText primary={'Comments'} />
-            </ListItem>
-            <ListItem button key={'Mails'}>
-                <ListItemIcon><MailIcon/></ListItemIcon>
-                <ListItemText primary={'Mails'} />
-            </ListItem>
+            <Link to={'/admin/users'}>
+                <ListItem button key={'users'}>
+                    <ListItemIcon><PersonIcon/></ListItemIcon>
+                    <ListItemText>Users</ListItemText>
+                </ListItem>
+            </Link>
+            <Link to={'/admin/services'}>
+                <ListItem button key={'services'}>
+                    <ListItemIcon><BuildIcon/></ListItemIcon>
+                    <ListItemText>Services</ListItemText>
+                </ListItem>
+            </Link>
+            <Link to={'/admin/comments'}>
+                <ListItem button key={'comments'}>
+                    <ListItemIcon><MessageIcon/></ListItemIcon>
+                    <ListItemText>Comments</ListItemText>
+                </ListItem>
+            </Link>
+            <Link to={'/admin/mails'}>
+                <ListItem button key={'Mails'}>
+                    <ListItemIcon><MailIcon/></ListItemIcon>
+                    <ListItemText>Mails</ListItemText>
+                </ListItem>
+            </Link>
         </List>
     </div>
 );
