@@ -30,6 +30,7 @@
         "@material-ui/icons": "^3.0.2",
         "@tinymce/tinymce-react": "^3.0.1",
         "history": "^4.7.2",
+        "material-ui-dropzone": "^2.3.2",
         "mdbreact": "^4.9.0",
         "node-sass": "^4.11.0",
         "prop-types": "^15.6.2",

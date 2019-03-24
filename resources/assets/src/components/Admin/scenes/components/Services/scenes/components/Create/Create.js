@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import {Link} from 'react-router-dom';
 import { Editor } from '@tinymce/tinymce-react';
 import InputLabel from '@material-ui/core/InputLabel';
+import {DropZoneIcon} from './../DropZoneIcon';
 
 const styles = theme => ({
     root: {
@@ -76,6 +77,13 @@ class Create extends Component {
                                     }}
                                     onChange={this.handleChangeEditor}
                                 />
+                            </Grid>
+                            <Grid item xs={6}>
+                                <InputLabel>Service Icon</InputLabel>
+                                <DropZoneIcon/>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <p>Upload service image</p>
                             </Grid>
                             <Grid item xs={8}>
                                 <Button variant="contained" color="primary" className={classes.button}>
