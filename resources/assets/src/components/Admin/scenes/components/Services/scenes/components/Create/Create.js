@@ -4,6 +4,8 @@ import {withStyles} from "@material-ui/core/styles/index";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import {Link} from 'react-router-dom';
+import { Editor } from '@tinymce/tinymce-react';
+import InputLabel from '@material-ui/core/InputLabel';
 
 const styles = theme => ({
     root: {
@@ -24,6 +26,17 @@ const styles = theme => ({
 });
 
 class Create extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.handleChangeEditor = this.handleChangeEditor.bind(this);
+    }
+
+    handleChangeEditor(e) {
+        console.log('handler change editor');
+    }
+
     render() {
 
         const {classes} = this.props;
@@ -54,14 +67,14 @@ class Create extends Component {
                                 />
                             </Grid>
                             <Grid item xs={12}>
-                                <TextField
-                                    id="service-description"
-                                    label="Description"
-                                    className={classes.textField}
-                                    type="text"
-                                    multiline
-                                    autoComplete="service description"
-                                    margin="normal"
+                                <InputLabel>Description</InputLabel>
+                                <Editor
+                                    initialValue="<p>This is the initial content of the editor</p>"
+                                    init={{
+                                        plugins: 'link image code',
+                                        toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
+                                    }}
+                                    onChange={this.handleChangeEditor}
                                 />
                             </Grid>
                             <Grid item xs={8}>
