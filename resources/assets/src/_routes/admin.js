@@ -2,7 +2,7 @@ import {default as AdminServices} from '../components/Admin/scenes/components/Se
 import {default as AdminDashboard} from '../components/Admin/scenes/components/Dashboard'
 import {Users} from "../components/Admin/components/Users";
 import {Services, List, Create} from "../components/Admin/components/Services";
-import {Mails} from "../components/Admin/components/Mails";
+import {Mails} from "../components/Admin/scenes/components/Mails";
 import {guestRoutes} from "./guest";
 
 export const adminRoutes = [
