@@ -1,6 +1,6 @@
 import {default as AdminServices} from '../components/Admin/scenes/components/Services'
 import {default as AdminDashboard} from '../components/Admin/scenes/components/Dashboard'
-import {Users} from "../components/Admin/components/Users";
+import {Users} from "../components/Admin/scenes/components/Users";
 import {Services, List, Create} from "../components/Admin/components/Services";
 import {Mails} from "../components/Admin/scenes/components/Mails";
 import {guestRoutes} from "./guest";
