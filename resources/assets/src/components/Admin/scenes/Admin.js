@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {withStyles} from '@material-ui/core/styles';
 import renderRoutes from './../../../_components';
-import {NavBar} from './../layout/scenes/NavBar'
+import {NavBar} from './../scenes/components/NavBar'
 import SideBar from './../layout/scenes/SideBar'
 
 const style = theme => ({
