@@ -3,15 +3,15 @@ import Grid from '@material-ui/core/Grid';
 import {withStyles} from "@material-ui/core/styles/index";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import {Link} from 'react-router-dom';
 import { Editor } from '@tinymce/tinymce-react';
 import InputLabel from '@material-ui/core/InputLabel';
-import {DropZoneIcon} from './../DropZoneIcon';
+import {DropzoneArea} from 'material-ui-dropzone'
+
 
 const styles = theme => ({
     root: {
         display: 'flex',
-        padding: 20,
+        padding: '5px 20px',
         flexWrap: 'wrap',
     },
     textField: {
@@ -30,12 +30,30 @@ class Create extends Component {
 
     constructor(props) {
         super(props);
+        this.state = {
+            icon: null,
+            image: null,
+        };
 
         this.handleChangeEditor = this.handleChangeEditor.bind(this);
+        this.handleChangeIcon = this.handleChangeIcon.bind(this);
+        this.handleChangeImage = this.handleChangeImage.bind(this);
     }
 
     handleChangeEditor(e) {
         console.log('handler change editor');
+    }
+
+    handleChangeIcon(file) {
+        this.setState({
+            icon: file
+        });
+    }
+
+    handleChangeImage(file) {
+        this.setState({
+            image: file
+        });
     }
 
     render() {
@@ -80,10 +98,11 @@ class Create extends Component {
                             </Grid>
                             <Grid item xs={6}>
                                 <InputLabel>Service Icon</InputLabel>
-                                <DropZoneIcon/>
+                                <DropzoneArea onChange={this.handleChangeIcon}/>
                             </Grid>
                             <Grid item xs={6}>
-                                <p>Upload service image</p>
+                                <InputLabel>Service Image</InputLabel>
+                                <DropzoneArea onChange={this.handleChangeIcon}/>
                             </Grid>
                             <Grid item xs={8}>
                                 <Button variant="contained" color="primary" className={classes.button}>
