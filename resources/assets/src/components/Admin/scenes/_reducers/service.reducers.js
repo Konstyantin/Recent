@@ -9,7 +9,7 @@ export function service(state = {}, action) {
         case serviceConstants.CREATE_FAILURE:
             return console.log('create failure');
         case serviceConstants.GET_REQUEST:
-            return console.log('get request');
+            return {'list': []};
         case serviceConstants.GET_SUCCESS:
             return console.log('get success');
         case serviceConstants.GET_FAILURE:

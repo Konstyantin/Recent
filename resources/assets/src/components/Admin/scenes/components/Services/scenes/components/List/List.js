@@ -9,6 +9,8 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {serviceActions} from './../../../../../_actions';
 
 const styles = themes => ({
     root: {
@@ -43,6 +45,18 @@ const rows = [
 
 
 class List extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            list: null
+        };
+
+        const {dispatch} = this.props;
+        dispatch(serviceActions.getList());
+    }
+
     render() {
 
         const {classes} = this.props;
@@ -89,6 +103,12 @@ class List extends Component {
     }
 }
 
-const styledList = withStyles(styles)(List);
+function mapStateToProps(state) {
+    console.log(state);
+    return {};
+}
 
-export {styledList as List};
+const styledList = withStyles(styles)(List);
+const connectedList = connect(mapStateToProps)(styledList);
+
+export {connectedList as List};

@@ -1,7 +1,23 @@
-export const serviceActions = {};
+import {serviceConstants} from './../_constants';
+import {serviceServices} from './../_services';
+
+export const serviceActions = {
+    getList,
+    create,
+    show,
+    update,
+    remove
+};
 
 function getList() {
-    console.log('get list of services');
+    return dispatch => {
+        serviceServices.get();
+        dispatch(request());
+    };
+
+    function request() {return {type: serviceConstants.GET_REQUEST}};
+    function success() {return {type: serviceConstants.GET_SUCCESS}};
+    function failure() {return {type: serviceConstants.GET_FAILURE}};
 }
 
 function create(data) {

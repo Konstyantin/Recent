@@ -1,4 +1,9 @@
-export const serviceServices = {};
+export const serviceServices = {
+    create,
+    get,
+    update,
+    remove
+};
 
 function create() {
     console.log('create service service')
@@ -6,6 +11,7 @@ function create() {
 
 function get() {
     console.log('get service service')
+    return {};
 }
 
 function update() {
