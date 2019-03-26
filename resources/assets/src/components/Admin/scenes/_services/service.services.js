@@ -6,8 +6,9 @@ export const serviceServices = {
     remove
 };
 
-function create() {
-    console.log('create service service')
+function create(data) {
+    console.log(data);
+    console.log('create service service');
 }
 
 function get() {

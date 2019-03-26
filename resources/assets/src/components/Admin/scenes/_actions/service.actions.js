@@ -27,7 +27,17 @@ function getList() {
 }
 
 function create(data) {
-    console.log('create a new service item')
+    console.log('create a new service item');
+
+    return dispatch => {
+        dispatch(request(data));
+
+        serviceServices.create(data);
+    };
+
+    function request(data) {return {type: serviceConstants.CREATE_REQUEST, data}};
+    function success(data) {return {type: serviceConstants.CREATE_SUCCESS, data}};
+    function failure(error) {return {type: serviceConstants.CREATE_FAILURE, data}};
 }
 
 function show(id) {

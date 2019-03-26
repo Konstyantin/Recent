@@ -3,9 +3,9 @@ import {serviceConstants} from '../_constants'
 export function service(state = {}, action) {
     switch (action.type) {
         case serviceConstants.CREATE_REQUEST:
-            return console.log('create request');
+            return {};
         case serviceConstants.CREATE_SUCCESS:
-            return console.log('create success');
+            return {};
         case serviceConstants.CREATE_FAILURE:
             return console.log('create failure');
         case serviceConstants.GET_REQUEST:

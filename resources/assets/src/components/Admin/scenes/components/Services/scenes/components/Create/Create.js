@@ -7,7 +7,8 @@ import { Editor } from '@tinymce/tinymce-react';
 import InputLabel from '@material-ui/core/InputLabel';
 import {DropzoneArea} from 'material-ui-dropzone'
 import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
-import {userActions} from "../../../../../../../../_actions";
+import {serviceActions} from './../../../../../_actions';
+import {connect} from 'react-redux';
 
 const styles = theme => ({
     root: {
@@ -44,6 +45,7 @@ class Create extends Component {
         this.handleChangeEditor = this.handleChangeEditor.bind(this);
         this.handleChangeIcon = this.handleChangeIcon.bind(this);
         this.handleChangeImage = this.handleChangeImage.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     /**
@@ -64,13 +66,17 @@ class Create extends Component {
     handleSubmit(e) {
         e.preventDefault();
 
+        const {dispatch} = this.props;
+        const {title, short_description, description, icon, image} = this.state;
         this.setState({submitted: true});
 
-        console.log('submit service form');
+        if (title && short_description && description && icon && image) {
+            dispatch(serviceActions.create(this.state));
+        }
     }
 
     handleChangeEditor(e) {
-        console.log('handler change editor');
+        this.setState({description: e.target.getContent()});
     }
 
     handleChangeIcon(file) {
@@ -154,7 +160,7 @@ class Create extends Component {
                                 </Grid>
                                 <Grid item xs={6}>
                                     <InputLabel>Service Image</InputLabel>
-                                    <DropzoneArea onChange={this.handleChangeIcon}/>
+                                    <DropzoneArea onChange={this.handleChangeImage}/>
                                 </Grid>
                                 <Grid item xs={8}>
                                     <Button variant="contained" color="primary" className={classes.button} type={'submit'}>
@@ -170,6 +176,11 @@ class Create extends Component {
     }
 }
 
-const styledCreate = withStyles(styles)(Create);
+function mapStateToProps(state) {
+  return {};
+};
 
-export {styledCreate as Create};
+const styledCreate = withStyles(styles)(Create);
+const connectedCreate = connect(mapStateToProps)(styledCreate);
+
+export {connectedCreate as Create};
