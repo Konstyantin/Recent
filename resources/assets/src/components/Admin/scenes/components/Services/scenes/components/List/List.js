@@ -12,6 +12,7 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {serviceActions} from './../../../../../_actions';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import {CircularIndeterminate} from './../../../../../components/CircularIndeterminate';
 
 const styles = themes => ({
     root: {
@@ -35,21 +36,6 @@ const styles = themes => ({
         textAlign: 'center'
     }
 });
-
-/**
- * Circular indeterminate
- *
- * @param props
- */
-const CircularIndeterminate = (props) => {
-    const { classes } = props;
-
-    return (
-        <div>
-            <CircularProgress className={classes.progress} />
-        </div>
-    );
-};
 
 /**
  * List component
