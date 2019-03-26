@@ -9,9 +9,9 @@ export function service(state = {}, action) {
         case serviceConstants.CREATE_FAILURE:
             return console.log('create failure');
         case serviceConstants.GET_REQUEST:
-            return {'list': []};
+            return {};
         case serviceConstants.GET_SUCCESS:
-            return console.log('get success');
+            return action.list;
         case serviceConstants.GET_FAILURE:
             return console.log('get failure');
         case serviceConstants.UPDATE_REQUEST:

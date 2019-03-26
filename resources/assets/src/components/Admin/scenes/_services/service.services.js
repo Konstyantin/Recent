@@ -1,3 +1,4 @@
+import {authHeader, handleResponse} from './../../../../_helpers'
 export const serviceServices = {
     create,
     get,
@@ -10,8 +11,12 @@ function create() {
 }
 
 function get() {
-    console.log('get service service')
-    return {};
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+
+    return fetch('/api/services', requestOptions).then(handleResponse);
 }
 
 function update() {

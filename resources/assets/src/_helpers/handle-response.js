@@ -9,5 +9,7 @@ export function handleResponse(response) {
                 logout();
             }
         }
+
+        return data;
     });
 }

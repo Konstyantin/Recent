@@ -59,7 +59,11 @@ class List extends Component {
 
     render() {
 
-        const {classes} = this.props;
+        const {classes, service} = this.props;
+
+        if (service) {
+            console.log(service.data)
+        }
 
         return (
             <div className={classes.root}>
@@ -104,8 +108,9 @@ class List extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state);
-    return {};
+    const {service} = state;
+
+    return {service};
 }
 
 const styledList = withStyles(styles)(List);

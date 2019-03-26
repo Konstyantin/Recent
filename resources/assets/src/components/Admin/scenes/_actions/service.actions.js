@@ -11,13 +11,19 @@ export const serviceActions = {
 
 function getList() {
     return dispatch => {
-        serviceServices.get();
+
         dispatch(request());
+
+        serviceServices.get()
+            .then(
+                list => dispatch(success(list)),
+                error => dispatch(failure(error))
+            )
     };
 
-    function request() {return {type: serviceConstants.GET_REQUEST}};
-    function success() {return {type: serviceConstants.GET_SUCCESS}};
-    function failure() {return {type: serviceConstants.GET_FAILURE}};
+    function request() {return {type: serviceConstants.GET_REQUEST}}
+    function success(list) {return {type: serviceConstants.GET_SUCCESS, list}}
+    function failure(error) {return {type: serviceConstants.GET_FAILURE, error}}
 }
 
 function create(data) {
