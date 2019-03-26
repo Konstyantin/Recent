@@ -11,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {serviceActions} from './../../../../../_actions';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const styles = themes => ({
     root: {
@@ -26,44 +27,50 @@ const styles = themes => ({
     },
     button: {
         marginBottom: 15
+    },
+    progress: {
+        margin: themes.spacing.unit * 2,
+    },
+    circleContainer: {
+        textAlign: 'center'
     }
 });
 
-let id = 0;
-function createData(name, calories, fat, carbs, protein) {
-    id += 1;
-    return { id, name, calories, fat, carbs, protein };
-}
+/**
+ * Circular indeterminate
+ *
+ * @param props
+ */
+const CircularIndeterminate = (props) => {
+    const { classes } = props;
 
-const rows = [
-    createData('Frozen yoghurt', 159, 6.0, 24, 4.0),
-    createData('Ice cream sandwich', 237, 9.0, 37, 4.3),
-    createData('Eclair', 262, 16.0, 24, 6.0),
-    createData('Cupcake', 305, 3.7, 67, 4.3),
-    createData('Gingerbread', 356, 16.0, 49, 3.9),
-];
+    return (
+        <div>
+            <CircularProgress className={classes.progress} />
+        </div>
+    );
+};
 
-
+/**
+ * List component
+ */
 class List extends Component {
 
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            list: null
-        };
-
+    /**
+     * Component did mount default method
+     */
+    componentDidMount() {
         const {dispatch} = this.props;
         dispatch(serviceActions.getList());
     }
 
+    /**
+     * Render component
+     * @returns {*}
+     */
     render() {
 
         const {classes, service} = this.props;
-
-        if (service) {
-            console.log(service.data)
-        }
 
         return (
             <div className={classes.root}>
@@ -74,32 +81,36 @@ class List extends Component {
                                 Add new
                             </Button>
                         </Link>
-                        <Paper className={classes.paper}>
-                            <Table className={classes.table}>
-                                <TableHead>
-                                    <TableRow>
-                                        <TableCell>Dessert (100g serving)</TableCell>
-                                        <TableCell align="right">Calories</TableCell>
-                                        <TableCell align="right">Fat (g)</TableCell>
-                                        <TableCell align="right">Carbs (g)</TableCell>
-                                        <TableCell align="right">Protein (g)</TableCell>
-                                    </TableRow>
-                                </TableHead>
-                                <TableBody>
-                                    {rows.map(row => (
-                                        <TableRow key={row.id}>
-                                            <TableCell component="th" scope="row">
-                                                {row.name}
-                                            </TableCell>
-                                            <TableCell align="right">{row.calories}</TableCell>
-                                            <TableCell align="right">{row.fat}</TableCell>
-                                            <TableCell align="right">{row.carbs}</TableCell>
-                                            <TableCell align="right">{row.protein}</TableCell>
+                        {service.requested &&
+                            <div className={classes.circleContainer}>
+                                <CircularIndeterminate classes={classes}/>
+                            </div>
+                        }
+
+                        {!service.requested && service.list &&
+                            <Paper className={classes.paper}>
+                                <Table className={classes.table}>
+                                    <TableHead>
+                                        <TableRow>
+                                            <TableCell>Id</TableCell>
+                                            <TableCell>Title</TableCell>
+                                            <TableCell>Short description</TableCell>
+                                            <TableCell>Created at</TableCell>
                                         </TableRow>
-                                    ))}
-                                </TableBody>
-                            </Table>
-                        </Paper>
+                                    </TableHead>
+                                    <TableBody>
+                                        {service.list.data.map(row => (
+                                            <TableRow key={row.id}>
+                                                <TableCell>{row.id}</TableCell>
+                                                <TableCell>{row.title}</TableCell>
+                                                <TableCell>{row.short_description}</TableCell>
+                                                <TableCell>{row.created_at}</TableCell>
+                                            </TableRow>
+                                        ))}
+                                    </TableBody>
+                                </Table>
+                            </Paper>
+                        }
                     </Grid>
                 </Grid>
             </div>
@@ -107,6 +118,11 @@ class List extends Component {
     }
 }
 
+/**
+ * Mapped data from redux
+ * @param state
+ * @returns {{service: *}}
+ */
 function mapStateToProps(state) {
     const {service} = state;
 
