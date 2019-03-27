@@ -1,5 +1,7 @@
 import {serviceConstants} from './../_constants';
 import {serviceServices} from './../_services';
+import {history} from "../../../../_helpers";
+import {alertActions} from "../../../../_actions";
 
 export const serviceActions = {
     getList,
@@ -27,17 +29,26 @@ function getList() {
 }
 
 function create(data) {
-    console.log('create a new service item');
 
     return dispatch => {
         dispatch(request(data));
 
-        serviceServices.create(data);
+        serviceServices.create(data)
+            .then(
+                service => {
+                    dispatch(success(service));
+                    history.push('/admin/services');
+                    dispatch(alertActions.success('Service item was created success'));
+                },
+                error => {
+                    // dispatch(failure(error));
+                }
+            )
     };
 
-    function request(data) {return {type: serviceConstants.CREATE_REQUEST, data}};
-    function success(data) {return {type: serviceConstants.CREATE_SUCCESS, data}};
-    function failure(error) {return {type: serviceConstants.CREATE_FAILURE, data}};
+    function request(data) {return {type: serviceConstants.CREATE_REQUEST, data}}
+    function success(data) {return {type: serviceConstants.CREATE_SUCCESS, data}}
+    function failure(error) {return {type: serviceConstants.CREATE_FAILURE, data}}
 }
 
 function show(id) {
