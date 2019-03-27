@@ -7,8 +7,17 @@ export const serviceServices = {
 };
 
 function create(data) {
+
+    const requestOptions = {
+        method: 'POST',
+        headers: authHeader(),
+        body: JSON.stringify(data)
+    };
+
+    let requestResponse = fetch('/api/services', requestOptions);
+
     console.log(data);
-    console.log('create service service');
+    console.log(requestResponse);
 }
 
 function get() {
