@@ -8,16 +8,29 @@ export const serviceServices = {
 
 function create(data) {
 
+    let formData = new FormData();
+
+    const user = JSON.parse(localStorage.getItem('user'));
+
+    const headerOption = {
+        'Authorization' : 'Bearer ' + user.token
+    };
+
+    const {title, short_description, description, icon, image} = data;
+
+    formData.append('title', title);
+    formData.append('short_description', short_description);
+    formData.append('description', description);
+    formData.append('icon', icon[0]);
+    formData.append('image', image[0]);
+
     const requestOptions = {
         method: 'POST',
-        headers: authHeader(),
-        body: JSON.stringify(data)
+        headers: headerOption,
+        body: formData
     };
 
     let requestResponse = fetch('/api/services', requestOptions);
-
-    console.log(data);
-    console.log(requestResponse);
 }
 
 function get() {
