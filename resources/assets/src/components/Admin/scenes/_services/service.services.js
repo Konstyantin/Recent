@@ -1,4 +1,5 @@
-import {authHeader, handleResponse} from './../../../../_helpers'
+import {authHeader, handleResponse, getUserLocalStorage} from './../../../../_helpers'
+import {serviceFormDataFormat} from './../_helpers'
 export const serviceServices = {
     create,
     get,
@@ -6,31 +7,24 @@ export const serviceServices = {
     remove
 };
 
+/**
+ * Create new service item
+ *
+ * @param data
+ */
 function create(data) {
 
-    let formData = new FormData();
+    let formData = serviceFormDataFormat(data);
 
-    const user = JSON.parse(localStorage.getItem('user'));
-
-    const headerOption = {
-        'Authorization' : 'Bearer ' + user.token
-    };
-
-    const {title, short_description, description, icon, image} = data;
-
-    formData.append('title', title);
-    formData.append('short_description', short_description);
-    formData.append('description', description);
-    formData.append('icon', icon[0]);
-    formData.append('image', image[0]);
+    const user = getUserLocalStorage();
 
     const requestOptions = {
         method: 'POST',
-        headers: headerOption,
+        headers: {'Authorization' : 'Bearer ' + user.token},
         body: formData
     };
 
-    let requestResponse = fetch('/api/services', requestOptions);
+    return fetch('/api/services', requestOptions).then(handleResponse);
 }
 
 function get() {
