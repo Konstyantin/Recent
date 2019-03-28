@@ -41,14 +41,14 @@ function create(data) {
                     dispatch(alertActions.success('Service item was created success'));
                 },
                 error => {
-                    // dispatch(failure(error));
+                    dispatch(failure(error));
                 }
             )
     };
 
     function request(data) {return {type: serviceConstants.CREATE_REQUEST, data}}
     function success(data) {return {type: serviceConstants.CREATE_SUCCESS, data}}
-    function failure(error) {return {type: serviceConstants.CREATE_FAILURE, data}}
+    function failure(error) {return {type: serviceConstants.CREATE_FAILURE, error}}
 }
 
 function show(id) {

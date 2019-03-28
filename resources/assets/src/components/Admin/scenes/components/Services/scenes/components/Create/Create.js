@@ -177,7 +177,9 @@ class Create extends Component {
 }
 
 function mapStateToProps(state) {
-  return {};
+
+    const {error} = state;
+    return {error};
 };
 
 const styledCreate = withStyles(styles)(Create);
