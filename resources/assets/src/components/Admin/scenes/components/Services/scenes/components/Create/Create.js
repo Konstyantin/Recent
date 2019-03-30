@@ -8,6 +8,7 @@ import {DropzoneArea} from 'material-ui-dropzone'
 import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import {serviceActions} from './../../../../../_actions';
 import {connect} from 'react-redux';
+import {CustomSnackBar} from './../../../../../../../../scenes/components/CustomSnackBar'
 
 const styles = theme => ({
     root: {
@@ -26,6 +27,20 @@ const styles = theme => ({
         width: 200,
     },
 });
+
+const CreateServiceErrorSnackBar = ({service}) => {
+    const {message, errors} = service;
+
+    if (!$.isEmptyObject(service)) {
+        let messageArray = Object.keys(errors).map((k) => errors[k]);
+
+        return messageArray.map((error, i) => (
+            <CustomSnackBar key={i} message={error.shift()} variant={'error'}/>
+        ));
+    }
+
+    return null;
+};
 
 /**
  * Create service component
@@ -99,7 +114,7 @@ class Create extends Component {
 
     render() {
 
-        const {classes} = this.props;
+        const {classes,service} = this.props;
 
         const {title, short_description, description, icon, image} = this.state;
 
@@ -107,6 +122,7 @@ class Create extends Component {
             <div className={classes.root}>
                 <Grid container>
                     <Grid item xs={8}>
+                        <CreateServiceErrorSnackBar service={service}/>
                         <ValidatorForm
                             ref="form"
                             onSubmit={this.handleSubmit}
@@ -182,9 +198,8 @@ class Create extends Component {
 }
 
 function mapStateToProps(state) {
-
-    const {error} = state;
-    return {error};
+    const {error, service} = state;
+    return {error, service};
 };
 
 const styledCreate = withStyles(styles)(Create);
