@@ -9,7 +9,8 @@ export function service(state = {}, action) {
             return {};
         case serviceConstants.CREATE_FAILURE:
             return {
-                error: action.error
+                message: action.error.message,
+                errors: action.error.errors
             };
         case serviceConstants.GET_REQUEST:
             return {requested: true};
@@ -19,7 +20,7 @@ export function service(state = {}, action) {
                 requested: false
             };
         case serviceConstants.GET_FAILURE:
-            return console.log('get failure');
+            return {};
         case serviceConstants.UPDATE_REQUEST:
             return console.log('updated request');
         case serviceConstants.UPDATE_SUCCESS:

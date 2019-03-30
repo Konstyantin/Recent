@@ -24,8 +24,8 @@ class StoreServicePost extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required|string|max:45|unique:services',
-            'short_description' => 'required|string|max:45',
+            'title' => 'required|string|min:5|max:45|unique:services',
+            'short_description' => 'required|string|min:10|max:45',
             'description' => 'required|string',
             'icon' => 'required|mimes:jpeg,bmp,png',
             'image' => 'required|mimes:jpeg,bmp,png',

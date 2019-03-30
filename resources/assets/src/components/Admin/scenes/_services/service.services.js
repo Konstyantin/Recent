@@ -20,7 +20,10 @@ function create(data) {
 
     const requestOptions = {
         method: 'POST',
-        headers: {'Authorization' : 'Bearer ' + user.token},
+        headers: {
+            'Authorization' : 'Bearer ' + user.token,
+            'Accept': 'application/json',
+        },
         body: formData
     };
 

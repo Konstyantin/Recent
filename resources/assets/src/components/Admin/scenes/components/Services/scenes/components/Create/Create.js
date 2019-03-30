@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import Grid from '@material-ui/core/Grid';
 import {withStyles} from "@material-ui/core/styles/index";
-import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { Editor } from '@tinymce/tinymce-react';
 import InputLabel from '@material-ui/core/InputLabel';
@@ -28,8 +27,15 @@ const styles = theme => ({
     },
 });
 
+/**
+ * Create service component
+ */
 class Create extends Component {
 
+    /**
+     * Constructor
+     * @param props
+     */
     constructor(props) {
         super(props);
         this.state = {
@@ -146,7 +152,6 @@ class Create extends Component {
                                 <Grid item xs={12}>
                                     <InputLabel>Description</InputLabel>
                                     <Editor
-                                        initialValue="<p>This is the initial content of the editor</p>"
                                         init={{
                                             plugins: 'link image code',
                                             toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'

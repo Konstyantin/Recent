@@ -59,12 +59,6 @@ class ServiceController extends Controller
      */
     public function store(StoreServicePost $request)
     {
-        $validator = $request->validated();
-
-        if (!$validator) {
-            return response()->json($validator->errors()->toJson(), 400);
-        }
-
         $input = $request->all();
 
         $input['icon'] = $this->uploadIcon($request);
