@@ -33,6 +33,12 @@ export function service(state = {}, action) {
             return console.log('remove success');
         case serviceConstants.REMOVE_FAILURE:
             return console.log('remove failure');
+        case serviceConstants.SHOW_REQUEST:
+            return {};
+        case serviceConstants.SHOW_SUCCESS:
+            return {};
+        case serviceConstants.SHOW_FAILURE:
+            return {};
         default:
             return state;
     }

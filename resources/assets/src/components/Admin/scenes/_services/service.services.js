@@ -39,6 +39,15 @@ function get() {
     return fetch('/api/services', requestOptions).then(handleResponse);
 }
 
+function show(id) {
+    const requestOptions = {
+        method: 'GET',
+        headers: authHeader()
+    };
+
+    return fetch(`/api/services/${id}`, requestOptions).then(handleResponse);
+}
+
 function update() {
     console.log('update service service')
 }

@@ -47,6 +47,13 @@ class Edit extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
     }
 
+    componentDidMount() {
+        const {dispatch} = this.props;
+        const id = this.props.match.params.id;
+
+        dispatch(serviceActions.show(id));
+    }
+
     /**
      * Handle change
      *
