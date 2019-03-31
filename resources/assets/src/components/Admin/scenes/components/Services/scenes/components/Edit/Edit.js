@@ -99,7 +99,7 @@ class Edit extends Component {
 
     render() {
 
-        const {classes} = this.props;
+        const {classes, service} = this.props;
         const {title, short_description, description, icon, image} = this.state;
 
         return (
@@ -181,7 +181,8 @@ class Edit extends Component {
 }
 
 function mapStateToProps(state) {
-    return {};
+    const {service} = state;
+    return {service};
 }
 
 const styledEdit = withStyles(styles)(Edit);

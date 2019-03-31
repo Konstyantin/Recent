@@ -36,7 +36,9 @@ export function service(state = {}, action) {
         case serviceConstants.SHOW_REQUEST:
             return {};
         case serviceConstants.SHOW_SUCCESS:
-            return {};
+            return {
+                data: action.data.shift()
+            };
         case serviceConstants.SHOW_FAILURE:
             return {};
         default:

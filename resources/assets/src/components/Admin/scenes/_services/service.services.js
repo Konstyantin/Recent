@@ -4,7 +4,8 @@ export const serviceServices = {
     create,
     get,
     update,
-    remove
+    remove,
+    show
 };
 
 /**

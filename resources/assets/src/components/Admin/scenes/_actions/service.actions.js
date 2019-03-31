@@ -52,16 +52,23 @@ function create(data) {
 }
 
 function show(id) {
-    console.log('show a service item data');
-    console.log(id);
-
     return dispatch => {
         dispatch(request(id));
-    }
 
-    function request(id) {return {type: serviceConstants.SHOW_REQUEST, id}};
-    function success(data) {return {type: serviceConstants.SHOW_SUCCESS, data}};
-    function failure(error) {return {type: serviceConstants.SHOW_SUCCESS, error}};
+        serviceServices.show(id)
+            .then(
+                data => {
+                    dispatch(success(data));
+                },
+                error => {
+                    console.log(error);
+                }
+            )
+    };
+
+    function request(id) {return {type: serviceConstants.SHOW_REQUEST, id}}
+    function success(data) {return {type: serviceConstants.SHOW_SUCCESS, data}}
+    function failure(error) {return {type: serviceConstants.SHOW_SUCCESS, error}}
 }
 
 function update(id, data) {
