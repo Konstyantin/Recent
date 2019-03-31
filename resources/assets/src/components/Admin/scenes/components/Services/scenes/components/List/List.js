@@ -13,6 +13,7 @@ import {connect} from 'react-redux';
 import {serviceActions} from './../../../../../_actions';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {CircularIndeterminate} from './../../../../../components/CircularIndeterminate';
+import {CustomSnackBar} from '../../../../../../../../scenes/components/CustomSnackBar';
 
 const styles = themes => ({
     root: {
@@ -37,6 +38,17 @@ const styles = themes => ({
     }
 });
 
+const ServiceListSnackBar = ({alert}) => {
+
+    const {type, message} = alert;
+
+    if (!$.isEmptyObject(alert)) {
+        return <CustomSnackBar key={type} message={message} variant={type}/>
+    }
+
+    return null;
+};
+
 /**
  * List component
  */
@@ -56,12 +68,13 @@ class List extends Component {
      */
     render() {
 
-        const {classes, service} = this.props;
+        const {classes, service, alert} = this.props;
 
         return (
             <div className={classes.root}>
                 <Grid container>
                     <Grid item xs={12}>
+                        <ServiceListSnackBar alert={alert}/>
                         <Link to={'/admin/services/create'}>
                             <Button variant="contained" color="primary" className={classes.button}>
                                 Add new
@@ -110,9 +123,9 @@ class List extends Component {
  * @returns {{service: *}}
  */
 function mapStateToProps(state) {
-    const {service, message} = state;
+    const {service, alert} = state;
 
-    return {service, message};
+    return {service, alert};
 }
 
 const styledList = withStyles(styles)(List);
