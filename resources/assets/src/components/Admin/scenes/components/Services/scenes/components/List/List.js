@@ -11,7 +11,6 @@ import Button from '@material-ui/core/Button';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {serviceActions} from './../../../../../_actions';
-import CircularProgress from '@material-ui/core/CircularProgress';
 import {CircularIndeterminate} from './../../../../../components/CircularIndeterminate';
 import {CustomSnackBar} from '../../../../../../../../scenes/components/CustomSnackBar';
 
@@ -101,7 +100,7 @@ class List extends Component {
                                         {service.list.data.map(row => (
                                             <TableRow key={row.id}>
                                                 <TableCell>{row.id}</TableCell>
-                                                <TableCell>{row.title}</TableCell>
+                                                <TableCell><Link to={`/admin/services/edit/${row.id}`}>{row.title}</Link></TableCell>
                                                 <TableCell>{row.short_description}</TableCell>
                                                 <TableCell>{row.created_at}</TableCell>
                                             </TableRow>
