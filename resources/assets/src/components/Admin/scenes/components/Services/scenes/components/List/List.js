@@ -110,9 +110,9 @@ class List extends Component {
  * @returns {{service: *}}
  */
 function mapStateToProps(state) {
-    const {service} = state;
+    const {service, message} = state;
 
-    return {service};
+    return {service, message};
 }
 
 const styledList = withStyles(styles)(List);

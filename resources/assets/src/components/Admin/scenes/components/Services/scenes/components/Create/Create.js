@@ -31,7 +31,7 @@ const styles = theme => ({
 const CreateServiceErrorSnackBar = ({service}) => {
     const {message, errors} = service;
 
-    if (!$.isEmptyObject(service)) {
+    if (!$.isEmptyObject(service) && errors !== undefined) {
         let messageArray = Object.keys(errors).map((k) => errors[k]);
 
         return messageArray.map((error, i) => (
@@ -91,7 +91,7 @@ class Create extends Component {
         const {title, short_description, description, icon, image} = this.state;
         this.setState({submitted: true});
 
-        if (title && short_description && description && icon && image) {
+        if (title && short_description) {
             dispatch(serviceActions.create(this.state));
         }
     }
