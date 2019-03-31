@@ -5,6 +5,7 @@ import {List} from "../components/Admin/scenes/components/Services/scenes/compon
 import {Create} from "../components/Admin/scenes/components/Services/scenes/components/Create";
 import {Mails} from "../components/Admin/scenes/components/Mails";
 import {guestRoutes} from "./guest";
+import {Edit} from "../components/Admin/scenes/components/Services/scenes/components/Edit";
 
 export const adminRoutes = [
     {
@@ -28,8 +29,11 @@ export const adminRoutes = [
             {
                 path: '/admin/services/create',
                 component: Create,
-                routes: guestRoutes
             },
+            {
+                path: '/admin/services/edit/:id',
+                component: Edit
+            }
         ]
     },
     {
