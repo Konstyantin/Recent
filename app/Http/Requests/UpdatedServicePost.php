@@ -26,9 +26,9 @@ class UpdatedServicePost extends FormRequest
         $routeId = $this->route('id');
 
         return [
-            'title' => 'required|string|max:45|unique:services,title,' . $routeId,
-            'short_description' => 'required|string|max:45',
-            'description' => 'required|string',
+            'title' => 'string|max:45|unique:services,title,' . $routeId,
+            'short_description' => 'string|max:45',
+            'description' => 'string',
             'icon' => 'mimes:jpeg,bmp,png',
             'image' => 'mimes:jpeg,bmp,png',
         ];
