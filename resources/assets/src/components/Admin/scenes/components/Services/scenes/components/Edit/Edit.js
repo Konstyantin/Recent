@@ -8,6 +8,7 @@ import {DropzoneArea} from 'material-ui-dropzone'
 import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator'
 import {connect} from 'react-redux';
 import {serviceActions} from "../../../../../_actions";
+import {CircularIndeterminate} from './../../../../../components/CircularIndeterminate';
 
 const styles = theme => ({
     root: {
@@ -24,6 +25,9 @@ const styles = theme => ({
     },
     menu: {
         width: 200,
+    },
+    circleContainer: {
+        textAlign: 'center'
     }
 });
 
@@ -100,12 +104,18 @@ class Edit extends Component {
     render() {
 
         const {classes, service} = this.props;
-        const {title, short_description, description, icon, image} = this.state;
 
         return (
             <div className={classes.root}>
                 <Grid container>
                     <Grid item xs={8}>
+                        {service.requested &&
+                        <div className={classes.circleContainer}>
+                            <CircularIndeterminate classes={classes}/>
+                        </div>
+                        }
+                        {!service.requested && service.data &&
+
                         <ValidatorForm
                             ref="form"
                             onSubmit={this.handleSubmit}
@@ -121,7 +131,7 @@ class Edit extends Component {
                                         name="title"
                                         margin="normal"
                                         placeholder="Title"
-                                        value={title}
+                                        value={service.data.title}
                                         validators={['required', 'minStringLength:5', 'maxStringLength:45']}
                                         errorMessages={[
                                             'this field is required',
@@ -139,7 +149,7 @@ class Edit extends Component {
                                         name="short_description"
                                         margin="normal"
                                         placeholder="Short description"
-                                        value={short_description}
+                                        value={service.data.short_description}
                                         validators={['required', 'minStringLength:5', 'maxStringLength:45']}
                                         errorMessages={[
                                             'this field is required',
@@ -151,6 +161,7 @@ class Edit extends Component {
                                 <Grid item xs={12}>
                                     <InputLabel>Description</InputLabel>
                                     <Editor
+                                        initialValue={service.data.description}
                                         init={{
                                             plugins: 'link image code',
                                             toolbar: 'undo redo | bold italic | alignleft aligncenter alignright | code'
@@ -173,6 +184,7 @@ class Edit extends Component {
                                 </Grid>
                             </Grid>
                         </ValidatorForm>
+                        }
                     </Grid>
                 </Grid>
             </div>

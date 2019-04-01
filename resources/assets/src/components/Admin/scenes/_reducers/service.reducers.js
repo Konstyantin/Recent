@@ -34,10 +34,13 @@ export function service(state = {}, action) {
         case serviceConstants.REMOVE_FAILURE:
             return console.log('remove failure');
         case serviceConstants.SHOW_REQUEST:
-            return {};
+            return {
+                requested: true
+            };
         case serviceConstants.SHOW_SUCCESS:
             return {
-                data: action.data.shift()
+                data: action.data.shift(),
+                requested: false
             };
         case serviceConstants.SHOW_FAILURE:
             return {};
