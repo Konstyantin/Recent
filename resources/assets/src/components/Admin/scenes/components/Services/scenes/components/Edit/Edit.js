@@ -72,7 +72,10 @@ class Edit extends Component {
      */
     handleChange(e) {
         const {name, value} = e.target;
-        this.setState({[name]: value});
+
+        console.log(name, value);
+
+        // this.setState({[name]: value});
     }
 
     /**
@@ -87,8 +90,9 @@ class Edit extends Component {
         const {title, short_description, description, icon, image} = this.state;
         this.setState({submitted: true});
 
+        console.log(this.state);
         if (title && short_description) {
-            dispatch(serviceActions.create(this.state));
+            // dispatch(serviceActions.create(this.state));
         }
     }
 
@@ -150,7 +154,7 @@ class Edit extends Component {
                                         name="title"
                                         margin="normal"
                                         placeholder="Title"
-                                        value={service.data.title}
+                                        defaultValue={service.data.title}
                                         validators={['required', 'minStringLength:5', 'maxStringLength:45']}
                                         errorMessages={[
                                             'this field is required',
@@ -168,7 +172,7 @@ class Edit extends Component {
                                         name="short_description"
                                         margin="normal"
                                         placeholder="Short description"
-                                        value={service.data.short_description}
+                                        defaultValue={service.data.short_description}
                                         validators={['required', 'minStringLength:5', 'maxStringLength:45']}
                                         errorMessages={[
                                             'this field is required',
