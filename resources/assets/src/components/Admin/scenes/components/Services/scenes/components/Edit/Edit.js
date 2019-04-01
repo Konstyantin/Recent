@@ -28,6 +28,9 @@ const styles = theme => ({
     },
     circleContainer: {
         textAlign: 'center'
+    },
+    imagePreview: {
+        padding: 10
     }
 });
 
@@ -41,6 +44,8 @@ class Edit extends Component {
             description: '',
             icon: null,
             image: null,
+            iconChange: false,
+            imageChange: false,
             submitted: false
         };
 
@@ -49,6 +54,8 @@ class Edit extends Component {
         this.handleChangeIcon = this.handleChangeIcon.bind(this);
         this.handleChangeImage = this.handleChangeImage.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.changeIcon = this.changeIcon.bind(this);
+        this.changeImage = this.changeImage.bind(this);
     }
 
     componentDidMount() {
@@ -101,9 +108,21 @@ class Edit extends Component {
         });
     }
 
+    changeIcon(e) {
+        e.preventDefault();
+        this.setState({iconChange: true})
+    }
+
+    changeImage(e) {
+        e.preventDefault();
+        this.setState({imageChange: true})
+    }
+
     render() {
 
         const {classes, service} = this.props;
+
+        const {iconChange, imageChange} = this.state;
 
         return (
             <div className={classes.root}>
@@ -171,11 +190,29 @@ class Edit extends Component {
                                 </Grid>
                                 <Grid item xs={6}>
                                     <InputLabel>Service Icon</InputLabel>
-                                    <DropzoneArea onChange={this.handleChangeIcon}/>
+                                    {!iconChange &&
+                                        <div>
+                                            <img className={classes.imagePreview}
+                                                 src={`/images/vendor/services/image/${service.data.icon}`} alt=""/>
+                                            <a href="" onClick={this.changeIcon}>Edit</a>
+                                        </div>
+                                    }
+                                    {iconChange &&
+                                        <DropzoneArea onChange={this.handleChangeIcon}/>
+                                    }
                                 </Grid>
                                 <Grid item xs={6}>
                                     <InputLabel>Service Image</InputLabel>
-                                    <DropzoneArea onChange={this.handleChangeImage}/>
+                                    {!imageChange &&
+                                        <div>
+                                            <img className={classes.imagePreview}
+                                                 src={`/images/vendor/services/image/${service.data.image}`} alt=""/>
+                                            <a href="" onClick={this.changeImage}>Edit</a>
+                                        </div>
+                                    }
+                                    {imageChange &&
+                                        <DropzoneArea onChange={this.handleChangeImage}/>
+                                    }
                                 </Grid>
                                 <Grid item xs={8}>
                                     <Button variant="contained" color="primary" className={classes.button} type={'submit'}>
