@@ -1,10 +1,19 @@
-export function serviceFormDataFormat(data) {
+export function serviceFormDataFormat(data, put = false) {
     let formData = new FormData();
 
     const {title, short_description, description, icon, image} = data;
 
-    formData.append('title', title);
-    formData.append('short_description', short_description);
+    if (put) {
+        formData.append('_method', 'put');
+    }
+
+    if (title) {
+        formData.append('title', title);
+    }
+
+    if (short_description) {
+        formData.append('short_description', short_description);
+    }
 
     if (description) {
         formData.append('description', description);

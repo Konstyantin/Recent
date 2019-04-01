@@ -72,10 +72,7 @@ class Edit extends Component {
      */
     handleChange(e) {
         const {name, value} = e.target;
-
-        console.log(name, value);
-
-        // this.setState({[name]: value});
+        this.setState({[name]: value});
     }
 
     /**
@@ -90,8 +87,9 @@ class Edit extends Component {
         const {title, short_description, description, icon, image} = this.state;
         this.setState({submitted: true});
 
-        console.log(this.state);
-        if (title && short_description) {
+        if (title || short_description || description || icon || image) {
+            console.log('edit');
+            console.log(this.state);
             // dispatch(serviceActions.create(this.state));
         }
     }
@@ -126,7 +124,7 @@ class Edit extends Component {
 
         const {classes, service} = this.props;
 
-        const {iconChange, imageChange} = this.state;
+        const {iconChange, imageChange, title, short_description} = this.state;
 
         return (
             <div className={classes.root}>

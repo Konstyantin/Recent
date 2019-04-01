@@ -72,7 +72,16 @@ function show(id) {
 }
 
 function update(id, data) {
-    console.log('updated a service item')
+    return dispatch => {
+        dispatch(request());
+
+        serviceServices.update(id, data)
+    };
+
+    function request() {return {type: serviceConstants.UPDATE_REQUEST}}
+    function success(data) {return {type: serviceConstants.UPDATE_SUCCESS, data}}
+    function failure(error) {return {type: serviceConstants.UPDATE_FAILURE, error}}
+    console.log('updated a service item');
 }
 
 function remove(id) {

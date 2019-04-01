@@ -49,7 +49,15 @@ function show(id) {
     return fetch(`/api/services/${id}`, requestOptions).then(handleResponse);
 }
 
-function update() {
+function update(id, data) {
+
+    let formData = serviceFormDataFormat(data);
+
+    const requestOptions = {
+        method: 'POST',
+        headers: authHeader()
+    };
+
     console.log('update service service')
 }
 
