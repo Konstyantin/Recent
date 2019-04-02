@@ -44,6 +44,8 @@ class Edit extends Component {
             description: '',
             icon: null,
             image: null,
+            titleChanged: false,
+            short_descriptionChanged: false,
             iconChange: false,
             imageChange: false,
             submitted: false
@@ -120,11 +122,25 @@ class Edit extends Component {
         this.setState({imageChange: true})
     }
 
+    componentDidUpdate() {
+
+        const {service} = this.props;
+        const {titleChanged, short_descriptionChanged} = this.state;
+
+        if (!service.requested && service.data && !titleChanged) {
+            this.setState({title: service.data.title, titleChanged: true})
+        }
+
+        if (!service.requested && service.data && !short_descriptionChanged) {
+            this.setState({short_description: service.data.short_description, short_descriptionChanged: true})
+        }
+    }
+
     render() {
 
         const {classes, service} = this.props;
 
-        const {iconChange, imageChange, title, short_description} = this.state;
+        const {iconChange, imageChange, title, short_description, titleChanged, short_descriptionChanged} = this.state;
 
         return (
             <div className={classes.root}>
@@ -152,7 +168,7 @@ class Edit extends Component {
                                         name="title"
                                         margin="normal"
                                         placeholder="Title"
-                                        defaultValue={service.data.title}
+                                        value={title}
                                         validators={['required', 'minStringLength:5', 'maxStringLength:45']}
                                         errorMessages={[
                                             'this field is required',
@@ -170,7 +186,7 @@ class Edit extends Component {
                                         name="short_description"
                                         margin="normal"
                                         placeholder="Short description"
-                                        defaultValue={service.data.short_description}
+                                        value={short_description}
                                         validators={['required', 'minStringLength:5', 'maxStringLength:45']}
                                         errorMessages={[
                                             'this field is required',
