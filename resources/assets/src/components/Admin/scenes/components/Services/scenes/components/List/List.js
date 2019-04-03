@@ -10,6 +10,7 @@ import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
+import DeleteOutlinedIcon from '@material-ui/icons/DeleteOutlined';
 import {serviceActions} from './../../../../../_actions';
 import {CircularIndeterminate} from './../../../../../components/CircularIndeterminate';
 import {CustomSnackBar} from '../../../../../../../../scenes/components/CustomSnackBar';
@@ -34,6 +35,10 @@ const styles = themes => ({
     },
     circleContainer: {
         textAlign: 'center'
+    },
+    icon: {
+        margin: themes.spacing.unit,
+        fontSize: 32,
     }
 });
 
@@ -59,6 +64,13 @@ class List extends Component {
     componentDidMount() {
         const {dispatch} = this.props;
         dispatch(serviceActions.getList());
+
+        this.onDelete = this.onDelete.bind(this);
+    }
+
+    onDelete(e) {
+        console.log(e.target.getAttribute('id'));
+        console.log('on delete click');
     }
 
     /**
@@ -94,6 +106,7 @@ class List extends Component {
                                             <TableCell>Title</TableCell>
                                             <TableCell>Short description</TableCell>
                                             <TableCell>Created at</TableCell>
+                                            <TableCell></TableCell>
                                         </TableRow>
                                     </TableHead>
                                     <TableBody>
@@ -103,6 +116,9 @@ class List extends Component {
                                                 <TableCell><Link to={`/admin/services/edit/${row.id}`}>{row.title}</Link></TableCell>
                                                 <TableCell>{row.short_description}</TableCell>
                                                 <TableCell>{row.created_at}</TableCell>
+                                                <TableCell>
+                                                    <DeleteOutlinedIcon id={row.id} className={classes.icon} onClick={this.onDelete} />
+                                                </TableCell>
                                             </TableRow>
                                         ))}
                                     </TableBody>
