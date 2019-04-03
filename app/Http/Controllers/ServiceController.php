@@ -89,9 +89,13 @@ class ServiceController extends Controller
             return Response::json(['message' => 'Service item not found'], 404);
         }
 
-        $input['icon'] = $this->uploadIcon($request);
+        if ($request->file('icon')) {
+            $input['icon'] = $this->uploadIcon($request);
+        }
 
-        $input['image'] = $this->uploadImage($request);
+        if ($request->file('image')) {
+            $input['image'] = $this->uploadImage($request);
+        }
 
         $service->update($input);
 

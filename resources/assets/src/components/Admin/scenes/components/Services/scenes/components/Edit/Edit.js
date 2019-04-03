@@ -85,14 +85,13 @@ class Edit extends Component {
     handleSubmit(e) {
         e.preventDefault();
 
+        const {id} = this.props.match.params;
         const {dispatch} = this.props;
         const {title, short_description, description, icon, image} = this.state;
         this.setState({submitted: true});
 
         if (title || short_description || description || icon || image) {
-            console.log('edit');
-            console.log(this.state);
-            // dispatch(serviceActions.create(this.state));
+            dispatch(serviceActions.update(id, this.state));
         }
     }
 

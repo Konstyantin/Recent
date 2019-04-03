@@ -51,14 +51,19 @@ function show(id) {
 
 function update(id, data) {
 
-    let formData = serviceFormDataFormat(data);
+    let formData = serviceFormDataFormat(data, true);
+    const user = getUserLocalStorage();
 
     const requestOptions = {
         method: 'POST',
-        headers: authHeader()
+        headers: {
+            'Authorization' : 'Bearer ' + user.token,
+            'Accept': 'application/json',
+        },
+        body: formData
     };
 
-    console.log('update service service')
+    return fetch(`/api/services/${id}`, requestOptions).then(handleResponse);
 }
 
 function remove() {
