@@ -76,6 +76,16 @@ function update(id, data) {
         dispatch(request());
 
         serviceServices.update(id, data)
+            .then(
+                service => {
+                    dispatch(success(service));
+                    history.push('/admin/services');
+                    dispatch(alertActions.success('Service item was updated success'));
+                },
+                error => {
+                    dispatch(error);
+                }
+            )
     };
 
     function request() {return {type: serviceConstants.UPDATE_REQUEST}}
