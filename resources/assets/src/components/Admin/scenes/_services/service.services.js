@@ -66,6 +66,13 @@ function update(id, data) {
     return fetch(`/api/services/${id}`, requestOptions).then(handleResponse);
 }
 
-function remove() {
-    console.log('remove service service')
+function remove(id) {
+
+    const requestOptions = {
+        method: 'DELETE',
+        headers: authHeader()
+    };
+
+    console.log('remove service service');
+    return fetch(`/api/services/${id}`, requestOptions).then(handleResponse);
 }

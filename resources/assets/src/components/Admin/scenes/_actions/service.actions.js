@@ -95,5 +95,24 @@ function update(id, data) {
 }
 
 function remove(id) {
+
+    return dispatch => {
+        dispatch(request());
+
+        serviceServices.remove(id)
+            .then(
+                service => {
+                    dispatch(success(service))
+                },
+                error => {
+                    dispatch(error);
+                }
+            )
+    };
+
+
+    function request() {return {type: serviceConstants.REMOVE_REQUEST}}
+    function success() {return {type: serviceConstants.REMOVE_REQUEST}}
+    function failure(error) {return {type: serviceConstants.REMOVE_REQUEST}}
     console.log('delete a service item');
 }

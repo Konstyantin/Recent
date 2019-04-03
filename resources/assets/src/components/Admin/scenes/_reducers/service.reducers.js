@@ -28,11 +28,11 @@ export function service(state = {}, action) {
         case serviceConstants.UPDATE_FAILURE:
             return {};
         case serviceConstants.REMOVE_REQUEST:
-            return console.log('remove request');
+            return {requested: true};
         case serviceConstants.REMOVE_SUCCESS:
-            return console.log('remove success');
+            return {requested: false};
         case serviceConstants.REMOVE_FAILURE:
-            return console.log('remove failure');
+            return {};
         case serviceConstants.SHOW_REQUEST:
             return {
                 requested: true

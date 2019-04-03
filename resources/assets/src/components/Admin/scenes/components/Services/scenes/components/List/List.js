@@ -69,6 +69,13 @@ class List extends Component {
     }
 
     onDelete(e) {
+
+        const {dispatch} = this.props;
+        const id = e.target.getAttribute('id');
+
+        if (id) {
+            dispatch(serviceActions.remove());
+        }
         console.log(e.target.getAttribute('id'));
         console.log('on delete click');
     }
