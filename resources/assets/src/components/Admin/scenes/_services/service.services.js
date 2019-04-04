@@ -73,6 +73,5 @@ function remove(id) {
         headers: authHeader()
     };
 
-    console.log('remove service service');
     return fetch(`/api/services/${id}`, requestOptions).then(handleResponse);
 }

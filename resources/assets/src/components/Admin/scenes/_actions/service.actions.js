@@ -112,7 +112,6 @@ function remove(id) {
 
 
     function request() {return {type: serviceConstants.REMOVE_REQUEST}}
-    function success() {return {type: serviceConstants.REMOVE_REQUEST}}
+    function success() {return {type: serviceConstants.REMOVE_SUCCESS}}
     function failure(error) {return {type: serviceConstants.REMOVE_REQUEST}}
-    console.log('delete a service item');
 }

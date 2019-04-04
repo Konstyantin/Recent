@@ -74,10 +74,9 @@ class List extends Component {
         const id = e.target.getAttribute('id');
 
         if (id) {
-            dispatch(serviceActions.remove());
+            dispatch(serviceActions.remove(id));
+            dispatch(serviceActions.getList());
         }
-        console.log(e.target.getAttribute('id'));
-        console.log('on delete click');
     }
 
     /**
