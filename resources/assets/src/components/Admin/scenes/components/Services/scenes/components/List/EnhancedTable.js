@@ -12,6 +12,7 @@ import Checkbox from '@material-ui/core/Checkbox';
 import TablePagination from '@material-ui/core/TablePagination';
 import {serviceActions} from './../../../../../_actions';
 import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
 
 const {stableSort, getSorting} = tableServiceHelper;
 
@@ -39,7 +40,7 @@ class EnhancedTable extends Component {
             selected: [],
             services: [],
             page: 0,
-            rowsPerPage: 5,
+            rowsPerPage: 10,
         };
 
         this.handleRequestSort = this.handleRequestSort.bind(this);
@@ -159,7 +160,7 @@ class EnhancedTable extends Component {
                                                     <Checkbox checked={isSelected} />
                                                 </TableCell>
                                                 <TableCell component="th" scope="row" padding="none">
-                                                    {n.title}
+                                                    <Link to={`/admin/services/edit/${n.id}`}>{n.title}</Link>
                                                 </TableCell>
                                                 <TableCell align="right">{n.short_description}</TableCell>
                                                 <TableCell align="right">{n.created_at}</TableCell>
