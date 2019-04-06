@@ -7,6 +7,7 @@ import {withStyles} from '@material-ui/core/styles';
 import {lighten} from "@material-ui/core/styles/colorManipulator";
 import classNames from 'classnames';
 import FilterListIcon from '@material-ui/icons/FilterList';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 const toolbarStyles = theme => ({
     root: {
