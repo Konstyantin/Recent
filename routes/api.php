@@ -28,7 +28,7 @@ Route::group(['middleware' => ['jwt.verify']], function () {
         Route::get('/{id}', 'ServiceController@show')->where('id', '[0-9]+')->name('service.show');
         Route::post('/', 'ServiceController@store')->name('service.store');
         Route::put('/{id}', 'ServiceController@update')->where('id', '[0-9]+')->name('service.update');
-        Route::delete('/{id}', 'ServiceController@delete')->where('id', '[0-9]+')->name('service.delete');
+        Route::delete('/', 'ServiceController@delete')->where('id', '[0-9]+')->name('service.delete');
     });
 
     Route::prefix('services/benefits')->group(function () {

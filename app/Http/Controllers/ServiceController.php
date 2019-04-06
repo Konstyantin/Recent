@@ -6,6 +6,8 @@ use App\Http\Requests\StoreServicePost;
 use App\Http\Requests\UpdatedServicePost;
 use App\Http\Traits\UploadServiceImages;
 use App\Service;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Response;
 
 /**
@@ -107,19 +109,21 @@ class ServiceController extends Controller
      *
      * The method is responsible for delete a service item by passed id param value
      *
-     * @param $id
+     * @param $request Request
      * @return \Illuminate\Http\JsonResponse
      */
-    public function delete($id)
+    public function delete(Request $request)
     {
-        $service = Service::find($id);
+        $selected = $request->except(['_method']);
 
-        if (!$service) {
+        $services = Service::whereIn('id', $selected['selected']);
+
+        if (empty($services->get()->toArray())) {
             return Response::json(['message' => 'Service item not found'], 404);
         }
 
-        $service->delete();
+        $services = $services->delete();
 
-        return Response::json(['id' => $id], 200);
+        return Response::json(['affected' => $services], 200);
     }
 }
