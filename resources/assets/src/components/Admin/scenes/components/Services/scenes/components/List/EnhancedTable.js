@@ -118,7 +118,7 @@ class EnhancedTable extends Component {
     };
 
     isSelected(id) {
-        this.state.selected.indexOf(id) !== -1;
+        return this.state.selected.indexOf(id) !== -1;
     }
 
     render() {
