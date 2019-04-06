@@ -44,6 +44,16 @@ const toolbarStyles = theme => ({
 
 class EnhancedTableToolbar extends Component {
 
+    constructor(props) {
+        super(props);
+
+        this.deleteClick = this.deleteClick.bind(this);
+    }
+
+    deleteClick(event) {
+        console.log('delete click')
+    }
+
     render() {
         const { numSelected, classes } = this.props;
 
@@ -68,8 +78,8 @@ class EnhancedTableToolbar extends Component {
                 <div className={classes.actions}>
                     {numSelected > 0 ? (
                         <Tooltip title="Delete">
-                            <IconButton aria-label="Delete">
-                                <DeleteIcon />
+                            <IconButton aria-label="Delete" onClick={this.deleteClick}>
+                                <DeleteIcon/>
                             </IconButton>
                         </Tooltip>
                     ) : (
