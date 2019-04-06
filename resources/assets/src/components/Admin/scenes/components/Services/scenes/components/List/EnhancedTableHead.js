@@ -15,9 +15,16 @@ const rows = [
 ];
 
 class EnhancedTableHead extends React.Component {
-    // createSortHandler = property => event => {
-    //     this.props.onRequestSort(event, property);
-    // };
+
+    constructor(props) {
+        super(props);
+
+        this.createSortHandler = this.createSortHandler.bind(this);
+    }
+
+    createSortHandler(event) {
+        return this.props.onRequestSort(event, event.target.id)
+    }
 
     render() {
         const { onSelectAllClick, order, orderBy, numSelected, rowCount } = this.props;
@@ -48,7 +55,8 @@ class EnhancedTableHead extends React.Component {
                                     <TableSortLabel
                                         active={orderBy === row.id}
                                         direction={order}
-                                        // onClick={this.createSortHandler(row.id)}
+                                        id={row.id}
+                                        onClick={this.createSortHandler}
                                     >
                                         {row.label}
                                     </TableSortLabel>
