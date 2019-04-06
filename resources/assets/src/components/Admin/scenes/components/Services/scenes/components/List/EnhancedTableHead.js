@@ -9,7 +9,7 @@ import TableSortLabel from '@material-ui/core/TableSortLabel';
 const rows = [
     { id: 'title', numeric: false, disablePadding: true, label: 'Title' },
     { id: 'short_description', numeric: true, disablePadding: false, label: 'Short description' },
-    { id: 'created', numeric: true, disablePadding: false, label: 'Created' },
+    { id: 'created_at', numeric: true, disablePadding: false, label: 'Created' },
 ];
 
 class EnhancedTableHead extends Component {
