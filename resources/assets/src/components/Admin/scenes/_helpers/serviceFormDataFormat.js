@@ -1,10 +1,12 @@
-export function serviceFormDataFormat(data, put = false) {
+export function serviceFormDataFormat(data, method = false) {
     let formData = new FormData();
 
-    const {title, short_description, description, icon, image} = data;
+    console.log(data, method);
 
-    if (put) {
-        formData.append('_method', 'put');
+    const {title, short_description, description, icon, image, selected} = data;
+
+    if (method) {
+        formData.append('_method', method);
     }
 
     if (title) {
@@ -25,6 +27,10 @@ export function serviceFormDataFormat(data, put = false) {
 
     if (image) {
         formData.append('image', image[0]);
+    }
+
+    if (selected) {
+        formData.append('selected[]', selected);
     }
 
     return formData;

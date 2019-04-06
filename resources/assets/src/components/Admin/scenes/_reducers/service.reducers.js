@@ -27,11 +27,11 @@ export function service(state = {}, action) {
             return {};
         case serviceConstants.UPDATE_FAILURE:
             return {};
-        case serviceConstants.REMOVE_REQUEST:
+        case serviceConstants.DELETE_REQUEST:
             return {requested: true};
-        case serviceConstants.REMOVE_SUCCESS:
+        case serviceConstants.DELETE_SUCCESS:
             return {requested: false};
-        case serviceConstants.REMOVE_FAILURE:
+        case serviceConstants.DELETE_FAILURE:
             return {};
         case serviceConstants.SHOW_REQUEST:
             return {

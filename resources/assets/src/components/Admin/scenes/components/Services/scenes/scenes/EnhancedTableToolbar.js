@@ -51,7 +51,7 @@ class EnhancedTableToolbar extends Component {
     }
 
     deleteClick(event) {
-        console.log('delete click')
+        return this.props.onDeleteSelected(event);
     }
 
     render() {
@@ -69,9 +69,7 @@ class EnhancedTableToolbar extends Component {
                             {numSelected} selected
                         </Typography>
                     ) : (
-                        <Typography variant="h6" id="tableTitle">
-                            Nutrition
-                        </Typography>
+                        <Typography variant="h6" id="tableTitle">Services</Typography>
                     )}
                 </div>
                 <div className={classes.spacer} />

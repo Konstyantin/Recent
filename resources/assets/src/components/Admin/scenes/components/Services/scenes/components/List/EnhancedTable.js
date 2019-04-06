@@ -10,6 +10,8 @@ import TableRow from '@material-ui/core/TableRow';
 import {EnhancedTableHead} from './EnhancedTableHead';
 import Checkbox from '@material-ui/core/Checkbox';
 import TablePagination from '@material-ui/core/TablePagination';
+import {serviceActions} from './../../../../../_actions';
+import {connect} from 'react-redux';
 
 const {stableSort, getSorting} = tableServiceHelper;
 
@@ -46,6 +48,7 @@ class EnhancedTable extends Component {
         this.handleChangePage = this.handleChangePage.bind(this);
         this.handleChangeRowsPerPage = this.handleChangeRowsPerPage.bind(this);
         this.isSelected = this.isSelected.bind(this);
+        this.handleDeleteSelected = this.handleDeleteSelected.bind(this);
     }
 
     componentDidMount() {
@@ -102,6 +105,14 @@ class EnhancedTable extends Component {
         this.setState({ rowsPerPage: event.target.value });
     };
 
+    handleDeleteSelected(event) {
+        const {selected} = this.state;
+        const {dispatch} = this.props;
+
+        dispatch(serviceActions.deleteSelected(selected));
+        dispatch(serviceActions.getList());
+    }
+
     isSelected(id) {
         return this.state.selected.indexOf(id) !== -1;
     }
@@ -115,7 +126,10 @@ class EnhancedTable extends Component {
                 {services.length &&
                 <Paper className={classes.root}>
 
-                    <EnhancedTableToolbar numSelected={selected.length} />
+                    <EnhancedTableToolbar
+                        numSelected={selected.length}
+                        onDeleteSelected={this.handleDeleteSelected}
+                    />
                     <div className={classes.tableWrapper}>
                         <Table className={classes.table} aria-labelledby="tableTitle">
                             <EnhancedTableHead
@@ -177,6 +191,11 @@ class EnhancedTable extends Component {
     }
 }
 
+function mapStateToProps(state) {
+    return {};
+}
+
 EnhancedTable = withStyles(styles)(EnhancedTable);
+EnhancedTable = connect(mapStateToProps)(EnhancedTable);
 
 export {EnhancedTable};

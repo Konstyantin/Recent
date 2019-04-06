@@ -8,7 +8,7 @@ export const serviceActions = {
     create,
     show,
     update,
-    remove
+    deleteSelected
 };
 
 function getList() {
@@ -91,18 +91,18 @@ function update(id, data) {
     function request() {return {type: serviceConstants.UPDATE_REQUEST}}
     function success(data) {return {type: serviceConstants.UPDATE_SUCCESS, data}}
     function failure(error) {return {type: serviceConstants.UPDATE_FAILURE, error}}
-    console.log('updated a service item');
 }
 
-function remove(id) {
+function deleteSelected(selected) {
 
     return dispatch => {
         dispatch(request());
 
-        serviceServices.remove(id)
+        serviceServices.deleteSelected(selected)
             .then(
                 service => {
-                    dispatch(success(service))
+                    dispatch(success());
+                    dispatch(alertActions.success('Service services was delete success'));
                 },
                 error => {
                     dispatch(error);
@@ -111,7 +111,7 @@ function remove(id) {
     };
 
 
-    function request() {return {type: serviceConstants.REMOVE_REQUEST}}
-    function success() {return {type: serviceConstants.REMOVE_SUCCESS}}
-    function failure(error) {return {type: serviceConstants.REMOVE_REQUEST}}
+    function request() {return {type: serviceConstants.DELETE_REQUEST}}
+    function success() {return {type: serviceConstants.DELETE_SUCCESS}}
+    function failure(error) {return {type: serviceConstants.DELETE_REQUEST}}
 }

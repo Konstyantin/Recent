@@ -58,19 +58,6 @@ class List extends Component {
     componentDidMount() {
         const {dispatch} = this.props;
         dispatch(serviceActions.getList());
-
-        this.onDelete = this.onDelete.bind(this);
-    }
-
-    onDelete(e) {
-
-        const {dispatch} = this.props;
-        const id = e.target.getAttribute('id');
-
-        if (id) {
-            dispatch(serviceActions.remove(id));
-            dispatch(serviceActions.getList());
-        }
     }
 
     /**

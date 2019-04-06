@@ -4,7 +4,7 @@ export const serviceServices = {
     create,
     get,
     update,
-    remove,
+    deleteSelected,
     show
 };
 
@@ -51,7 +51,7 @@ function show(id) {
 
 function update(id, data) {
 
-    let formData = serviceFormDataFormat(data, true);
+    let formData = serviceFormDataFormat(data, 'put');
     const user = getUserLocalStorage();
 
     const requestOptions = {
@@ -66,12 +66,19 @@ function update(id, data) {
     return fetch(`/api/services/${id}`, requestOptions).then(handleResponse);
 }
 
-function remove(id) {
+function deleteSelected(selected) {
+
+    let formData = serviceFormDataFormat({selected}, 'delete');
+    const user = getUserLocalStorage();
 
     const requestOptions = {
-        method: 'DELETE',
-        headers: authHeader()
+        method: 'POST',
+        headers: {
+            'Authorization' : 'Bearer ' + user.token,
+            'Accept': 'application/json',
+        },
+        body: formData
     };
 
-    return fetch(`/api/services/${id}`, requestOptions).then(handleResponse);
+    return fetch(`/api/services`, requestOptions).then(handleResponse);
 }
