@@ -5,6 +5,9 @@ import {connect} from 'react-redux';
 import {serviceActions} from './../../../../../_actions';
 import {CustomSnackBar} from '../../../../../../../../scenes/components/CustomSnackBar';
 import {EnhancedTable} from './EnhancedTable';
+import {Link} from 'react-router-dom';
+import Button from '@material-ui/core/Button';
+import {CircularIndeterminate} from './../../../../../components/CircularIndeterminate';
 
 const styles = theme => ({
     root: {
@@ -83,47 +86,20 @@ class List extends Component {
                 <Grid container>
                     <Grid item xs={12}>
                         <ServiceListSnackBar alert={alert}/>
-                        {/*<Link to={'/admin/services/create'}>*/}
-                            {/*<Button variant="contained" color="primary" className={classes.button}>*/}
-                                {/*Add new*/}
-                            {/*</Button>*/}
-                        {/*</Link>*/}
-                        {/*{service.requested &&*/}
-                            {/*<div className={classes.circleContainer}>*/}
-                                {/*<CircularIndeterminate classes={classes}/>*/}
-                            {/*</div>*/}
-                        {/*}*/}
+                        <Link to={'/admin/services/create'}>
+                            <Button variant="contained" color="primary" className={classes.button}>
+                                Add new
+                            </Button>
+                        </Link>
+                        {service.requested &&
+                            <div className={classes.circleContainer}>
+                                <CircularIndeterminate classes={classes}/>
+                            </div>
+                        }
 
-                        {/*{!service.requested && service.list &&*/}
-                            {/*<Paper className={classes.paper}>*/}
-                                {/*<Table className={classes.table}>*/}
-                                    {/*<TableHead>*/}
-                                        {/*<TableRow>*/}
-                                            {/*<TableCell>Id</TableCell>*/}
-                                            {/*<TableCell>Title</TableCell>*/}
-                                            {/*<TableCell>Short description</TableCell>*/}
-                                            {/*<TableCell>Created at</TableCell>*/}
-                                            {/*<TableCell></TableCell>*/}
-                                        {/*</TableRow>*/}
-                                    {/*</TableHead>*/}
-                                    {/*<TableBody>*/}
-                                        {/*{service.list.data.map(row => (*/}
-                                            {/*<TableRow key={row.id}>*/}
-                                                {/*<TableCell>{row.id}</TableCell>*/}
-                                                {/*<TableCell><Link to={`/admin/services/edit/${row.id}`}>{row.title}</Link></TableCell>*/}
-                                                {/*<TableCell>{row.short_description}</TableCell>*/}
-                                                {/*<TableCell>{row.created_at}</TableCell>*/}
-                                                {/*<TableCell>*/}
-                                                    {/*<DeleteOutlinedIcon id={row.id} className={classes.icon} onClick={this.onDelete} />*/}
-                                                {/*</TableCell>*/}
-                                            {/*</TableRow>*/}
-                                        {/*))}*/}
-                                    {/*</TableBody>*/}
-                                {/*</Table>*/}
-                            {/*</Paper>*/}
-                        {/*}*/}
-
-                        <EnhancedTable/>
+                        {!service.requested && service.list &&
+                            <EnhancedTable services={service.list.data}/>
+                        }
                     </Grid>
                 </Grid>
             </div>
